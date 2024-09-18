@@ -8,7 +8,7 @@ public class Arvore extends Elemento {
         super(x, y);
     }
 
-    // Desenha uma pi... arvore como um quadrado verde no tabuleiro
+    // Desenha uma arvore como um quadrado verde no tabuleiro
     @Override
     public void desenhar(Graphics g) {
         int tamanhoCelula = 60; // Tamanho de cada célula no grid
