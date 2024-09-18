@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.util.Random;
 
+// REFATORAR, TIRAR O PAINT, CRIAR CLASSE FLORESTAVIEW PARA TRATAR DO DESENHO DA TELA FORA DESSA CLASSE!
 public class Floresta extends JPanel {
   private int dimensao;
   private Elemento[][] elementos;
