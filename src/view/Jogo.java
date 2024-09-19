@@ -1,6 +1,8 @@
 package view;
 import javax.swing.JFrame;
 
+import models.ambiente.Floresta;
+
 public class Jogo extends JFrame {
     public Jogo() {
         // Fixando a dimensão da floresta como 6, tornar dinamico posteriormente

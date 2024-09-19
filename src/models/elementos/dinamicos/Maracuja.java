@@ -1,5 +1,5 @@
-package models.elementos.dinamicos;
+// package models.elementos.dinamicos;
 
-public class Maracuja extends Fruta{
+// public class Maracuja extends Fruta{
     
-}
+// }

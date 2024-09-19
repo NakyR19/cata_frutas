@@ -4,6 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import models.elementos.Elemento;
+import models.elementos.estaticos.Arvore;
+
 import java.util.Random;
 
 // REFATORAR, TIRAR O PAINT, CRIAR CLASSE FLORESTAVIEW PARA TRATAR DO DESENHO DA TELA FORA DESSA CLASSE!

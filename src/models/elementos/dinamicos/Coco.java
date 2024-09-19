@@ -1,5 +1,5 @@
-package models.elementos.dinamicos;
+// package models.elementos.dinamicos;
 
-public class Coco extends Fruta{
+// public class Coco extends Fruta{
     
-}
+// }

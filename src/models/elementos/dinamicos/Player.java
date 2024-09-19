@@ -1,5 +1,5 @@
-package models.elementos.dinamicos;
+// package models.elementos.dinamicos;
 
-public class Player extends ElemDinamico{
+// public class Player extends ElemDinamico{
     
-}
+// }

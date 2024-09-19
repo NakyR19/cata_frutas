@@ -1,5 +1,5 @@
-package models.elementos.estaticos;
+// package models.elementos.estaticos;
 
-public class Grama extends ElemEstatico{
+// public class Grama extends ElemEstatico{
     
-}
+// }

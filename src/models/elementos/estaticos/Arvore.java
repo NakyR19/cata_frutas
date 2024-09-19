@@ -2,6 +2,8 @@ package models.elementos.estaticos;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import models.elementos.Elemento;
+
 public class Arvore extends Elemento {
 
     public Arvore(int x, int y) {

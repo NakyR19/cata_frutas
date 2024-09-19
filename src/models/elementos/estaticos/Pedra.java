@@ -1,5 +1,5 @@
-package models.elementos.estaticos;
+// package models.elementos.estaticos;
 
-public class Pedra extends ElemEstatico{
+// public class Pedra extends ElemEstatico{
     
-}
+// }

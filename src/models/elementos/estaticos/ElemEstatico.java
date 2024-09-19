@@ -1,7 +1,7 @@
-package models.elementos.estaticos;
+// package models.elementos.estaticos;
 
-import models.elementos.Elemento;
+// import models.elementos.Elemento;
 
-public abstract class ElemEstatico extends Elemento{
+// public abstract class ElemEstatico extends Elemento{
     
-}
+// }
