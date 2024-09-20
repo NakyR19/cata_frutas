@@ -1,62 +1,41 @@
 package models.ambiente;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
-import models.elementos.Elemento;
-import models.elementos.estaticos.Arvore;
 
 import java.util.Random;
+import models.elementos.Elemento;
+import models.elementos.estaticos.Grama;
 
-// REFATORAR, TIRAR O PAINT, CRIAR CLASSE FLORESTAVIEW PARA TRATAR DO DESENHO DA TELA FORA DESSA CLASSE!
-public class Floresta extends JPanel {
+public class Floresta {
   private int dimensao;
   private Elemento[][] elementos;
-  private Image background;
 
   public Floresta(int dimensao) {
     this.dimensao = dimensao;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
-    gerarFloresta(); // Adivinha oq ele gera?
-    ImageIcon referencia = new ImageIcon("src/main/res/background.png"); // ALTERAR PATH
-    background = referencia.getImage();
+    gerarFlorestaVazia(); // Adivinha oq ele gera?
   }
 
-  // Gera a floresta preenchendo a matriz com as porras dos elementos
-  public void gerarFloresta() {
-    Random random = new Random();
+  // Gera a floresta sem elementos
+  public void gerarFlorestaVazia() {
     for (int i = 0; i < dimensao; i++) {
       for (int j = 0; j < dimensao; j++) {
-        // Tentando gerar aleatoriamente alguns elemento
-        if (random.nextBoolean()) {
-          elementos[i][j] = new Arvore(1, 5); // Exemplo de árvore
-          elementos[i][j] = new Arvore(5, 4); // Exemplo de árvore
-          elementos[i][j] = new Arvore(2, 2); // Exemplo de árvore
-          elementos[i][j] = new Arvore(5, 3); // Exemplo de árvore
-        } else {
-          elementos[i][j] = new Arvore(5, 1);
-        }
+        elementos[i][j] = new Grama(i, j); // Cada posição está vazia (sem elementos)
       }
     }
   }
+  
+  public int getDimensao() {
+    return dimensao;
+  }
+  
+  public void setDimensao(int d) {
+    this.dimensao = d;
+  }
+  
+  public Elemento[][] getElementos() {
+    return elementos;
+  }
 
-  // Sobrescreve o método paint para desenhar o background e os elementos
-  public void paint(Graphics g) {
-    super.paint(g);
-    Graphics2D graficos = (Graphics2D) g;
-    graficos.drawImage(background, 0, 0, getWidth(), getHeight(), null); // rever
-
-    // Iterando sobre os elementos e desenhando-os na floresta (talvez tenha
-    // assasinado o portugues aqui)
-    for (int i = 0; i < dimensao; i++) {
-      for (int j = 0; j < dimensao; j++) {
-        if (elementos[i][j] != null) {
-          elementos[i][j].desenhar(g); // Método que desenha o elemento
-        }
-      }
-    }
-    g.dispose();
+  public void setElementos(Elemento[][] e) {
+    this.elementos = e;
   }
 }

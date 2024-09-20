@@ -1,9 +1,12 @@
-// package models.elementos.dinamicos;
+package models.elementos.dinamicos;
 
-// import models.elementos.Elemento;
+import models.elementos.Elemento;
 
-// public abstract class ElemDinamico extends Elemento{
+public abstract class ElemDinamico extends Elemento{
 
-//public void Mover(int x, int y){}
+  public ElemDinamico(int x, int y){
+    super(x, y);
+  }
+  public abstract void mover(int x, int y);
 
-// }
+}
