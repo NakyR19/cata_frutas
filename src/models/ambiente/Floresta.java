@@ -3,6 +3,8 @@ package models.ambiente;
 import java.util.Random;
 import models.elementos.Elemento;
 import models.elementos.estaticos.Grama;
+import models.elementos.estaticos.Pedra;
+
 
 public class Floresta {
   private int dimensao;
@@ -14,11 +16,21 @@ public class Floresta {
     gerarFlorestaVazia(); // Adivinha oq ele gera?
   }
 
-  // Gera a floresta sem elementos
+  // Gera a floresta sem elementos além de grama
   public void gerarFlorestaVazia() {
     for (int i = 0; i < dimensao; i++) {
       for (int j = 0; j < dimensao; j++) {
         elementos[i][j] = new Grama(i, j); // Cada posição está vazia (sem elementos)
+      }
+    }
+  }
+  public void gerarPedras() {
+     Random gerador = new Random();
+    for (int i = 0; i < 7; i++) {
+      for (int j = 0; j < 7; j++) {
+         int x = gerador.nextInt(30);
+         int y = gerador.nextInt(30);
+        elementos[x][y] = new Pedra(i, j); // Cada posição está vazia (sem elementos)
       }
     }
   }
