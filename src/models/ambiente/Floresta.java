@@ -28,8 +28,8 @@ public class Floresta {
      Random gerador = new Random();
     for (int i = 0; i < 7; i++) {
       for (int j = 0; j < 7; j++) {
-         int x = gerador.nextInt(30);
-         int y = gerador.nextInt(30);
+         int x = gerador.nextInt(6);
+         int y = gerador.nextInt(6);
         elementos[x][y] = new Pedra(i, j); // Cada posição está vazia (sem elementos)
       }
     }
