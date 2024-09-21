@@ -9,7 +9,7 @@ import java.awt.*;
 public class FlorestaComponent extends JPanel {
     private Floresta floresta;
     private Image background;
-    private static final int CELL_SIZE = 50;  // Definindo o tamanho da célula
+    private static final int CELL_SIZE = 64;  // Definindo o tamanho da célula
 
     public FlorestaComponent(Floresta floresta) {
         this.floresta = floresta;

@@ -1,4 +1,5 @@
 package view.elementos.estatico;
+
 import view.elementos.ElementoComponent;
 import models.elementos.estaticos.Grama;
 import java.awt.Graphics;
@@ -7,11 +8,12 @@ import javax.swing.ImageIcon;
 
 public class GramaComponent extends ElementoComponent {
     private Grama grama;
+
     private Image imagemGrama;
 
     public GramaComponent(Grama g) {
         this.grama = g;
-        ImageIcon referencia = new ImageIcon("res/images/grama.png");
+        ImageIcon referencia = new ImageIcon("res\\images\\grama.png");
         imagemGrama = referencia.getImage();
     }
 
@@ -20,5 +22,12 @@ public class GramaComponent extends ElementoComponent {
         // Desenha a imagem da grama na posição (x, y) com o tamanho de resolução da célula 64 x 64
         g.drawImage(imagemGrama, x, y, cellSize, cellSize, null);
     }
-}
 
+    public Grama getGrama() {
+        return grama;
+    }
+
+    public void setGrama(Grama grama) {
+        this.grama = grama;
+    }
+}
