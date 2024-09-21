@@ -12,7 +12,7 @@ public class PedraComponent extends ElementoComponent {
     
     public PedraComponent(Pedra p) {
         this.pedra = p;
-        ImageIcon referencia = new ImageIcon("res\\images\\coqueiro.png");
+        ImageIcon referencia = new ImageIcon("res\\images\\pedraGrande.png");
         imagemGrama = referencia.getImage();
     }
     
