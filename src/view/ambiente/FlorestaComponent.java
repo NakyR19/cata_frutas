@@ -1,18 +1,23 @@
 package view.ambiente;
+
 import models.ambiente.Floresta;
 import models.elementos.Elemento;
 import view.elementos.ElementoComponent;
 import view.elementos.ElementoComponentFactory;
+import view.elementos.dinamico.PlayerComponent;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class FlorestaComponent extends JPanel {
     private Floresta floresta;
+    private PlayerComponent playerComponent;
     private Image background;
-    private static final int CELL_SIZE = 64;  // Definindo o tamanho da célula
+    private static final int CELL_SIZE = 64; // Definindo o tamanho da célula
 
-    public FlorestaComponent(Floresta floresta) {
+    public FlorestaComponent(Floresta floresta, PlayerComponent playerComponent) {
         this.floresta = floresta;
+        this.playerComponent = playerComponent;
         ImageIcon referencia = new ImageIcon("res/images/background.png"); // ALTERAR PATH
         background = referencia.getImage();
     }
@@ -38,5 +43,10 @@ public class FlorestaComponent extends JPanel {
                 }
             }
         }
+        playerComponent.desenhar(g, playerComponent.getPlayer().getX() * CELL_SIZE, playerComponent.getPlayer().getY() * CELL_SIZE, CELL_SIZE);
+    }
+
+    public Floresta getFloresta() {
+        return floresta;
     }
 }

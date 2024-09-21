@@ -9,7 +9,7 @@ public class Player extends ElemDinamico {
 
     @Override
     public void mover(int x, int y) {
-        this.x += x;    
-        this.y += y;
+        this.x = x;    
+        this.y = y;
     }
 }

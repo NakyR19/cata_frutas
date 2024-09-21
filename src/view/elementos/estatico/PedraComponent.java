@@ -36,5 +36,5 @@ public class PedraComponent extends ElementoComponent {
     public void setImagemGrama(Image imagemGrama) {
         this.imagemGrama = imagemGrama;
     }
-    
+
 }

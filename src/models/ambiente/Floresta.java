@@ -40,6 +40,7 @@ public class Floresta {
     }
 
   }
+
   public void gerarPlayer() {
     Random gerador = new Random();
     int playerColocados = 0;
@@ -56,14 +57,27 @@ public class Floresta {
 
   public Player getPlayer() {
     for (int i = 0; i < dimensao; i++) {
-        for (int j = 0; j < dimensao; j++) {
-            if (elementos[i][j] instanceof Player) {
-                return (Player) elementos[i][j];
-            }
+      for (int j = 0; j < dimensao; j++) {
+        if (elementos[i][j] instanceof Player) {
+          return (Player) elementos[i][j];
         }
+      }
     }
     return null; // Se não encontrar o Player, retorne null
-}
+  }
+
+  public boolean isCollision(int x, int y) {
+    // Verifica se a posição está dentro dos limites
+    if (x < 0 || x >= dimensao || y < 0 || y >= dimensao) {
+      return true; // Fora dos limites é considerado uma colisão
+    }
+    // Verifica se a posição está ocupada por um elemento diferente de Grama
+    return !(elementos[x][y] instanceof Grama);
+  }
+
+  public void setTileAsGrama(int x, int y) {
+    elementos[x][y] = new Grama(x, y);
+  }
 
   public int getDimensao() {
     return dimensao;

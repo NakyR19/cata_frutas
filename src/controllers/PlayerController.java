@@ -4,46 +4,59 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import models.elementos.dinamicos.Player;
-import view.elementos.dinamico.PlayerComponent;
+import view.ambiente.FlorestaComponent;
 
 public class PlayerController implements KeyListener {
     private Player player;
-    private PlayerComponent playerComponent;
-    private static int ONE_MV = 1;
+    private FlorestaComponent florestaComponent;
+
+    private static int PLUS_ONE_MV = 1;
     private static int LESS_ONE_MV = -1;
-    private static int ZERO_MV = 0;
+    private boolean initialPositionCleared = false;
 
-
-    public PlayerController(Player player, PlayerComponent playerComponent) {
+    public PlayerController(Player player, FlorestaComponent florestaComponent) {
         this.player = player;
-        this.playerComponent = playerComponent;
+        this.florestaComponent = florestaComponent;
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         System.out.println("Tecla Pressionada: " + e.getKeyCode()); // Para verificar
+        int novoX = player.getX();
+        int novoY = player.getY();
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                player.mover(ZERO_MV, LESS_ONE_MV);
+                novoY += LESS_ONE_MV;
                 break;
             case KeyEvent.VK_DOWN:
-                player.mover(ZERO_MV, ONE_MV);
+                novoY += PLUS_ONE_MV;
                 break;
             case KeyEvent.VK_LEFT:
-                player.mover(LESS_ONE_MV, ZERO_MV);
+                novoX += LESS_ONE_MV;
                 break;
             case KeyEvent.VK_RIGHT:
-                player.mover(ONE_MV, ZERO_MV);
+                novoX += PLUS_ONE_MV;
                 break;
         }
 
-        
-        playerComponent.repaint(); // Atualiza o desenho
+        // Limpa a posição inicial apenas uma vez
+        if (!initialPositionCleared) {
+            florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
+            initialPositionCleared = true;
+        }
+        // Atualiza a posição do player no objeto Player
+        if (!florestaComponent.getFloresta().isCollision(novoX, novoY)) {
+            player.mover(novoX, novoY);
+        }
+
+        florestaComponent.repaint(); // Atualiza o desenho
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 }
