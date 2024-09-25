@@ -1,40 +1,50 @@
 package view;
 
+import controllers.PlayerController;
 import models.ambiente.Floresta;
 import models.elementos.dinamicos.Player;
-
-import javax.swing.JFrame;
-
-import controllers.PlayerController;
 import view.ambiente.FlorestaComponent;
 import view.elementos.dinamico.PlayerComponent;
 
-public class Jogo extends JFrame {
-    private static final int CELL_SIZE = 64; // Definindo o tamanho da célula
-    private static final int WIDTH_OVER = 14; // Definindo o tamanho da célula
-    private static final int HEIGHT_OVER = 37; // Definindo o tamanho da célula
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-    public Jogo() {
-        // Fixando a dimensão da floresta como 6, tornar dinamico posteriormente
+public class Jogo extends JFrame {
+    private static final int CELL_SIZE = 64;
+    private static final int WIDTH_OVER = 14;
+    private static final int HEIGHT_OVER = 37;
+
+    public Jogo(JFrame menuInicial) {
+        // Definindo a dimensão da floresta como 6, tornar dinâmico posteriormente
         Floresta floresta = new Floresta(6);
         Player player = floresta.getPlayer();
         PlayerComponent playerComponent = new PlayerComponent(player);
         FlorestaComponent florestaComponent = new FlorestaComponent(floresta, playerComponent);
 
-
         add(florestaComponent);
         setTitle("Floresta");
-        // Para o calculo do tamanho do size irá ser 64x(dimensao)+14 para o width, e
-        // 64xdimensao+37 para height
         setSize(floresta.getDimensao() * CELL_SIZE + WIDTH_OVER, floresta.getDimensao() * CELL_SIZE + HEIGHT_OVER);
         setVisible(true);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Para gerenciar o fechamento manualmente
         this.setResizable(false);
 
         PlayerController playerController = new PlayerController(player, florestaComponent);
         addKeyListener(playerController);
         setFocusable(true);
         requestFocusInWindow();
+
+        // Adiciona o listener para o fechamento da janela
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Mostrar a janela do menu inicial antes de fechar
+                menuInicial.setVisible(true);
+
+                // Destruir o objeto Jogo
+                dispose(); // Fecha e remove o Jogo da memória
+            }
+        });
     }
 }
