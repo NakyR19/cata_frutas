@@ -7,19 +7,19 @@ import javax.swing.ImageIcon;
 
 public class PedraComponent extends ElementoComponent {
     private Pedra pedra;
-    private Image imagemGrama;
+    private Image imagemPedra;
     
     
     public PedraComponent(Pedra p) {
         this.pedra = p;
         ImageIcon referencia = new ImageIcon("res\\images\\pedraGrande.png");
-        imagemGrama = referencia.getImage();
+        imagemPedra = referencia.getImage();
     }
     
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize) {
         // Desenha a imagem da pedra na posição (x, y) com o tamanho de resolução da célula 64 x 64
-        g.drawImage(imagemGrama, x, y, cellSize, cellSize, null);
+        g.drawImage(imagemPedra, x, y, cellSize, cellSize, null);
     }
     
     public Pedra getPedra() {
@@ -29,12 +29,12 @@ public class PedraComponent extends ElementoComponent {
     public void setPedra(Pedra pedra) {
         this.pedra = pedra;
     }
-    public Image getImagemGrama() {
-        return imagemGrama;
+    public Image getImagePedra() {
+        return imagemPedra;
     }
     
-    public void setImagemGrama(Image imagemGrama) {
-        this.imagemGrama = imagemGrama;
+    public void setImagemPedra(Image imagemPedra) {
+        this.imagemPedra = imagemPedra;
     }
 
 }

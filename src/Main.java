@@ -1,4 +1,3 @@
-import view.Jogo;
 import view.MenuInicial;
 
 public class Main {

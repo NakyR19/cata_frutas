@@ -9,8 +9,9 @@ import models.elementos.estaticos.Pedra;
 public class Floresta {
   private int dimensao;
   private Elemento[][] elementos;
-
-  public Floresta(int dimensao) {
+  private int numPedras;
+  public Floresta(int dimensao, int numPedras) {
+    this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia(); // Adivinha oq ele gera?
@@ -20,8 +21,8 @@ public class Floresta {
 
   // Gera a floresta sem elementos além de grama
   public void gerarFlorestaVazia() {
-    for (int i = 0; i < dimensao; i++) {
-      for (int j = 0; j < dimensao; j++) {
+    for (int i = 0; i < getDimensao(); i++) {
+      for (int j = 0; j < getDimensao(); j++) {
         elementos[i][j] = new Grama(i, j); // Cada posição está vazia (sem elementos)
       }
     }
@@ -30,9 +31,9 @@ public class Floresta {
   public void gerarPedras() {
     Random gerador = new Random();
     int pedrasColocadas = 0;
-    while (pedrasColocadas < 7) {
-      int x = gerador.nextInt(6);
-      int y = gerador.nextInt(6);
+    while (pedrasColocadas < numPedras) {
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
       if (elementos[x][y] instanceof Grama) {
         elementos[x][y] = new Pedra(x, y);
         pedrasColocadas++;
@@ -44,7 +45,7 @@ public class Floresta {
   public void gerarPlayer() {
     Random gerador = new Random();
     int playerColocados = 0;
-    while (playerColocados < 1) {
+    while (playerColocados < 2) {
       int x = gerador.nextInt(6);
       int y = gerador.nextInt(6);
       if (elementos[x][y] instanceof Grama) {

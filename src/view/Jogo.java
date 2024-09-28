@@ -18,6 +18,9 @@ public class Jogo extends JFrame {
     private static final int CELL_SIZE = 64;
     private static final int WIDTH_OVER = 14;
     private static final int HEIGHT_OVER = 37;
+    private static final int DIMENSAO_MIN = 6;
+    private static final int DIMENSAO_MAX = 12;
+
 
     public Jogo(JFrame menuInicial) {
         File diretorioMapas = new File("diretorio_dos_mapas"); // Diretório onde os mapas estão armazenados
@@ -50,7 +53,9 @@ public class Jogo extends JFrame {
         // Carrega as configurações do mapa a partir do arquivo selecionado
         File arquivoMapa = new File(diretorioMapas, mapaSelecionado);
         int dimensao = lerDimensaoDoMapa(arquivoMapa);
-        if (dimensao == -1) {
+        int numPedras = lerNumPedrasDoMapa(arquivoMapa);
+
+        if (dimensao < DIMENSAO_MIN || dimensao > DIMENSAO_MAX) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar o mapa.");
             menuInicial.setVisible(true);
             dispose();
@@ -58,7 +63,7 @@ public class Jogo extends JFrame {
         }
 
         // Cria o jogo com a dimensão lida do arquivo
-        Floresta floresta = new Floresta(dimensao);
+        Floresta floresta = new Floresta(dimensao, numPedras);
         Player player = floresta.getPlayer();
         PlayerComponent playerComponent = new PlayerComponent(player);
         FlorestaComponent florestaComponent = new FlorestaComponent(floresta, playerComponent);
@@ -95,6 +100,24 @@ public class Jogo extends JFrame {
             String linha;
             while ((linha = br.readLine()) != null) {
                 if (linha.startsWith("dimensao")) {
+                    // A linha tem o formato: "dimensao <valor>"
+                    String[] partes = linha.split(" ");
+                    if (partes.length == 2) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1; // Retorna -1 em caso de erro
+    }
+    
+    private int lerNumPedrasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                if (linha.startsWith("pedras")) {
                     // A linha tem o formato: "dimensao <valor>"
                     String[] partes = linha.split(" ");
                     if (partes.length == 2) {
