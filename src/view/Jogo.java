@@ -21,7 +21,10 @@ public class Jogo extends JFrame {
     private static final int DIMENSAO_MIN = 6;
     private static final int DIMENSAO_MAX = 12;
 
-
+    /**
+     * Construtor da classe Jogo.
+     * @param menuInicial A janela do menu inicial.
+     */
     public Jogo(JFrame menuInicial) {
         File diretorioMapas = new File("diretorio_dos_mapas"); // Diretório onde os mapas estão armazenados
         File[] arquivosDeMapa = diretorioMapas.listFiles((dir, name) -> name.endsWith(".txt"));
@@ -113,6 +116,13 @@ public class Jogo extends JFrame {
         return -1; // Retorna -1 em caso de erro
     }
     
+    /**
+     * Função para ler a o número de Pedras do mapa a partir do arquivo.
+     * @author NakyR19 - Rafael
+     * @param arquivoMapa O arquivo que contém o mapa.
+     * @return A dimensão do mapa.
+     * @throws IOException Se ocorrer um erro ao ler o arquivo.
+     */
     private int lerNumPedrasDoMapa(File arquivoMapa) {
         try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {
             String linha;

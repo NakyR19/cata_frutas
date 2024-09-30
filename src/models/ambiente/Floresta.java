@@ -6,20 +6,38 @@ import models.elementos.dinamicos.Player;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
 
+/**
+ * Floresta representa uma matriz composta por elementos.
+ */
 public class Floresta {
+  /**
+   * ############ ATRIBUTOS ############
+   * dimensao - A dimensão da floresta (número de linhas e colunas).
+   * elementos - A matriz de elementos que compõem a floresta.
+   * numPedras - O número de pedras existentes na floresta.
+   */
   private int dimensao;
   private Elemento[][] elementos;
   private int numPedras;
+
+  /**
+   * ############ CONSTRUTOR ############
+   * @param dimensao  a dimensão da floresta
+   * @param numPedras o número de pedras na floresta
+   */
   public Floresta(int dimensao, int numPedras) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
-    gerarFlorestaVazia(); // Adivinha oq ele gera?
+    gerarFlorestaVazia();
     gerarPedras();
     gerarPlayer();
   }
 
-  // Gera a floresta sem elementos além de grama
+  /**
+     * @author NakyR19 - Rafael
+     * Gera a floresta sem outros elementos além de grama.
+     */
   public void gerarFlorestaVazia() {
     for (int i = 0; i < getDimensao(); i++) {
       for (int j = 0; j < getDimensao(); j++) {
@@ -28,6 +46,10 @@ public class Floresta {
     }
   }
 
+  /**
+     * @author NakyR19 - Rafael
+     * Gera pedras aleatoriamente na floresta.
+     */
   public void gerarPedras() {
     Random gerador = new Random();
     int pedrasColocadas = 0;
@@ -41,7 +63,10 @@ public class Floresta {
     }
 
   }
-
+  /**
+     * @author NakyR19 - Rafael
+     * Gera o jogador na floresta.
+     */
   public void gerarPlayer() {
     Random gerador = new Random();
     int playerColocados = 0;
@@ -56,6 +81,11 @@ public class Floresta {
 
   }
 
+  /**
+   * Percorre a matriz afim de coletar o jogador presente na floresta.
+   * @author NakyR19 - Rafael
+   * @return o jogador presente na floresta, ou null se não houver jogador.
+   */
   public Player getPlayer() {
     for (int i = 0; i < dimensao; i++) {
       for (int j = 0; j < dimensao; j++) {
@@ -66,7 +96,14 @@ public class Floresta {
     }
     return null; // Se não encontrar o Player, retorne null
   }
-
+  
+  /**
+   * Verifica se há uma colisão na posição especificada.
+   * @author NakyR19 - Rafael
+   * @param x a coordenada x da posição a ser verificada.
+   * @param y a coordenada y da posição a ser verificada.
+   * @return true se houver uma colisão, false caso contrário.
+   */
   public boolean isCollision(int x, int y) {
     // Verifica se a posição está dentro dos limites
     if (x < 0 || x >= dimensao || y < 0 || y >= dimensao) {
@@ -76,6 +113,12 @@ public class Floresta {
     return !(elementos[x][y] instanceof Grama);
   }
 
+  /**
+   * Seta um piso de coordenadas (x,y) como grama
+   * @author NakyR19 - Rafael
+   * @param x coordenada
+   * @param y coordenada
+   */
   public void setTileAsGrama(int x, int y) {
     elementos[x][y] = new Grama(x, y);
   }

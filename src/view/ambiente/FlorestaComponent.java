@@ -9,12 +9,31 @@ import view.elementos.dinamico.PlayerComponent;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * FlorestaComponent representa o componente gráfico da floresta no jogo.
+ * Herda de JPanel e é responsável por desenhar a floresta e seus elementos.
+ * @author NakyR19 - Rafael
+ */
 public class FlorestaComponent extends JPanel {
+    /**
+     * ############ ATRIBUTOS ############
+     * Floresta - o objeto Floresta que representa a floresta no jogo.
+     * playerComponent - O componente gráfico do jogador.
+     * background - A imagem de fundo da floresta. (NÃO É OCASIONALMENTE VISTA)
+     * CELL_SIZE - atributo estático(constante) para O tamanho da célula na grade da floresta.
+     * initialPositionCleared - Indica se a posição inicial foi limpa.
+     */
     private Floresta floresta;
     private PlayerComponent playerComponent;
     private Image background;
     private static final int CELL_SIZE = 64; // Definindo o tamanho da célula
 
+    /**
+     * Construtor
+     *
+     * @param floresta O objeto Floresta que representa a floresta no jogo.
+     * @param playerComponent O componente gráfico do jogador.
+     */
     public FlorestaComponent(Floresta floresta, PlayerComponent playerComponent) {
         this.floresta = floresta;
         this.playerComponent = playerComponent;
@@ -22,6 +41,11 @@ public class FlorestaComponent extends JPanel {
         background = referencia.getImage();
     }
 
+    /**
+     * Sobrescreve o método paintComponent para desenhar a floresta e seus elementos.
+     *
+     * @param g O objeto Graphics usado para desenhar os componentes.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

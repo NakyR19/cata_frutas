@@ -1,12 +1,25 @@
 package models.elementos.estaticos;
 
-public class Grama extends ElemEstatico{
-    public Grama(int x, int y) {
-      super(x, y);
-    }
+/**
+ * Grama é um tile de movimentação livre
+ * Esta classe herda da classe ElemEstatico.
+ * 
+ * @author NakyR19 - Rafael
+ */
+public class Grama extends ElemEstatico {
+  /**
+   * Construtor
+   * 
+   * @param x coordenada x
+   * @param y coordenada y
+   */
+  public Grama(int x, int y) {
+    super(x, y);
+  }
 
-    @Override
-    public void interagir(){
+  // será necessário?
+  @Override
+  public void interagir() {
 
-    }
+  }
 }

@@ -1,8 +1,22 @@
 package models.elementos;
 
+/**
+ * Abstract Class Elemento representa um elemento da floresta
+ * 
+ * @author NakyR19 - Rafael
+ */
 public abstract class Elemento {
-    protected int x, y; // Posição no tabuleiro
+    /**
+     * Coordenadas
+     */
+    protected int x, y;
     
+    /**
+   * Construtor
+   * 
+   * @param x coordenada x
+   * @param y coordenada y
+   */
     public Elemento(int x, int y) {
         this.x = x;
         this.y = y;

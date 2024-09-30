@@ -6,22 +6,45 @@ import java.awt.event.KeyListener;
 import models.elementos.dinamicos.Player;
 import view.ambiente.FlorestaComponent;
 
+/**
+ * PlayerController é responsável por controlar o jogador "escutando" os eventos do teclado.
+ * Implementa a interface KeyListener para capturar os eventos.
+ * @author NakyR19 - Rafael
+ */
 public class PlayerController implements KeyListener {
+
+    /**
+     * ############ ATRIBUTOS ############
+     * Player - Espera receber o jogador que será movimentado
+     * florestaComponent - O componente da floresta onde o jogador se move.
+     * PLUS_ONE_MV - Constante p/ acréscimo de posição na matriz
+     * LESS_ONE_MV - Constante p/ decrescimo de posição na matriz
+     * initialPositionCleared - Indica se a posição inicial foi limpa.
+     */
+
     private Player player;
     private FlorestaComponent florestaComponent;
-
     private static int PLUS_ONE_MV = 1;
     private static int LESS_ONE_MV = -1;
     private boolean initialPositionCleared = false;
 
+    /**
+     * ############ CONSTRUTOR ############
+     * @param player o jogador a ser controlado
+     * @param florestaComponent o componente da floresta onde o jogador se move
+     */
     public PlayerController(Player player, FlorestaComponent florestaComponent) {
         this.player = player;
         this.florestaComponent = florestaComponent;
     }
 
+    /**
+     * Método chamado quando uma tecla é pressionada.
+     * Atualiza a posição do jogador com base na tecla pressionada.
+     * @param e o evento de tecla
+     */
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Tecla Pressionada: " + e.getKeyCode()); // Para verificar
         int novoX = player.getX();
         int novoY = player.getY();
         switch (e.getKeyCode()) {

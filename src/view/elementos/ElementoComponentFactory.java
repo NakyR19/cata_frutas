@@ -8,8 +8,17 @@ import view.elementos.dinamico.PlayerComponent;
 import view.elementos.estatico.GramaComponent;
 import view.elementos.estatico.PedraComponent;
 
-
+/**
+ * A classe ElementoComponentFactory é uma fábrica para criar componentes gráficos para diferentes tipos de elementos do jogo.
+ * @author NakyR19 - Rafael
+ */
 public class ElementoComponentFactory {
+     /**
+     * Cria um componente gráfico para o elemento fornecido.
+     *
+     * @param elemento O elemento para o qual o componente gráfico será criado.
+     * @return O componente gráfico correspondente ao elemento, ou null se o elemento não for reconhecido.
+     */
     public static ElementoComponent criarComponente(Elemento elemento) {
         if (elemento instanceof Grama) {
             return new GramaComponent((Grama) elemento);
@@ -21,6 +30,6 @@ public class ElementoComponentFactory {
             return new PlayerComponent((Player) elemento);
         }
         // ADICIONAR OS OUTROS ELEMENTOS
-        return null; // Retorna nulo SE NÃO encontrar um componente para o elemento
+        return null;
     }
 }
