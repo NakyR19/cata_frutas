@@ -19,7 +19,7 @@ package models.elementos.dinamicos;
      */
     public Coco(int x, int y, String TipoFruta, boolean Bichada) {
        super(x, y);
-        TipoFruta = 'Coco';
+        TipoFruta = "Coco";
         Bichada = false;
     }
     /**
@@ -30,7 +30,12 @@ package models.elementos.dinamicos;
      *
      */
     @Override
-       public void aplicarEfeito(Player p){
+       public boolean aplicarEfeito(Player p){
         // Dobrar o número de pontos de movimento de uma rodada
+        return true;
  }
+    @Override
+    public void mover(int x, int y) {
+        throw new UnsupportedOperationException("Unimplemented method 'mover'");
+    }
 }

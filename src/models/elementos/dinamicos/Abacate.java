@@ -20,7 +20,7 @@ public class Abacate extends Fruta{
      */
     public Abacate(int x, int y, String TipoFruta, boolean Bichada) {
         super(x, y);
-        TipoFruta = 'Abacate';
+        TipoFruta = "Abacate";
         Bichada = false;
     }
 
@@ -31,7 +31,13 @@ public class Abacate extends Fruta{
      * @todo Implementar a lógica para dobrar a força do jogador.
      */
     @Override
-    public void aplicarEfeito(Player p){
+    public boolean aplicarEfeito(Player p){
         // Dobrar a força do competidor
+        return true;
+    }
+
+    @Override
+    public void mover(int x, int y) {
+        throw new UnsupportedOperationException("Unimplemented method 'mover'");
     }
 }

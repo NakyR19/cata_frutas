@@ -29,7 +29,7 @@ public class Pedra extends ElemEstatico{
    * @author MariaLuizaCA - Maria Luíza
    */
   @Override
-  public void interagir(Player p) {
+  public void interagir() {
     /*
     if (p.getPontosMov() >= 3) {  // 1 ponto para chegar + 1 ponto para pular + 1 ponto para avançar
         // Implementar a lógica de diminuir os pontos de movimento - p.TirarPontos(3)

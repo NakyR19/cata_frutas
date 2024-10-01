@@ -1,5 +1,5 @@
-package models.elementos.dinamicos;
+/*package models.elementos.dinamicos;
 
 public class Goiaba extends Fruta{
     
-}
+}*/

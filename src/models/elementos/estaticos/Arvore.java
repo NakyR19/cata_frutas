@@ -25,5 +25,11 @@ public class Arvore extends ElemEstatico {
     @Override
     public void interagir(){
         //player nao vai poder atravessar, da fruta na prox rodada aos adjacentes, limitador de turno
+        
+        //conceito de turno ainda nao existe, mochila ainda nao existe;
+        //if(player adjacente && contp1 == 0){
+        // p = fruta
+        // contp1 = 5}
+        //if(passou turno){contp1-- }
     }
 }
