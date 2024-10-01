@@ -3,6 +3,7 @@ package models.elementos.dinamicos;
 /**
  * representa maracuja, a fruta usada como marcador de pontos de vitoria
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
+ * @author redbdb - Gustavo 
  */
 public class Maracuja extends Fruta {
 

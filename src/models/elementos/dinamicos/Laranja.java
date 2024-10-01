@@ -3,6 +3,7 @@ package models.elementos.dinamicos;
 /**
  * representa a fruta laranja, fruta antidoto no jogo.
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
+ * @author redbdb - Gustavo 
  */
 public class Laranja extends Fruta {
 

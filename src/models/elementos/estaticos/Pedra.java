@@ -1,4 +1,7 @@
 package models.elementos.estaticos;
+
+import models.elementos.dinamicos.Player;
+
 /**
  * Pedra
  * Esta classe herda da classe ElemEstatico.
