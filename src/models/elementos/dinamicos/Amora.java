@@ -1,5 +1,5 @@
 package models.elementos.dinamicos;
 
-public class Amora {
+public class Amora extends Fruta {
     
 }
