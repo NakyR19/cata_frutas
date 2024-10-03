@@ -32,7 +32,6 @@ public abstract class Fruta extends ElemDinamico {
      * Este método deve ser implementado pelas subclasses para definir o efeito específico da fruta.
      *
      * @param p O jogador ao qual o efeito será aplicado.
-     * @return true se o efeito foi aplicado com sucesso, false caso contrário.
      */
-    public abstract boolean aplicarEfeito(Player p);
+    public abstract void aplicarEfeito(Player p);
 }

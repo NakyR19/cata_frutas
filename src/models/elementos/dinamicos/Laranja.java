@@ -32,13 +32,11 @@ public class Laranja extends Fruta {
      * Neste caso, o efeito é um antídoto que remove o envenenamento do jogador.
      *
      * @param p O jogador ao qual o efeito será aplicado.
-     * @return true se o efeito foi aplicado com sucesso, false caso contrário ou nao exista efeito;
      */
     @Override
-    public boolean aplicarEfeito(Player p) {
+    public void aplicarEfeito(Player p) {
         // Antídoto: remove o envenenamento do jogador
         //p.setPoison(false);
-        return true;
     }
 
     /**

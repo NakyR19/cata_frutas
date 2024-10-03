@@ -30,9 +30,8 @@ package models.elementos.dinamicos;
      *
      */
     @Override
-       public boolean aplicarEfeito(Player p){
+       public void aplicarEfeito(Player p){
         // Dobrar o número de pontos de movimento de uma rodada
-        return true;
  }
     @Override
     public void mover(int x, int y) {

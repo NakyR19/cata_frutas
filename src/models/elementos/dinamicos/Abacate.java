@@ -31,9 +31,8 @@ public class Abacate extends Fruta{
      * @todo Implementar a lógica para dobrar a força do jogador.
      */
     @Override
-    public boolean aplicarEfeito(Player p){
+    public void aplicarEfeito(Player p){
         // Dobrar a força do competidor
-        return true;
     }
 
     @Override
