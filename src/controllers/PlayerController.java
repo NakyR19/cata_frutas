@@ -7,8 +7,10 @@ import models.elementos.dinamicos.Player;
 import view.ambiente.FlorestaComponent;
 
 /**
- * PlayerController é responsável por controlar o jogador "escutando" os eventos do teclado.
+ * PlayerController é responsável por controlar o jogador "escutando" os eventos
+ * do teclado.
  * Implementa a interface KeyListener para capturar os eventos.
+ * 
  * @author NakyR19 - Rafael
  */
 public class PlayerController implements KeyListener {
@@ -30,7 +32,8 @@ public class PlayerController implements KeyListener {
 
     /**
      * ############ CONSTRUTOR ############
-     * @param player o jogador a ser controlado
+     * 
+     * @param player            o jogador a ser controlado
      * @param florestaComponent o componente da floresta onde o jogador se move
      */
     public PlayerController(Player player, FlorestaComponent florestaComponent) {
@@ -41,6 +44,7 @@ public class PlayerController implements KeyListener {
     /**
      * Método chamado quando uma tecla é pressionada.
      * Atualiza a posição do jogador com base na tecla pressionada.
+     * 
      * @param e o evento de tecla
      */
     @Override
@@ -51,13 +55,25 @@ public class PlayerController implements KeyListener {
             case KeyEvent.VK_UP:
                 novoY += LESS_ONE_MV;
                 break;
+            case KeyEvent.VK_W:
+                novoY += LESS_ONE_MV;
+                break;
             case KeyEvent.VK_DOWN:
+                novoY += PLUS_ONE_MV;
+                break;
+            case KeyEvent.VK_S:
                 novoY += PLUS_ONE_MV;
                 break;
             case KeyEvent.VK_LEFT:
                 novoX += LESS_ONE_MV;
                 break;
+            case KeyEvent.VK_A:
+                novoX += LESS_ONE_MV;
+                break;
             case KeyEvent.VK_RIGHT:
+                novoX += PLUS_ONE_MV;
+                break;
+            case KeyEvent.VK_D:
                 novoX += PLUS_ONE_MV;
                 break;
         }

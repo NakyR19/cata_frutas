@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 /**
  * A classe abstrata ElementoComponent representa um componente gráfico genérico para elementos do jogo.
  * Herda de JComponent e define um método abstrato para desenhar o elemento.
- * @author NakyR19 - Rafael
+ * @author NakyR19 - Rafael   
  */
 public abstract class ElementoComponent extends JComponent {
   /**
