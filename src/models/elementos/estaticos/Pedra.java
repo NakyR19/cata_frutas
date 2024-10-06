@@ -1,6 +1,5 @@
 package models.elementos.estaticos;
 
-import models.elementos.dinamicos.Player;
 
 /**
  * Pedra

@@ -77,9 +77,11 @@ public class Floresta {
           int y = gerador.nextInt(6);
           if (elementos[x][y] instanceof Grama) {
               elementos[x][y] = new Player(x, y, ids[playerColocados]);
+              System.out.println("Gerando jogador " + ids[playerColocados] + " na posição (" + x + ", " + y + ")");
               playerColocados++;
           }
       }
+
 
   }
 

@@ -1,6 +1,7 @@
 package view;
 
 import controllers.PlayerController;
+import controllers.TurnoController;
 import models.ambiente.Floresta;
 import models.elementos.dinamicos.Player;
 import view.ambiente.FlorestaComponent;
@@ -23,8 +24,15 @@ public class Jogo extends JFrame {
     private static final int DIMENSAO_MIN = 6;
     private static final int DIMENSAO_MAX = 12;
 
+    private Player p1;
+    private Player p2;
+    private PlayerController p1Controller;
+    private PlayerController p2Controller;
+    private TurnoController turnoController;
+
     /**
      * Construtor da classe Jogo.
+     * 
      * @param menuInicial A janela do menu inicial.
      */
     public Jogo(JFrame menuInicial) {
@@ -69,8 +77,8 @@ public class Jogo extends JFrame {
 
         // Cria o jogo com a dimensão lida do arquivo
         Floresta floresta = new Floresta(dimensao, numPedras);
-        Player p1 = floresta.getPlayer("p1");
-        Player p2 = floresta.getPlayer("p2");
+        p1 = floresta.getPlayer("p1");
+        p2 = floresta.getPlayer("p2");
         PlayerComponent p1Component = new PlayerComponent(p1);
         PlayerComponent p2Component = new PlayerComponent(p2);
         FlorestaComponent florestaComponent = new FlorestaComponent(floresta, p1Component, p2Component);
@@ -83,13 +91,13 @@ public class Jogo extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Para gerenciar o fechamento manualmente
         this.setResizable(false);
 
-        // Controlador para p1 com teclas de seta
-        PlayerController p1Controller = new PlayerController(p1, florestaComponent, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+        // Inicializa os controladores dos jogadores
+        p1Controller = new PlayerController(p1, florestaComponent, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT,
+                KeyEvent.VK_RIGHT, this);
+        p2Controller = new PlayerController(p2, florestaComponent, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A,
+                KeyEvent.VK_D, this);
+                turnoController = new TurnoController(p1, p2, this);
         addKeyListener(p1Controller);
-
-        // Controlador para p2 com teclas WASD
-        PlayerController p2Controller = new PlayerController(p2, florestaComponent, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D);
-        addKeyListener(p2Controller);
         setFocusable(true);
         requestFocusInWindow();
 
@@ -106,6 +114,22 @@ public class Jogo extends JFrame {
         });
     }
 
+    public void atualizarControlador(Player turnoAtual) {
+        if (turnoAtual == p1) {
+            System.out.println("Atualizando controlador para p1");
+            removeKeyListener(p2Controller);
+            addKeyListener(p1Controller);
+        } else {
+            System.out.println("Atualizando controlador para p2");
+            removeKeyListener(p1Controller);
+            addKeyListener(p2Controller);
+        }
+        setFocusable(true);
+        requestFocusInWindow();
+    }
+    public TurnoController getTurnoController() {
+        return turnoController;
+    }
     // Função para ler a dimensão do mapa a partir do arquivo
     private int lerDimensaoDoMapa(File arquivoMapa) {
         try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {
@@ -124,9 +148,10 @@ public class Jogo extends JFrame {
         }
         return -1; // Retorna -1 em caso de erro
     }
-    
+
     /**
      * Função para ler a o número de Pedras do mapa a partir do arquivo.
+     * 
      * @author NakyR19 - Rafael
      * @param arquivoMapa O arquivo que contém o mapa.
      * @return A dimensão do mapa.

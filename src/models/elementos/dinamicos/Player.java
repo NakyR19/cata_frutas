@@ -8,6 +8,8 @@ package models.elementos.dinamicos;
  */
 public class Player extends ElemDinamico {
     private String id;
+    private int pontosMovimento;
+    
     /**
      * Construtor da classe Player.
      * @param x A coordenada x inicial do jogador.
@@ -16,23 +18,33 @@ public class Player extends ElemDinamico {
     public Player(int x, int y, String id) {
         super(x, y);
         this.id = id;
+        // this.pontosMovimento = pontosMovimento;
     }
-
+    
     /**
      * Move o jogador para uma nova posição.
      * @param x A nova coordenada x do jogador.
      * @param y A nova coordenada y do jogador.
+     * @param id O identificador do jogador.
+     * @param pontosMovimento Os pontos de movimento iniciais do jogador.
      */
     @Override
     public void mover(int x, int y) {
         this.x = x;    
         this.y = y;
     }
-
+    
     public String getId(){
         return this.id;
     }
     public void setId(String id){
         this.id = id;
+    }
+    public int getPontosMovimento() {
+        return pontosMovimento;
+    }
+    
+    public void setPontosMovimento(int pontosMovimento) {
+        this.pontosMovimento = pontosMovimento;
     }
 }
