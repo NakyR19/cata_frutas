@@ -34,7 +34,7 @@ public class Laranja extends Fruta {
      * @param p O jogador ao qual o efeito será aplicado.
      */
     @Override
-    public void aplicarEfeito(Player p) {
+    public void aplicarEfeito() {
         // Antídoto: remove o envenenamento do jogador
         //p.setPoison(false);
     }
