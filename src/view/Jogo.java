@@ -8,7 +8,11 @@ import view.ambiente.FlorestaComponent;
 import view.elementos.dinamico.PlayerComponent;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -16,11 +20,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 public class Jogo extends JFrame {
     private static final int CELL_SIZE = 64;
     private static final int WIDTH_OVER = 14;
-    private static final int HEIGHT_OVER = 37;
+    private static final int HEIGHT_OVER = 67;
     private static final int DIMENSAO_MIN = 6;
     private static final int DIMENSAO_MAX = 12;
 
@@ -29,6 +34,7 @@ public class Jogo extends JFrame {
     private PlayerController p1Controller;
     private PlayerController p2Controller;
     private TurnoController turnoController;
+    private JLabel turnoLabel;
 
     /**
      * Construtor da classe Jogo.
@@ -96,8 +102,11 @@ public class Jogo extends JFrame {
                 KeyEvent.VK_RIGHT, this);
         p2Controller = new PlayerController(p2, florestaComponent, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A,
                 KeyEvent.VK_D, this);
-                turnoController = new TurnoController(p1, p2, this);
-        addKeyListener(p1Controller);
+                // Randomiza quem irá iniciar o jogo
+        Random random = new Random();
+        Player jogadorInicial = random.nextBoolean() ? p1 : p2;
+        turnoController = new TurnoController(p1, p2, jogadorInicial, this);
+        addKeyListener(jogadorInicial == p1 ? p1Controller : p2Controller); // randomiza quem irá iniciar o jogo
         setFocusable(true);
         requestFocusInWindow();
 
@@ -112,6 +121,17 @@ public class Jogo extends JFrame {
                 dispose(); // Fecha e remove o Jogo da memória
             }
         });
+        // Adiciona o JLabel para exibir o turno e os pontos de movimento
+        turnoLabel = new JLabel();
+        turnoLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        turnoLabel.setBackground(Color.LIGHT_GRAY); // Cor de fundo
+        turnoLabel.setOpaque(true); // Necessário para que a cor de fundo seja exibida
+        turnoLabel.setForeground(Color.BLACK); // Cor do texto
+        turnoLabel.setBorder(new EmptyBorder(5, 5, 5, 5)); // Adiciona uma borda vazia
+        add(turnoLabel, BorderLayout.NORTH);
+        atualizarTurnoLabel();
+
     }
 
     public void atualizarControlador(Player turnoAtual) {
@@ -126,10 +146,19 @@ public class Jogo extends JFrame {
         }
         setFocusable(true);
         requestFocusInWindow();
+        atualizarTurnoLabel();
     }
+
     public TurnoController getTurnoController() {
         return turnoController;
     }
+
+    public void atualizarTurnoLabel() {
+        Player turnoAtual = turnoController.getTurnoAtual();
+        turnoLabel
+                .setText("Turno: " + turnoAtual.getId() + " | Pontos de Movimento: " + turnoAtual.getPontosMovimento());
+    }
+
     // Função para ler a dimensão do mapa a partir do arquivo
     private int lerDimensaoDoMapa(File arquivoMapa) {
         try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {

@@ -102,6 +102,7 @@ public void keyPressed(KeyEvent e) {
         player.mover(novoX, novoY);
         player.setPontosMovimento(player.getPontosMovimento() - 1); // Decresce os pontos de movimento
         System.out.println("Jogador " + player.getId() + " moveu para (" + novoX + ", " + novoY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+        jogo.atualizarTurnoLabel();
     }
 
     // Alterna o turno se os pontos de movimento se esgotarem
