@@ -1,0 +1,237 @@
+@startuml Cata_Frutas
+
+package view.ambiente {
+    class FlorestaComponent {
+        +FlorestaComponent(Floresta floresta, PlayerComponent p1Component, PlayerComponent p2Component)
+        +void paintComponent(Graphics g)
+        +Floresta getFloresta()
+    }
+}
+
+package models.ambiente {
+    class Floresta {
+        +Player getPlayer(String id)
+        +void gerarPedras()
+        +void gerarPlayers()
+        +boolean isCollision(int x, int y)
+        +void setTileAsGrama(int x, int y)
+        +int getDimensao()
+        +void setDimensao(int d)
+        +Elemento[][] getElementos()
+        +void setElementos(Elemento[][] e)
+    }
+
+    class Dado {
+        +int rolarDoisDados()
+    }
+}
+
+package models.elementos {
+    class Elemento {
+        -int x
+        -int y
+        +int getX()
+        +void setX(int x)
+        +int getY()
+        +void setY(int y)
+    }
+}
+
+package models.elementos.dinamicos {
+    class ElemDinamico extends Elemento {
+        +void mover(int x, int y)
+    }
+
+    class Fruta extends ElemDinamico {
+        +String TipoFruta
+        +boolean Bichada
+        +void aplicarEfeito()
+    }
+
+    class Frutinha extends Fruta {
+        -Player player
+        -Jogo jogo
+        -int useKey
+        +void aplicarEfeito()
+        +void mover(int x, int y)
+        +void keyTyped(KeyEvent e)
+        +void keyPressed(KeyEvent e)
+        +void keyReleased(KeyEvent e)
+    }
+
+    class Player extends ElemDinamico {
+        -String id
+        -int pontosMovimento
+        -List<Fruta> mochila
+        +String getId()
+        +void setId(String id)
+        +int getPontosMovimento()
+        +void setPontosMovimento(int pontosMovimento)
+        +List<Fruta> getMochila()
+        +void addFruta(Fruta fruta)
+        +boolean removerFruta(Fruta fruta)
+    }
+
+    class Abacate extends Fruta {
+        +void aplicarEfeito()
+        +void mover(int x, int y)
+    }
+
+    class Acerola extends Fruta {
+    }
+
+    class Amora extends Fruta {
+    }
+
+    class Coco extends Fruta {
+        +void aplicarEfeito()
+        +void mover(int x, int y)
+    }
+
+    class Goiaba extends Fruta {
+    }
+
+    class Laranja extends Fruta {
+        +void aplicarEfeito()
+        +void mover(int x, int y)
+    }
+
+    class Maracuja extends Fruta {
+        +void aplicarEfeito()
+        +void mover(int x, int y)
+    }
+}
+
+package models.elementos.estaticos {
+    class ElemEstatico extends Elemento {
+        +void interagir()
+    }
+
+    class Arvore extends ElemEstatico {
+        +String TipoArvore
+        +void interagir()
+    }
+
+    class Grama extends ElemEstatico {
+        +void interagir()
+    }
+
+    class Pedra extends ElemEstatico {
+        +void interagir()
+    }
+}
+
+package view.elementos {
+    class ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
+
+    class ElementoComponentFactory {
+        +static ElementoComponent criarComponente(Elemento elemento)
+    }
+}
+
+package view.elementos.dinamico {
+    class AbacateComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
+
+    class CocoComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
+
+    class PlayerComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
+
+    class LaranjaComponent extends ElementoComponent {
+    }
+
+    class MaracujaComponent extends ElementoComponent {
+    }
+}
+
+package view.elementos.estatico {
+    class GramaComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
+
+    class PedraComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
+}
+
+package view {
+    class Jogo {
+        +void atualizarControlador(Player turnoAtual)
+        +TurnoController getTurnoController()
+        +void atualizarTurnoLabel()
+    }
+
+    class MenuInicial {
+    }
+
+    class MenuMapas {
+    }
+}
+
+package controllers {
+    class PlayerController {
+        +void keyPressed(KeyEvent e)
+        +void keyReleased(KeyEvent e)
+        +void keyTyped(KeyEvent e)
+    }
+
+    class TurnoController {
+        -Player turnoAtual
+        -Dado dado
+        +Player getTurnoAtual()
+        +void alternarTurno()
+    }
+}
+
+Elemento <|-- ElemDinamico
+Elemento <|-- ElemEstatico
+ElemDinamico <|-- Fruta
+ElemDinamico <|-- Player
+ElemEstatico <|-- Arvore
+ElemEstatico <|-- Grama
+ElemEstatico <|-- Pedra
+Fruta <|-- Frutinha
+Fruta <|-- Abacate
+Fruta <|-- Acerola
+Fruta <|-- Amora
+Fruta <|-- Coco
+Fruta <|-- Goiaba
+Fruta <|-- Laranja
+Fruta <|-- Maracuja
+ElementoComponent <|-- AbacateComponent
+ElementoComponent <|-- CocoComponent
+ElementoComponent <|-- PlayerComponent
+ElementoComponent <|-- LaranjaComponent
+ElementoComponent <|-- MaracujaComponent
+ElementoComponent <|-- GramaComponent
+ElementoComponent <|-- PedraComponent
+FlorestaComponent --> Floresta
+Floresta --> Player
+Floresta --> Pedra
+Floresta --> Grama
+Frutinha --> Player
+Frutinha --> Jogo
+Player --> Fruta
+PlayerController --> Player
+PlayerController --> FlorestaComponent
+PlayerController --> Jogo
+TurnoController --> Player
+TurnoController --> Jogo
+TurnoController --> Dado
+Jogo --> TurnoController
+Jogo --> PlayerComponent
+Jogo --> FlorestaComponent
+Jogo --> Floresta
+ElementoComponentFactory --> ElementoComponent
+ElementoComponentFactory --> GramaComponent
+ElementoComponentFactory --> PedraComponent
+ElementoComponentFactory --> PlayerComponent
+
+@enduml
