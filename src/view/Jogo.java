@@ -7,6 +7,8 @@ import view.ambiente.FlorestaComponent;
 import view.elementos.dinamico.PlayerComponent;
 
 import javax.swing.*;
+
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -67,9 +69,11 @@ public class Jogo extends JFrame {
 
         // Cria o jogo com a dimensão lida do arquivo
         Floresta floresta = new Floresta(dimensao, numPedras);
-        Player player = floresta.getPlayer();
-        PlayerComponent playerComponent = new PlayerComponent(player);
-        FlorestaComponent florestaComponent = new FlorestaComponent(floresta, playerComponent);
+        Player p1 = floresta.getPlayer("p1");
+        Player p2 = floresta.getPlayer("p2");
+        PlayerComponent p1Component = new PlayerComponent(p1);
+        PlayerComponent p2Component = new PlayerComponent(p2);
+        FlorestaComponent florestaComponent = new FlorestaComponent(floresta, p1Component, p2Component);
 
         add(florestaComponent);
         setTitle("Floresta");
@@ -79,8 +83,13 @@ public class Jogo extends JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Para gerenciar o fechamento manualmente
         this.setResizable(false);
 
-        PlayerController playerController = new PlayerController(player, florestaComponent);
-        addKeyListener(playerController);
+        // Controlador para p1 com teclas de seta
+        PlayerController p1Controller = new PlayerController(p1, florestaComponent, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+        addKeyListener(p1Controller);
+
+        // Controlador para p2 com teclas WASD
+        PlayerController p2Controller = new PlayerController(p2, florestaComponent, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D);
+        addKeyListener(p2Controller);
         setFocusable(true);
         requestFocusInWindow();
 

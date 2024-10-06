@@ -7,14 +7,15 @@ package models.elementos.dinamicos;
  * @author NakyR19 - Rafael
  */
 public class Player extends ElemDinamico {
-
+    private String id;
     /**
      * Construtor da classe Player.
      * @param x A coordenada x inicial do jogador.
      * @param y A coordenada y inicial do jogador.
      */
-    public Player(int x, int y) {
+    public Player(int x, int y, String id) {
         super(x, y);
+        this.id = id;
     }
 
     /**
@@ -26,5 +27,12 @@ public class Player extends ElemDinamico {
     public void mover(int x, int y) {
         this.x = x;    
         this.y = y;
+    }
+
+    public String getId(){
+        return this.id;
+    }
+    public void setId(String id){
+        this.id = id;
     }
 }

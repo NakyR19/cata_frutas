@@ -24,7 +24,8 @@ public class FlorestaComponent extends JPanel {
      * initialPositionCleared - Indica se a posição inicial foi limpa.
      */
     private Floresta floresta;
-    private PlayerComponent playerComponent;
+    private PlayerComponent p1Component;
+    private PlayerComponent p2Component;
     private Image background;
     private static final int CELL_SIZE = 64; // Definindo o tamanho da célula
 
@@ -34,9 +35,10 @@ public class FlorestaComponent extends JPanel {
      * @param floresta O objeto Floresta que representa a floresta no jogo.
      * @param playerComponent O componente gráfico do jogador.
      */
-    public FlorestaComponent(Floresta floresta, PlayerComponent playerComponent) {
+    public FlorestaComponent(Floresta floresta, PlayerComponent p1Component, PlayerComponent p2Component) {
         this.floresta = floresta;
-        this.playerComponent = playerComponent;
+        this.p1Component = p1Component;
+        this.p2Component = p2Component;
         ImageIcon referencia = new ImageIcon("res/images/background.png"); // ALTERAR PATH
         background = referencia.getImage();
     }
@@ -67,7 +69,8 @@ public class FlorestaComponent extends JPanel {
                 }
             }
         }
-        playerComponent.desenhar(g, playerComponent.getPlayer().getX() * CELL_SIZE, playerComponent.getPlayer().getY() * CELL_SIZE, CELL_SIZE);
+        p1Component.desenhar(g, p1Component.getPlayer().getX() * CELL_SIZE, p1Component.getPlayer().getY() * CELL_SIZE, CELL_SIZE);
+        p2Component.desenhar(g, p2Component.getPlayer().getX() * CELL_SIZE, p2Component.getPlayer().getY() * CELL_SIZE, CELL_SIZE);
     }
 
     public Floresta getFloresta() {

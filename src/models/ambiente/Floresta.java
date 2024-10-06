@@ -31,7 +31,7 @@ public class Floresta {
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia();
     gerarPedras();
-    gerarPlayer();
+    gerarPlayers();
   }
 
   /**
@@ -65,37 +65,43 @@ public class Floresta {
   }
   /**
      * @author NakyR19 - Rafael
-     * Gera o jogador na floresta.
+     * Gera os jogadores na floresta.
      */
-  public void gerarPlayer() {
-    Random gerador = new Random();
-    int playerColocados = 0;
-    while (playerColocados < 2) {
-      int x = gerador.nextInt(6);
-      int y = gerador.nextInt(6);
-      if (elementos[x][y] instanceof Grama) {
-        elementos[x][y] = new Player(x, y);
-        playerColocados++;
+    public void gerarPlayers() {
+      Random gerador = new Random();
+      int playerColocados = 0;
+      String[] ids = {"p1", "p2"};
+      
+      while (playerColocados < 2) {
+          int x = gerador.nextInt(6);
+          int y = gerador.nextInt(6);
+          if (elementos[x][y] instanceof Grama) {
+              elementos[x][y] = new Player(x, y, ids[playerColocados]);
+              playerColocados++;
+          }
       }
-    }
 
   }
 
   /**
-   * Percorre a matriz afim de coletar o jogador presente na floresta.
-   * @author NakyR19 - Rafael
-   * @return o jogador presente na floresta, ou null se não houver jogador.
-   */
-  public Player getPlayer() {
-    for (int i = 0; i < dimensao; i++) {
+ * Percorre a matriz afim de coletar o jogador presente na floresta.
+ * @author NakyR19 - Rafael
+ * @param id Id do jogador
+ * @return o jogador presente na floresta, ou null se não houver jogador.
+ */
+public Player getPlayer(String id) {
+  for (int i = 0; i < dimensao; i++) {
       for (int j = 0; j < dimensao; j++) {
-        if (elementos[i][j] instanceof Player) {
-          return (Player) elementos[i][j];
-        }
+          if (elementos[i][j] instanceof Player) {
+              Player player = (Player) elementos[i][j];
+              if (player.getId().equals(id)) {
+                  return player;
+              }
+          }
       }
-    }
-    return null; // Se não encontrar o Player, retorne null
   }
+  return null; 
+}
   
   /**
    * Verifica se há uma colisão na posição especificada.
