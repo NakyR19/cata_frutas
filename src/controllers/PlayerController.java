@@ -4,76 +4,114 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import models.elementos.dinamicos.Player;
+import view.Jogo;
 import view.ambiente.FlorestaComponent;
 
 /**
- * PlayerController é responsável por controlar o jogador "escutando" os eventos do teclado.
+ * PlayerController é responsável por controlar o jogador "escutando" os eventos
+ * do teclado.
  * Implementa a interface KeyListener para capturar os eventos.
+ * 
  * @author NakyR19 - Rafael
  */
 public class PlayerController implements KeyListener {
 
-    /**
-     * ############ ATRIBUTOS ############
-     * Player - Espera receber o jogador que será movimentado
-     * florestaComponent - O componente da floresta onde o jogador se move.
-     * PLUS_ONE_MV - Constante p/ acréscimo de posição na matriz
-     * LESS_ONE_MV - Constante p/ decrescimo de posição na matriz
-     * initialPositionCleared - Indica se a posição inicial foi limpa.
-     */
-
     private Player player;
     private FlorestaComponent florestaComponent;
+    private Jogo jogo;
     private static int PLUS_ONE_MV = 1;
     private static int LESS_ONE_MV = -1;
     private boolean initialPositionCleared = false;
 
+    // Conjunto de teclas de controle
+    private int upKey;
+    private int downKey;
+    private int leftKey;
+    private int rightKey;
+
     /**
-     * ############ CONSTRUTOR ############
-     * @param player o jogador a ser controlado
+     * Construtor
+     * 
+     * @param player            o jogador a ser controlado
      * @param florestaComponent o componente da floresta onde o jogador se move
+     * @param upKey             a tecla para mover para cima
+     * @param downKey           a tecla para mover para baixo
+     * @param leftKey           a tecla para mover para a esquerda
+     * @param rightKey          a tecla para mover para a direita
+     * @param jogo              a instância do jogo para alternar turnos
      */
-    public PlayerController(Player player, FlorestaComponent florestaComponent) {
+    public PlayerController(Player player, FlorestaComponent florestaComponent, int upKey, int downKey, int leftKey,
+            int rightKey, Jogo jogo) {
         this.player = player;
         this.florestaComponent = florestaComponent;
+        this.upKey = upKey;
+        this.downKey = downKey;
+        this.leftKey = leftKey;
+        this.rightKey = rightKey;
+        this.jogo = jogo;
     }
 
-    /**
-     * Método chamado quando uma tecla é pressionada.
-     * Atualiza a posição do jogador com base na tecla pressionada.
-     * @param e o evento de tecla
-     */
     @Override
-    public void keyPressed(KeyEvent e) {
-        int novoX = player.getX();
-        int novoY = player.getY();
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                novoY += LESS_ONE_MV;
-                break;
-            case KeyEvent.VK_DOWN:
-                novoY += PLUS_ONE_MV;
-                break;
-            case KeyEvent.VK_LEFT:
-                novoX += LESS_ONE_MV;
-                break;
-            case KeyEvent.VK_RIGHT:
-                novoX += PLUS_ONE_MV;
-                break;
-        }
+public void keyPressed(KeyEvent e) {
+    
+    // Verifica se o jogador atual é o jogador do turno
+    System.out.println("Turno atual: " + jogo.getTurnoController().getTurnoAtual().getId());
+    System.out.println("Jogador atual: " + player.getId() + " com " + player.getPontosMovimento() + " pontos de movimento");
 
-        // Limpa a posição inicial apenas uma vez
-        if (!initialPositionCleared) {
-            florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
-            initialPositionCleared = true;
-        }
-        // Atualiza a posição do player no objeto Player
-        if (!florestaComponent.getFloresta().isCollision(novoX, novoY)) {
-            player.mover(novoX, novoY);
-        }
-
-        florestaComponent.repaint(); // Atualiza o desenho
+    if (jogo.getTurnoController().getTurnoAtual() != player) {
+        System.out.println("Não é o turno do jogador " + player.getId());
+        return; // Se não for o turno do jogador, não faz nada
     }
+
+    if (player.getPontosMovimento() <= 0) {
+        return; // Se não houver pontos de movimento, não faz nada
+    }
+
+    int novoX = player.getX();
+    int novoY = player.getY();
+    int keyCode = e.getKeyCode();
+
+    boolean isMovementKey = false;
+
+    if (keyCode == upKey) {
+        novoY += LESS_ONE_MV;
+        isMovementKey = true;
+    } else if (keyCode == downKey) {
+        novoY += PLUS_ONE_MV;
+        isMovementKey = true;
+    } else if (keyCode == leftKey) {
+        novoX += LESS_ONE_MV;
+        isMovementKey = true;
+    } else if (keyCode == rightKey) {
+        novoX += PLUS_ONE_MV;
+        isMovementKey = true;
+    }
+
+    // Se a tecla pressionada não for uma tecla de movimento, não faz nada
+    if (!isMovementKey) {
+        return;
+    }
+    // Limpa a posição inicial apenas uma vez
+    if (!initialPositionCleared) {
+        florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
+        initialPositionCleared = true;
+    }
+
+    // Atualiza a posição do player no objeto Player
+    if (!florestaComponent.getFloresta().isCollision(novoX, novoY)) {
+        player.mover(novoX, novoY);
+        player.setPontosMovimento(player.getPontosMovimento() - 1); // Decresce os pontos de movimento
+        System.out.println("Jogador " + player.getId() + " moveu para (" + novoX + ", " + novoY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+        jogo.atualizarTurnoLabel();
+    }
+
+    // Alterna o turno se os pontos de movimento se esgotarem
+    if (player.getPontosMovimento() <= 0) {
+        jogo.getTurnoController().alternarTurno();
+    }
+
+    florestaComponent.repaint(); // Atualiza o desenho
+}
 
     @Override
     public void keyReleased(KeyEvent e) {

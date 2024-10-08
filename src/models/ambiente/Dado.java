@@ -2,7 +2,7 @@ package models.ambiente;
 
 public class Dado {
     
-    public int rolar(){//retorna um numero inteiro entre 1 - 6
-        return (int)(Math.random()*(6) + 1);
+    public int rolarDoisDados(){// rola dois dados q retornam um numero inteiro entre 2 - 12
+        return (int)(Math.random()*(6) + 1) + (int)(Math.random()*(6) + 1);
     }
 }

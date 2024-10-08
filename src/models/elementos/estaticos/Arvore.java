@@ -1,6 +1,5 @@
 package models.elementos.estaticos;
 
-import models.elementos.dinamicos.Player;
 
 /**
  * Arvore representa uma arvore que ao interagir com ela derrubará frutas.

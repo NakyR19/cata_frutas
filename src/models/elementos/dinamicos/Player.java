@@ -1,4 +1,6 @@
 package models.elementos.dinamicos;
+import java.util.List;
+import java.util.ArrayList;
 
 // Apenas implementando logica de movimento e comando do teclado, implementar mochila e outros posteriormente
 /**
@@ -7,16 +9,24 @@ package models.elementos.dinamicos;
  * @author NakyR19 - Rafael
  */
 public class Player extends ElemDinamico {
-
+    private String id;
+    private int pontosMovimento;
+    private List<Fruta> mochila;
+    
+    
     /**
      * Construtor da classe Player.
      * @param x A coordenada x inicial do jogador.
      * @param y A coordenada y inicial do jogador.
+     * @param id O identificador do jogador.
      */
-    public Player(int x, int y) {
+    public Player(int x, int y, String id) {
         super(x, y);
+        this.id = id;
+        this.mochila = new ArrayList<>();
+        // this.pontosMovimento = pontosMovimento;
     }
-
+    
     /**
      * Move o jogador para uma nova posição.
      * @param x A nova coordenada x do jogador.
@@ -26,5 +36,40 @@ public class Player extends ElemDinamico {
     public void mover(int x, int y) {
         this.x = x;    
         this.y = y;
+    }
+    
+    public String getId(){
+        return this.id;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
+    public int getPontosMovimento() {
+        return pontosMovimento;
+    }
+    
+    public void setPontosMovimento(int pontosMovimento) {
+        this.pontosMovimento = pontosMovimento;
+    }
+
+    public List<Fruta> getMochila() {
+        return mochila;
+    }
+
+    /**
+     * Adiciona uma fruta na mochila do jogador.
+     * @param fruta A fruta q vai ser adicionada.
+     */
+    public void addFruta(Fruta fruta) {
+        this.mochila.add(fruta);
+    }
+
+    /**
+     * Remove uma fruta da mochila do jogador.
+     * @param fruta fruta q vai ser removida.
+     * @return true se a fruta foi removida, false caso contrário.
+     */
+    public boolean removerFruta(Fruta fruta){
+        return this.mochila.remove(fruta);
     }
 }

@@ -1,6 +1,7 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
+    "java.autobuild.enabled": true,
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
     ]
