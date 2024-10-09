@@ -31,7 +31,7 @@ public class LaranjaComponent extends ElementoComponent{
 
     public LaranjaComponent(Laranja l){
         this.laranja = l;
-        ImageIcon referencia = new ImageIcon("");//colocar a referência depois
+        ImageIcon referencia = new ImageIcon("res\\images\\laranja.png");
         imagemLaranja = referencia.getImage();
     }
 
@@ -49,37 +49,17 @@ public class LaranjaComponent extends ElementoComponent{
         g.drawImage(imagemLaranja, x, y, cellSize, cellSize, null);
     }
 
-    /**
-     * Pega o objeto Laranja associado a este componente.
-     * @return O objeto Laranja.
-     */
-
     public Laranja getLaranja(){
         return laranja;
     }
-
-    /** 
-     * Define o objeto Laranja associado a este componente.
-     * @return A imagem do objeto Laranja.
-     */
 
     public void setLaranja(Laranja l){
         this.laranja = l;
     }
 
-    /**
-     * Pega a imagem do obejto Laranja associada a este componente.
-     * @return A imagem do objeto Laranja.
-     */
-
     public Image getImageLaranja(){
         return imagemLaranja;
     }
-
-    /**
-     * Define a imagem do objeto Laranja associado a este componente.
-     * @return  imagemLaranja A nova imagem do objeto Laranja.
-     */
 
     public void setImagemLaranja(Image imgL){
         this.imagemLaranja = imgL;

@@ -31,7 +31,7 @@ public class MaracujaComponent extends ElementoComponent{
 
     public MaracujaComponent(Maracuja m){
         this.maracuja = m;
-        ImageIcon referencia = new ImageIcon("");//colocar a referência depois
+        ImageIcon referencia = new ImageIcon("res\\images\\maracuja.png");
         imagemMaracuja = referencia.getImage();
     }
 
@@ -49,37 +49,17 @@ public class MaracujaComponent extends ElementoComponent{
         g.drawImage(imagemMaracuja, x, y, cellSize, cellSize, null);
     }
 
-    /**
-     * Pega o objeto Maracuja associado a este componente.
-     * @return O objeto Maracuja.
-     */
-
     public Maracuja getMaracuja(){
         return maracuja;
     }
-
-    /** 
-     * Define o objeto Maracuja associado a este componente.
-     * @return A imagem do objeto Maracuja.
-     */
 
     public void setMaracuja(Maracuja m){
         this.maracuja = m;
     }
 
-    /**
-     * Pega a imagem do obejto Maracuja associada a este componente.
-     * @return A imagem do objeto Maracuja.
-     */
-
     public Image getImageMaracuja(){
         return imagemMaracuja;
     }
-
-    /**
-     * Define a imagem do objeto Maracuja associado a este componente.
-     * @return  imagemLaranja A nova imagem do objeto Maracuja.
-     */
 
     public void setImagemMaracuja(Image imgM){
         this.imagemMaracuja = imgM;
