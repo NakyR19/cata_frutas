@@ -10,6 +10,8 @@ package view.ambiente {
 
 package models.ambiente {
     class Floresta {
+        -int dimensao
+        -Elemento[][] elemento
         +Player getPlayer(String id)
         +void gerarPedras()
         +void gerarPlayers()
@@ -43,24 +45,13 @@ package models.elementos.dinamicos {
     }
 
     class Fruta extends ElemDinamico {
-        +String TipoFruta
-        +boolean Bichada
+        -boolean bichada
         +void aplicarEfeito()
-    }
-
-    class Frutinha extends Fruta {
-        -Player player
-        -Jogo jogo
-        -int useKey
-        +void aplicarEfeito()
-        +void mover(int x, int y)
-        +void keyTyped(KeyEvent e)
-        +void keyPressed(KeyEvent e)
-        +void keyReleased(KeyEvent e)
     }
 
     class Player extends ElemDinamico {
         -String id
+        -float forca
         -int pontosMovimento
         -List<Fruta> mochila
         +String getId()
@@ -108,7 +99,7 @@ package models.elementos.estaticos {
     }
 
     class Arvore extends ElemEstatico {
-        +String TipoArvore
+        -String TipoArvore
         +void interagir()
     }
 
@@ -145,9 +136,11 @@ package view.elementos.dinamico {
     }
 
     class LaranjaComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
     }
 
     class MaracujaComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
     }
 }
 
@@ -172,6 +165,8 @@ package view {
     }
 
     class MenuMapas {
+        -JButton[] slots;
+        -File diretorioMapas;
     }
 }
 
