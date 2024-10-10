@@ -2,9 +2,11 @@ package view.elementos;
 
 import models.elementos.Elemento;
 import models.elementos.dinamicos.Player;
+import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
 import view.elementos.dinamico.PlayerComponent;
+import view.elementos.estatico.ArvoreComponent;
 import view.elementos.estatico.GramaComponent;
 import view.elementos.estatico.PedraComponent;
 
@@ -28,6 +30,9 @@ public class ElementoComponentFactory {
         }
         if (elemento instanceof Player) {
             return new PlayerComponent((Player) elemento);
+        }
+        if(elemento instanceof Arvore){
+            return new ArvoreComponent((Arvore) elemento);
         }
         // ADICIONAR OS OUTROS ELEMENTOS
         return null;

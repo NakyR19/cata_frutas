@@ -73,6 +73,7 @@ public class Jogo extends JFrame {
         File arquivoMapa = new File(diretorioMapas, mapaSelecionado);
         int dimensao = lerDimensaoDoMapa(arquivoMapa);
         int numPedras = lerNumPedrasDoMapa(arquivoMapa);
+        int numLaranjeiras = lerNumLaranjeirasDoMapa(arquivoMapa);
 
         if (dimensao < DIMENSAO_MIN || dimensao > DIMENSAO_MAX) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar o mapa.");
@@ -82,7 +83,7 @@ public class Jogo extends JFrame {
         }
 
         // Cria o jogo com a dimensão lida do arquivo
-        Floresta floresta = new Floresta(dimensao, numPedras);
+        Floresta floresta = new Floresta(dimensao, numPedras, numLaranjeiras);
         p1 = floresta.getPlayer("p1");
         p2 = floresta.getPlayer("p2");
         PlayerComponent p1Component = new PlayerComponent(p1);
@@ -202,5 +203,22 @@ public class Jogo extends JFrame {
             e.printStackTrace();
         }
         return -1; // Retorna -1 em caso de erro
+    }
+
+    private int lerNumLaranjeirasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("laranja")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

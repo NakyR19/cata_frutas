@@ -33,4 +33,12 @@ public class Arvore extends ElemEstatico {
         // contp1 = 5}
         //if(passou turno){contp1-- }
     }
+
+    public void setTipoArvore(String tipo){
+        this.TipoArvore = tipo;
+    }
+
+    public String getTipoArvore(){
+        return this.TipoArvore;
+    }
 }

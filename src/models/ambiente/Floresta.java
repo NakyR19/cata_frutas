@@ -3,6 +3,7 @@ package models.ambiente;
 import java.util.Random;
 import models.elementos.Elemento;
 import models.elementos.dinamicos.Player;
+import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
 
@@ -19,18 +20,21 @@ public class Floresta {
   private int dimensao;
   private Elemento[][] elementos;
   private int numPedras;
+  private int numLaranjeiras;//teste
 
   /**
    * ############ CONSTRUTOR ############
    * @param dimensao  a dimensão da floresta
    * @param numPedras o número de pedras na floresta
    */
-  public Floresta(int dimensao, int numPedras) {
+  public Floresta(int dimensao, int numPedras, int numLaranjeiras) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
+    this.numLaranjeiras = numLaranjeiras;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia();
     gerarPedras();
+    gerarLaranjeiras();
     gerarPlayers();
   }
 
@@ -62,6 +66,18 @@ public class Floresta {
       }
     }
 
+  }
+
+  public void gerarLaranjeiras(){
+    Random gerador = new Random();
+    for(int i = 0; i < numLaranjeiras; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Arvore(x, y);
+        i++;
+      }
+    }
   }
   /**
      * @author NakyR19 - Rafael
