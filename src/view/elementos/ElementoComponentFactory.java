@@ -5,6 +5,10 @@ import models.elementos.dinamicos.Player;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
+import models.elementos.dinamicos.Laranja;
+import models.elementos.dinamicos.Maracuja;
+import view.elementos.dinamico.LaranjaComponent;
+import view.elementos.dinamico.MaracujaComponent;
 import view.elementos.dinamico.PlayerComponent;
 import view.elementos.estatico.ArvoreComponent;
 import view.elementos.estatico.GramaComponent;
@@ -33,6 +37,12 @@ public class ElementoComponentFactory {
         }
         if(elemento instanceof Arvore){
             return new ArvoreComponent((Arvore) elemento);
+        }
+        if (elemento instanceof Laranja){
+            return new LaranjaComponent((Laranja) elemento);
+        }
+        if (elemento instanceof Maracuja){
+            return new MaracujaComponent((Maracuja) elemento);
         }
         // ADICIONAR OS OUTROS ELEMENTOS
         return null;

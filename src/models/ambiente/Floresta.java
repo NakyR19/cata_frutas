@@ -2,6 +2,8 @@ package models.ambiente;
 
 import java.util.Random;
 import models.elementos.Elemento;
+import models.elementos.dinamicos.Laranja;
+import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
@@ -20,21 +22,27 @@ public class Floresta {
   private int dimensao;
   private Elemento[][] elementos;
   private int numPedras;
-  private int numLaranjeiras;//teste
+  private int numLaranjeiras;
+  private int numLaranjas;
+  private int numMaracujas;
 
   /**
    * ############ CONSTRUTOR ############
    * @param dimensao  a dimensão da floresta
    * @param numPedras o número de pedras na floresta
    */
-  public Floresta(int dimensao, int numPedras, int numLaranjeiras) {
+  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numMaracujas) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.numLaranjeiras = numLaranjeiras;
+    this.numLaranjas = numLaranjas;
+    this.numMaracujas = numMaracujas;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia();
     gerarPedras();
     gerarLaranjeiras();
+    gerarLaranjas();
+    gerarMaracujas();
     gerarPlayers();
   }
 
@@ -68,7 +76,11 @@ public class Floresta {
 
   }
 
-  public void gerarLaranjeiras(){
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera laranjeiras aleatoriamente na floresta.
+     */
+  public void gerarLaranjeiras(){//possivelment alterar para arvores no geral no futuro
     Random gerador = new Random();
     for(int i = 0; i < numLaranjeiras; ){
       int x = gerador.nextInt(getDimensao());
@@ -79,6 +91,39 @@ public class Floresta {
       }
     }
   }
+
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera laranjas aleatoriamente na floresta.
+     */
+  public void gerarLaranjas(){
+    Random gerador = new Random();
+    for(int i = 0; i < numLaranjas; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Laranja(x, y);
+        i++;
+      }
+    }
+  }
+
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Maracujas aleatoriamente na floresta.
+     */
+    public void gerarMaracujas(){
+      Random gerador = new Random();
+      for(int i = 0; i < numMaracujas; ){
+        int x = gerador.nextInt(getDimensao());
+        int y = gerador.nextInt(getDimensao());
+        if(elementos[x][y] instanceof Grama){
+          elementos[x][y] = new Maracuja(x, y);
+          i++;
+        }
+      }
+    }
+
   /**
      * @author NakyR19 - Rafael
      * Gera os jogadores na floresta.
