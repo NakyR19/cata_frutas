@@ -19,8 +19,8 @@ public class PlayerController implements KeyListener {
     private Player player;
     private FlorestaComponent florestaComponent;
     private Jogo jogo;
-    private static final int PLUS_ONE_MV = 1;
-    private static final int LESS_ONE_MV = -1;
+    private static int PLUS_ONE_MV = 1;
+    private static int LESS_ONE_MV = -1;
     private boolean initialPositionCleared = false;
 
     // Conjunto de teclas de controle

@@ -1,10 +1,10 @@
 package view.elementos.estatico;
 
+import view.elementos.ElementoComponent;
+import models.elementos.estaticos.Arvore;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import models.elementos.estaticos.Arvore;
-import view.elementos.ElementoComponent;
 
 /**
  * ArvoreComponent representa o componente gráfico da Arvore no jogo.

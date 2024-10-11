@@ -2,9 +2,6 @@
 
 package view.ambiente {
     class FlorestaComponent {
-        -Floresta floresta
-        -PlayerComponent p1Component
-        -PlayerComponent p2Component
         +FlorestaComponent(Floresta floresta, PlayerComponent p1Component, PlayerComponent p2Component)
         +void paintComponent(Graphics g)
         +Floresta getFloresta()
@@ -14,7 +11,7 @@ package view.ambiente {
 package models.ambiente {
     class Floresta {
         -int dimensao
-        -Elemento[][] elementos
+        -Elemento[][] elemento
         +Player getPlayer(String id)
         +void gerarPedras()
         +void gerarPlayers()
@@ -48,27 +45,20 @@ package models.elementos.dinamicos {
     }
 
     class Fruta extends ElemDinamico {
-        +String TipoFruta
         -boolean bichada
         +void aplicarEfeito()
     }
 
-    class Frutinha extends Fruta {
-        -Player player
-        -Jogo jogo
-        -int useKey
-        +void aplicarEfeito()
-        +void mover(int x, int y)
-        +void keyTyped(KeyEvent e)
-        +void keyPressed(KeyEvent e)
-        +void keyReleased(KeyEvent e)
-    }
-
     class Player extends ElemDinamico {
         -String id
+        -float forca
         -int pontosMovimento
         -List<Fruta> mochila
-        +void mover(int x, int y)
+        +String getId()
+        +void setId(String id)
+        +int getPontosMovimento()
+        +void setPontosMovimento(int pontosMovimento)
+        +List<Fruta> getMochila()
         +void addFruta(Fruta fruta)
         +boolean removerFruta(Fruta fruta)
     }
@@ -109,7 +99,7 @@ package models.elementos.estaticos {
     }
 
     class Arvore extends ElemEstatico {
-        +String TipoArvore
+        -String TipoArvore
         +void interagir()
     }
 
@@ -146,9 +136,11 @@ package view.elementos.dinamico {
     }
 
     class LaranjaComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
     }
 
     class MaracujaComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
     }
 }
 
@@ -163,29 +155,18 @@ package view.elementos.estatico {
 }
 
 package view {
-    class Jogo extends JFrame {
-        -Player p1
-        -Player p2
-        -PlayerController p1Controller
-        -PlayerController p2Controller
-        -TurnoController turnoController
-        -FlorestaComponent florestaComponent
-        -JLabel turnoLabel
-        +Jogo(JFrame menuInicial)
+    class Jogo {
         +void atualizarControlador(Player turnoAtual)
+        +TurnoController getTurnoController()
         +void atualizarTurnoLabel()
-        -int lerNumLaranjeirasDoMapa(File arquivoMapa)
-        -int lerDimensaoDoMapa(File arquivoMapa)
     }
 
-    class MenuInicial extends JFrame {
-        +MenuInicial()
+    class MenuInicial {
     }
 
-    class MenuMapas extends JFrame {
-        -JButton[] slots
-        -File diretorioMapas
-        +MenuMapas(JFrame menuInicial)
+    class MenuMapas {
+        -JButton[] slots;
+        -File diretorioMapas;
     }
 }
 
