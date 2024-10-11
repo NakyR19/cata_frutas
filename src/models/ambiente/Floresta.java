@@ -178,8 +178,8 @@ public Player getPlayer(String id) {
     if (x < 0 || x >= dimensao || y < 0 || y >= dimensao) {
       return true; // Fora dos limites é considerado uma colisão
     }
-    // Verifica se a posição está ocupada por um elemento diferente de Grama
-    return !(elementos[x][y] instanceof Grama);
+    // Verifica se a posição está ocupada por um elemento Pedra
+    return (elementos[x][y] instanceof Pedra);
   }
 
   /**
