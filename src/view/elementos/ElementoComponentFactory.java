@@ -26,23 +26,23 @@ public class ElementoComponentFactory {
      * @return O componente gráfico correspondente ao elemento, ou null se o elemento não for reconhecido.
      */
     public static ElementoComponent criarComponente(Elemento elemento) {
-        if (elemento instanceof Grama) {
-            return new GramaComponent((Grama) elemento);
+        if (elemento instanceof Grama grama) {
+            return new GramaComponent(grama);
         }
-        if (elemento instanceof Pedra) {
-            return new PedraComponent((Pedra) elemento);
+        if (elemento instanceof Pedra pedra) {
+            return new PedraComponent(pedra);
         }
-        if (elemento instanceof Player) {
-            return new PlayerComponent((Player) elemento);
+        if (elemento instanceof Player player) {
+            return new PlayerComponent(player);
         }
-        if(elemento instanceof Arvore){
-            return new ArvoreComponent((Arvore) elemento);
+        if(elemento instanceof Arvore arvore){
+            return new ArvoreComponent(arvore);
         }
-        if (elemento instanceof Laranja){
-            return new LaranjaComponent((Laranja) elemento);
+        if (elemento instanceof Laranja laranja){
+            return new LaranjaComponent(laranja);
         }
-        if (elemento instanceof Maracuja){
-            return new MaracujaComponent((Maracuja) elemento);
+        if (elemento instanceof Maracuja maracuja){
+            return new MaracujaComponent(maracuja);
         }
         // ADICIONAR OS OUTROS ELEMENTOS
         return null;
