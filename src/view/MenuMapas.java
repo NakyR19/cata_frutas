@@ -107,10 +107,13 @@ public class MenuMapas extends JFrame {
             });
         }
 
-        // Botão para fechar o menu
-        JButton btnFechar = new JButton("Fechar");
-        btnFechar.addActionListener(e -> System.exit(0));
-        add(btnFechar);
+        // Botão para voltar ao menu inicial
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.addActionListener(e -> {
+            menuInicial.setVisible(true);
+            dispose();
+        });
+        add(btnVoltar);
 
         // Configurações da janela
         setSize(400, 400);
@@ -122,7 +125,7 @@ public class MenuMapas extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 // Mostrar a janela do menu inicial antes de fechar
-                menuInicial.setVisible(true);
+                System.exit(0);
 
                 // Fechar e remover o MenuMapas da memória
                 dispose();

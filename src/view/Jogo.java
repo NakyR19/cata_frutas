@@ -4,22 +4,19 @@ import controllers.PlayerController;
 import controllers.TurnoController;
 import models.ambiente.Floresta;
 import models.elementos.dinamicos.Player;
+import utils.MapaUtils;
 import view.ambiente.FlorestaComponent;
 import view.elementos.dinamico.PlayerComponent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Random;
 
 public class Jogo extends JFrame {
@@ -35,6 +32,7 @@ public class Jogo extends JFrame {
     private PlayerController p2Controller;
     private TurnoController turnoController;
     private JLabel turnoLabel;
+    private MapaUtils mapaUtils;
 
     /**
      * Construtor da classe Jogo.
@@ -42,6 +40,7 @@ public class Jogo extends JFrame {
      * @param menuInicial A janela do menu inicial.
      */
     public Jogo(JFrame menuInicial) {
+        this.mapaUtils = new MapaUtils();
         File diretorioMapas = new File("diretorio_dos_mapas"); // Diretório onde os mapas estão armazenados
         File[] arquivosDeMapa = diretorioMapas.listFiles((dir, name) -> name.endsWith(".txt"));
 
@@ -71,12 +70,12 @@ public class Jogo extends JFrame {
 
         // Carrega as configurações do mapa a partir do arquivo selecionado
         File arquivoMapa = new File(diretorioMapas, mapaSelecionado);
-        int dimensao = lerDimensaoDoMapa(arquivoMapa);
-        int numPedras = lerNumPedrasDoMapa(arquivoMapa);
-        int numLaranjeiras = lerNumLaranjeirasDoMapa(arquivoMapa);
-        int numLaranjas = lerNumLaranjas(arquivoMapa);
-        int numMaracujas = lerNumMaracujas(arquivoMapa);
-        int capacidadeMochila = lerCapacidadeMochila(arquivoMapa);
+        int dimensao = mapaUtils.lerDimensaoDoMapa(arquivoMapa);
+        int numPedras = mapaUtils.lerNumPedrasDoMapa(arquivoMapa);
+        int numLaranjeiras = mapaUtils.lerNumLaranjeirasDoMapa(arquivoMapa);
+        int numLaranjas = mapaUtils.lerNumLaranjas(arquivoMapa);
+        int numMaracujas = mapaUtils.lerNumMaracujas(arquivoMapa);
+        int capacidadeMochila = mapaUtils.lerCapacidadeMochila(arquivoMapa);
 
         if (dimensao < DIMENSAO_MIN || dimensao > DIMENSAO_MAX) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar o mapa.");
@@ -126,13 +125,7 @@ public class Jogo extends JFrame {
             }
         });
         // Adiciona o JLabel para exibir o turno e os pontos de movimento
-        turnoLabel = new JLabel();
-        turnoLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        turnoLabel.setBackground(Color.LIGHT_GRAY); // Cor de fundo
-        turnoLabel.setOpaque(true); // Necessário para que a cor de fundo seja exibida
-        turnoLabel.setForeground(Color.BLACK); // Cor do texto
-        turnoLabel.setBorder(new EmptyBorder(5, 5, 5, 5)); // Adiciona uma borda vazia
+        infoInterface();
         add(turnoLabel, BorderLayout.NORTH);
         atualizarTurnoLabel();
 
@@ -163,135 +156,15 @@ public class Jogo extends JFrame {
                 .setText("Turno: " + turnoAtual.getId() + " | Pontos de Movimento: " + turnoAtual.getPontosMovimento());
     }
 
-    // Função para ler a dimensão do mapa a partir do arquivo
-    private int lerDimensaoDoMapa(File arquivoMapa) {
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                if (linha.startsWith("dimensao")) {
-                    // A linha tem o formato: "dimensao <valor>"
-                    String[] partes = linha.split(" ");
-                    if (partes.length == 2) {
-                        return Integer.parseInt(partes[1]);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1; // Retorna -1 em caso de erro
-    }
-
-    /**
-     * Função para ler a o número de Pedras do mapa a partir do arquivo.
-     * 
-     * @author NakyR19 - Rafael
-     * @param arquivoMapa O arquivo que contém o mapa.
-     * @return A dimensão do mapa.
-     * @throws IOException Se ocorrer um erro ao ler o arquivo.
-     */
-    private int lerNumPedrasDoMapa(File arquivoMapa) {
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                if (linha.startsWith("pedras")) {
-                    // A linha tem o formato: "dimensao <valor>"
-                    String[] partes = linha.split(" ");
-                    if (partes.length == 2) {
-                        return Integer.parseInt(partes[1]);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1; // Retorna -1 em caso de erro
-    }
-
-    /**
-    * Lê o número de laranjeiras do mapa a partir de um arquivo.
-    *
-    * @param arquivoMapa O arquivo que contém o mapa com as informações das laranjeiras.
-    * @return O número de laranjeiras encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
-    */
-    private int lerNumLaranjeirasDoMapa(File arquivoMapa) {//possivelmente susbtituido para arvores no geral no futuro
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
-            String linha;
-            while((linha = br.readLine()) != null) {
-                if(linha.startsWith("laranja")){
-                    String[] partes = linha.split(" ");
-                    if(partes.length == 3) {
-                        return Integer.parseInt(partes[1]);
-                    }
-                }
-            }
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    /**
-    * Lê o número de laranjas do mapa a partir de um arquivo.
-    *
-    * @param arquivoMapa O arquivo que contém o mapa com as informações das laranjas.
-    * @return O número de laranjas encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
-    */
-    private int lerNumLaranjas(File arquivoMapa){
-        try(BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
-            String linha;
-            while((linha = br.readLine()) != null) {
-                if(linha.startsWith("laranja")){
-                    String[] partes = linha.split(" ");
-                    if(partes.length == 3){
-                        return Integer.parseInt(partes[2]);
-                    }
-                }
-            }
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    /**
-    * Lê o número de Maracujas do mapa a partir de um arquivo.
-    *
-    * @param arquivoMapa O arquivo que contém o mapa com as informações das Maracujas.
-    * @return O número de Maracujas encontrado no chao do mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
-    */
-    private int lerNumMaracujas(File arquivoMapa){//fazer algo para o numero de maracujas totais?
-        try(BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
-            String linha;
-            while((linha = br.readLine()) != null) {
-                if(linha.startsWith("maracuja")){
-                    String[] partes = linha.split(" ");
-                    if(partes.length == 3){
-                        return Integer.parseInt(partes[2]);
-                    }
-                }
-            }
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    private int lerCapacidadeMochila(File arquivoMapa) {
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                if (linha.startsWith("mochila")) {
-                    // A linha tem o formato: "dimensao <valor>"
-                    String[] partes = linha.split(" ");
-                    if (partes.length == 2) {
-                        return Integer.parseInt(partes[1]);
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1; // Retorna -1 em caso de erro
+    private void infoInterface (){
+        // Adiciona o JLabel para exibir o turno e os pontos de movimento
+        turnoLabel = new JLabel();
+        turnoLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        turnoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        turnoLabel.setBackground(Color.LIGHT_GRAY);
+        turnoLabel.setOpaque(true);
+        turnoLabel.setForeground(Color.BLACK);
+        turnoLabel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        
     }
 }
