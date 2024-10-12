@@ -60,8 +60,10 @@ public class Player extends ElemDinamico {
      * Adiciona uma fruta na mochila do jogador.
      * @param fruta A fruta q vai ser adicionada.
      */
-    public void addFruta(Fruta fruta) {
+    public boolean pegarFruta(Fruta fruta) {
+        // adicionar tratamento para checar a capacidade da mochila
         this.mochila.add(fruta);
+        return true;
     }
 
     /**

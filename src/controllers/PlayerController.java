@@ -3,6 +3,8 @@ package controllers;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import models.elementos.Elemento;
+import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
 import view.ambiente.FlorestaComponent;
@@ -85,6 +87,16 @@ public void keyPressed(KeyEvent e) {
     } else if (keyCode == rightKey) {
         novoX += PLUS_ONE_MV;
         isMovementKey = true;
+    } else if (keyCode == KeyEvent.VK_E){
+        Elemento elemento = florestaComponent.getFloresta().getElementos()[player.getX()][player.getY()];
+            if (elemento instanceof Laranja) {
+                Laranja laranja = (Laranja) elemento;
+                if (player.pegarFruta(laranja)) {
+                    florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
+                    System.out.println("Laranja coletada!");
+                    florestaComponent.repaint();
+                }
+            }
     }
 
     // Se a tecla pressionada não for uma tecla de movimento, não faz nada
