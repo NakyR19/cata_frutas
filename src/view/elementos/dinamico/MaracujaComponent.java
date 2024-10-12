@@ -31,7 +31,7 @@ public class MaracujaComponent extends ElementoComponent{
 
     public MaracujaComponent(Maracuja m){
         this.maracuja = m;
-        ImageIcon referencia = new ImageIcon("res\\images\\maracuja.png");
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/maracuja.png"));;
         imagemMaracuja = referencia.getImage();
     }
 

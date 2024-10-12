@@ -25,7 +25,7 @@ public class PedraComponent extends ElementoComponent {
      */
     public PedraComponent(Pedra p) {
         this.pedra = p;
-        ImageIcon referencia = new ImageIcon("res\\images\\pedraGrande.png");
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/pedraGrande.png"));
         imagemPedra = referencia.getImage();
     }
     

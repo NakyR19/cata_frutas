@@ -26,7 +26,7 @@ public class GramaComponent extends ElementoComponent {
      */
     public GramaComponent(Grama g) {
         this.grama = g;
-        ImageIcon referencia = new ImageIcon("res\\images\\grama.png");
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/grama.png"));
         imagemGrama = referencia.getImage();
     }
 

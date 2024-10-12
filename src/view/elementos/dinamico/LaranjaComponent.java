@@ -31,7 +31,7 @@ public class LaranjaComponent extends ElementoComponent{
 
     public LaranjaComponent(Laranja l){
         this.laranja = l;
-        ImageIcon referencia = new ImageIcon("res\\images\\laranja.png");
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/laranja.png"));;
         imagemLaranja = referencia.getImage();
     }
 

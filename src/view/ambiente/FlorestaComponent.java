@@ -39,7 +39,7 @@ public class FlorestaComponent extends JPanel {
         this.floresta = floresta;
         this.p1Component = p1Component;
         this.p2Component = p2Component;
-        ImageIcon referencia = new ImageIcon("res/images/background.png"); // ALTERAR PATH
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/background.png"));; // ALTERAR PATH
         background = referencia.getImage();
     }
 
