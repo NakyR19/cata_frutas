@@ -12,6 +12,8 @@ public class Player extends ElemDinamico {
     private String id;
     private int pontosMovimento;
     private List<Fruta> mochila;
+    private int capacidadeMochila;
+    
     
     
     /**
@@ -20,10 +22,11 @@ public class Player extends ElemDinamico {
      * @param y A coordenada y inicial do jogador.
      * @param id O identificador do jogador.
      */
-    public Player(int x, int y, String id) {
+    public Player(int x, int y, String id, int capacidadeMochila) {
         super(x, y);
         this.id = id;
         this.mochila = new ArrayList<>();
+        this.capacidadeMochila = capacidadeMochila;
         // this.pontosMovimento = pontosMovimento;
     }
     
@@ -51,19 +54,26 @@ public class Player extends ElemDinamico {
     public void setPontosMovimento(int pontosMovimento) {
         this.pontosMovimento = pontosMovimento;
     }
-
+    
     public List<Fruta> getMochila() {
         return mochila;
     }
-
+    public int getCapacidadeMochila() {
+        return capacidadeMochila;
+    }
+    
     /**
      * Adiciona uma fruta na mochila do jogador.
      * @param fruta A fruta q vai ser adicionada.
      */
     public boolean pegarFruta(Fruta fruta) {
-        // adicionar tratamento para checar a capacidade da mochila
-        this.mochila.add(fruta);
-        return true;
+        if(mochila.size() < getCapacidadeMochila()) {
+            this.mochila.add(fruta);
+            return true;
+        } else {
+            System.out.println("Mochila cheia"); // adicionar popup futuramente
+            return false;
+        }
     }
 
     /**

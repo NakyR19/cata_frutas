@@ -25,18 +25,21 @@ public class Floresta {
   private int numLaranjeiras;
   private int numLaranjas;
   private int numMaracujas;
+  private int capacidadeMochila;
+
 
   /**
    * ############ CONSTRUTOR ############
    * @param dimensao  a dimensão da floresta
    * @param numPedras o número de pedras na floresta
    */
-  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numMaracujas) {
+  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numMaracujas, int capacidadeMochila) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.numLaranjeiras = numLaranjeiras;
     this.numLaranjas = numLaranjas;
     this.numMaracujas = numMaracujas;
+    this.capacidadeMochila = capacidadeMochila;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia();
     gerarPedras();
@@ -137,7 +140,7 @@ public class Floresta {
           int x = gerador.nextInt(6);
           int y = gerador.nextInt(6);
           if (elementos[x][y] instanceof Grama) {
-              elementos[x][y] = new Player(x, y, ids[playerColocados]);
+              elementos[x][y] = new Player(x, y, ids[playerColocados], capacidadeMochila);
               System.out.println("Gerando jogador " + ids[playerColocados] + " na posição (" + x + ", " + y + ")");
               playerColocados++;
           }
@@ -191,7 +194,13 @@ public Player getPlayer(String id) {
   public void setTileAsGrama(int x, int y) {
     elementos[x][y] = new Grama(x, y);
   }
+  public int getCapacidadeMochila() {
+    return capacidadeMochila;
+  }
 
+  public void setCapacidadeMochila(int capacidadeMochila) {
+    this.capacidadeMochila = capacidadeMochila;
+  }
   public int getDimensao() {
     return dimensao;
   }
