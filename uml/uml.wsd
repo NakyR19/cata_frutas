@@ -3,16 +3,23 @@
 package view.ambiente {
     class FlorestaComponent {
         +FlorestaComponent(Floresta floresta, PlayerComponent p1Component, PlayerComponent p2Component)
-        +void paintComponent(Graphics g)
-        +Floresta getFloresta()
+        +void gerarPedras()
+        +void gerarPlayers()
+        +boolean isCollision(int x, int y)
+        +void setTileAsGrama(int x, int y)
+        +int getDimensao()
+        +void setDimensao(int d)
+        +Elemento[][] getElementos()
+        +void setElementos(Elemento[][] e)
+        +void aplicarEfeito()
+        +void mover(int x, int y)
     }
 }
 
 package models.ambiente {
     class Floresta {
         -int dimensao
-        -Elemento[][] elemento
-        +Player getPlayer(String id)
+        -Elemento[][] elementos
         +void gerarPedras()
         +void gerarPlayers()
         +boolean isCollision(int x, int y)
@@ -37,6 +44,14 @@ package models.elementos {
         +int getY()
         +void setY(int y)
     }
+
+    Elemento <|-- ElemDinamico
+    Elemento <|-- ElemEstatico
+    ElemDinamico <|-- Fruta
+    ElemDinamico <|-- Player
+    ElemEstatico <|-- Grama
+    ElemEstatico <|-- Pedra
+    ElemEstatico <|-- Arvore
 }
 
 package models.elementos.dinamicos {
@@ -45,23 +60,30 @@ package models.elementos.dinamicos {
     }
 
     class Fruta extends ElemDinamico {
-        -boolean bichada
         +void aplicarEfeito()
+        +void mover(int x, int y)
     }
 
     class Player extends ElemDinamico {
         -String id
-        -float forca
         -int pontosMovimento
         -List<Fruta> mochila
+        -int capacidadeMochila
         +String getId()
         +void setId(String id)
         +int getPontosMovimento()
         +void setPontosMovimento(int pontosMovimento)
         +List<Fruta> getMochila()
-        +void addFruta(Fruta fruta)
+        +int getCapacidadeMochila()
+        +boolean pegarFruta(Fruta fruta)
         +boolean removerFruta(Fruta fruta)
+        +void mover(int x, int y)
     }
+
+    Fruta <|-- Abacate
+    Fruta <|-- Coco
+    Fruta <|-- Laranja
+    Fruta <|-- Maracuja
 
     class Abacate extends Fruta {
         +void aplicarEfeito()
@@ -99,8 +121,10 @@ package models.elementos.estaticos {
     }
 
     class Arvore extends ElemEstatico {
-        -String TipoArvore
+        -String tipoArvore
         +void interagir()
+        +void setTipoArvore(String tipo)
+        +String getTipoArvore()
     }
 
     class Grama extends ElemEstatico {
@@ -144,6 +168,12 @@ package view.elementos.dinamico {
     }
 }
 
+ElementoComponent <|-- AbacateComponent
+ElementoComponent <|-- CocoComponent
+ElementoComponent <|-- LaranjaComponent
+ElementoComponent <|-- MaracujaComponent
+ElementoComponent <|-- PlayerComponent
+
 package view.elementos.estatico {
     class GramaComponent extends ElementoComponent {
         +void desenhar(Graphics g, int x, int y, int cellSize)
@@ -152,21 +182,35 @@ package view.elementos.estatico {
     class PedraComponent extends ElementoComponent {
         +void desenhar(Graphics g, int x, int y, int cellSize)
     }
+
+    class ArvoreComponent extends ElementoComponent {
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+    }
 }
 
 package view {
+    class MenuInicial {
+        -JButton buttonIniciarJogo
+        -JButton buttonMenuMapas
+        -JLabel logoLabel
+        +void configFrame()
+        +void configUI()
+        +void buttonListeners()
+    }
+
     class Jogo {
+        -TurnoController turnoController
+        -Player turnoAtual
         +void atualizarControlador(Player turnoAtual)
         +TurnoController getTurnoController()
         +void atualizarTurnoLabel()
-    }
-
-    class MenuInicial {
+        +void infoInterface()
     }
 
     class MenuMapas {
-        -JButton[] slots;
-        -File diretorioMapas;
+        -JButton[] slots
+        -File diretorioMapas
+        +MenuMapas(JFrame menuInicial)
     }
 }
 
@@ -179,11 +223,22 @@ package controllers {
 
     class TurnoController {
         -Player turnoAtual
-        -Dado dado
         +Player getTurnoAtual()
         +void alternarTurno()
     }
 }
+
+package utils {
+    class MapaUtils {
+        +int lerDimensaoDoMapa(File arquivoMapa)
+        +int lerNumPedrasDoMapa(File arquivoMapa)
+        +int lerNumLaranjeirasDoMapa(File arquivoMapa)
+        +int lerNumLaranjas(File arquivoMapa)
+        +int lerNumMaracujas(File arquivoMapa)
+        +int lerCapacidadeMochila(File arquivoMapa)
+    }
+}
+
 
 Elemento <|-- ElemDinamico
 Elemento <|-- ElemEstatico

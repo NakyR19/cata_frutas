@@ -28,7 +28,7 @@ public class ArvoreComponent extends ElementoComponent{
          */
         public ArvoreComponent(Arvore a) {
             this.arvore = a;
-            ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/coqueiro.png"));;//sprite provisorio de coqueiro, possivel mudança
+            ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/arvore48.png"));;//sprite provisorio de coqueiro, possivel mudança
             imagemArvore = referencia.getImage();
         }
         

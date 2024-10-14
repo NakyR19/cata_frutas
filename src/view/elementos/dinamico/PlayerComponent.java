@@ -26,7 +26,7 @@ public class PlayerComponent extends ElementoComponent {
      */
     public PlayerComponent(Player p) {
         this.player = p;
-        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/playerFrente.png"));;
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/sambistaFrente(3).png"));;
         imagemPlayer = referencia.getImage();
     }
     
