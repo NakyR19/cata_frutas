@@ -89,7 +89,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y);
+        elementos[x][y] = new Arvore(x, y, "laranjeira");
         i++;
       }
     }

@@ -1,5 +1,7 @@
 package models.elementos.estaticos;
-
+import models.elementos.dinamicos.Laranja;
+import models.elementos.dinamicos.Player;
+import models.ambiente.Floresta;
 
 /**
  * Arvore representa uma arvore que ao interagir com ela derrubará frutas.
@@ -12,26 +14,32 @@ public class Arvore extends ElemEstatico {
      * Especifica o tipo de Arvore
      */
     public String TipoArvore;
+    public int LimitadorTurno = 0;
 
     /**
      * Construtor
      * @param x coordenada x
      * @param y coordenada y
      */
-    public Arvore(int x, int y) {
+    public Arvore(int x, int y, String tipo) {
         super(x, y);
+        this.TipoArvore = tipo;
     }
 
     // em breve
     @Override
     public void interagir(){
-        //player nao vai poder atravessar, da fruta na prox rodada aos adjacentes, limitador de turno
-        
-        //conceito de turno ainda nao existe, mochila ainda nao existe;
-        //if(player adjacente && contp1 == 0){
-        // p = fruta
-        // contp1 = 5}
-        //if(passou turno){contp1-- }
+    
+        if(this.LimitadorTurno == 0){
+
+           if(TipoArvore == "laranjeira"){
+            Laranja laranja = new Laranja(x, y);//talvez crie uma instancia de fruta na arvore, testar e corrigir
+            //Player.pegarFruta(laranja);
+            this.LimitadorTurno = 5;
+            }
+
+        }
+      
     }
 
     public void setTipoArvore(String tipo){
@@ -40,5 +48,13 @@ public class Arvore extends ElemEstatico {
 
     public String getTipoArvore(){
         return this.TipoArvore;
+    }
+
+    public void setLimitadorTurno(int n){
+        this.LimitadorTurno = n;
+    }
+
+    public int getLimitadorTurno(){
+        return this.LimitadorTurno;
     }
 }
