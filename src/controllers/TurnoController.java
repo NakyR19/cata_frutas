@@ -3,6 +3,7 @@ package controllers;
 import models.ambiente.Dado;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
+import models.elementos.estaticos.Arvore;
 
 public class TurnoController {
     private Player p1;
@@ -34,5 +35,7 @@ public class TurnoController {
         System.out.println("Turno alternado para: " + turnoAtual.getId());
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
+        //interagir arvore se o player estiver no lugar 
+        //percorre o tabuleiro e diminui a limitação de turno da arvore em 1
     }
 }
