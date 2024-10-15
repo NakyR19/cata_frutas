@@ -1,7 +1,4 @@
 package models.elementos.estaticos;
-import models.elementos.dinamicos.Laranja;
-import models.elementos.dinamicos.Player;
-import models.ambiente.Floresta;
 
 /**
  * Arvore representa uma arvore que ao interagir com ela derrubará frutas.
@@ -29,17 +26,9 @@ public class Arvore extends ElemEstatico {
     // em breve
     @Override
     public void interagir(){
-    
-        if(this.LimitadorTurno == 0){
-
-           if(TipoArvore == "laranjeira"){
-            Laranja laranja = new Laranja(x, y);//talvez crie uma instancia de fruta na arvore, testar e corrigir
-            //Player.pegarFruta(laranja);
-            this.LimitadorTurno = 5;
-            }
-
+        if(this.LimitadorTurno > 0){//mudar
+            LimitadorTurno--;
         }
-      
     }
 
     public void setTipoArvore(String tipo){

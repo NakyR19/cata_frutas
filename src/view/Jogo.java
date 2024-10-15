@@ -108,7 +108,7 @@ public class Jogo extends JFrame {
                 // Randomiza quem irá iniciar o jogo
         Random random = new Random();
         Player jogadorInicial = random.nextBoolean() ? p1 : p2;
-        turnoController = new TurnoController(p1, p2, jogadorInicial, this);
+        turnoController = new TurnoController(p1, p2, jogadorInicial, this, floresta);
         addKeyListener(jogadorInicial == p1 ? p1Controller : p2Controller); // randomiza quem irá iniciar o jogo
         setFocusable(true);
         requestFocusInWindow();

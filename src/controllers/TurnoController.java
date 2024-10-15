@@ -1,6 +1,9 @@
 package controllers;
 
 import models.ambiente.Dado;
+import models.ambiente.Floresta;
+import models.elementos.Elemento;
+import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
 import models.elementos.estaticos.Arvore;
@@ -11,11 +14,15 @@ public class TurnoController {
     private Player turnoAtual;
     private Jogo jogo;
     private Dado dado;
+    private Floresta floresta;
+    private Elemento[][] elementos;
 
-    public TurnoController(Player p1, Player p2, Player jogadorInicial, Jogo jogo) {
+    public TurnoController(Player p1, Player p2, Player jogadorInicial, Jogo jogo, Floresta floresta) {
         this.p1 = p1;
         this.p2 = p2;
         this.jogo = jogo;
+        this.floresta = floresta;
+        this.elementos = floresta.getElementos();
         this.dado = new Dado();
         this.turnoAtual = jogadorInicial;
         this.turnoAtual.setPontosMovimento(dado.rolarDoisDados()); // Inicializa com 3 pontos de movimento
@@ -35,7 +42,26 @@ public class TurnoController {
         System.out.println("Turno alternado para: " + turnoAtual.getId());
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
-        //interagir arvore se o player estiver no lugar 
-        //percorre o tabuleiro e diminui a limitação de turno da arvore em 1
+    
+        /*for(int i = 0; i < floresta.getDimensao(); i++){ 
+            for(int j = 0; j < floresta.getDimensao(); j++){
+                    
+                if(elementos[i][j] instanceof Arvore){
+                    Arvore arvore = (Arvore) elementos[i][j];
+
+                    if(elementos[i][j] instanceof Player && arvore.getLimitadorTurno() == 0){
+
+                        Laranja laranja = new Laranja(i, j);
+                        p.pegarFruta(laranja);
+                        arvore.setLimitadorTurno(5);
+
+                    } else {
+                        arvore.interagir();
+                    }
+
+                    
+                }
+            }
+        }*/
     }
 }
