@@ -1,5 +1,6 @@
 package models.elementos.estaticos;
 
+import models.elementos.dinamicos.Player;
 
 /**
  * Pedra
@@ -31,7 +32,7 @@ public class Pedra extends ElemEstatico{
    * @author MariaLuizaCA - Maria Luíza
    */
   @Override
-  public void interagir() {
+  public void interagir(Player player) {
     /*
     if (p.getPontosMov() >= 3) {  // 1 ponto para chegar + 1 ponto para pular + 1 ponto para avançar
         // Implementar a lógica de diminuir os pontos de movimento - p.TirarPontos(3)

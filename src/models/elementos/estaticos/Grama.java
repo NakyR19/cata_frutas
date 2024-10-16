@@ -1,5 +1,7 @@
 package models.elementos.estaticos;
 
+import models.elementos.dinamicos.Player;
+
 /**
  * Grama é um tile de movimentação livre
  * Esta classe herda da classe ElemEstatico.
@@ -19,7 +21,7 @@ public class Grama extends ElemEstatico {
 
   // será necessário?
   @Override
-  public void interagir() {
+  public void interagir(Player player) {
 
   }
 }

@@ -43,25 +43,20 @@ public class TurnoController {
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
     
-        /*for(int i = 0; i < floresta.getDimensao(); i++){ 
+        for(int i = 0; i < floresta.getDimensao(); i++){ 
             for(int j = 0; j < floresta.getDimensao(); j++){
                     
                 if(elementos[i][j] instanceof Arvore){
                     Arvore arvore = (Arvore) elementos[i][j];
-
-                    if(elementos[i][j] instanceof Player && arvore.getLimitadorTurno() == 0){
-
-                        Laranja laranja = new Laranja(i, j);
-                        p.pegarFruta(laranja);
-                        arvore.setLimitadorTurno(5);
-
-                    } else {
-                        arvore.interagir();
-                    }
-
                     
+                    if(p1.getX() == i && p1.getY() == j)
+                        arvore.interagir(p1);
+                    if(p2.getX() == i && p2.getY() == j)
+                        arvore.interagir(p2);
+                  
+                    arvore.cooldownReduction();
                 }
             }
-        }*/
+        }
     }
 }

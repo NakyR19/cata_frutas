@@ -1,6 +1,7 @@
 package models.elementos.estaticos;
 
 import models.elementos.Elemento;
+import models.elementos.dinamicos.Player;
 
 /**
  * Abstract Class ElemEstatico representa um elemento dinâmico que não pode se
@@ -23,5 +24,5 @@ public abstract class ElemEstatico extends Elemento {
   /**
    * Método abstrato para determinar a ação do elemento após interação.
    */
-  public abstract void interagir();
+  public abstract void interagir(Player player);
 }
