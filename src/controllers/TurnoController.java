@@ -31,6 +31,15 @@ public class TurnoController {
         return turnoAtual;
     }
 
+    public Player VerificarVitoria(){//verifica se algum dos players tem pontos necessarios para vencer.
+        int pontos = (floresta.getNumMaracujasTotais()/2) + 1;
+        if(p1.getPontosVitoria() >= pontos)
+            return p1;
+        if(p2.getPontosVitoria() >= pontos)
+            return p2;
+        return null;
+    }
+
     public void alternarTurno() {
         if (turnoAtual == p1) {
             turnoAtual = p2;
@@ -42,7 +51,7 @@ public class TurnoController {
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
     
-        for(int i = 0; i < floresta.getDimensao(); i++){ 
+        for(int i = 0; i < floresta.getDimensao(); i++){//percorre a floresta, diminui a recarga das arvores e interage se tiver um player em baixo sem recarga
             for(int j = 0; j < floresta.getDimensao(); j++){
                     
                 if(elementos[i][j] instanceof Arvore){
@@ -56,6 +65,10 @@ public class TurnoController {
                     arvore.cooldownReduction();
                 }
             }
+        }
+
+        if(VerificarVitoria() != null){//alterar para futuramente encerrar o jogo.
+            System.out.println(VerificarVitoria().getId() + " ganhou");
         }
     }
 }

@@ -14,7 +14,7 @@ public class Player extends ElemDinamico {
     private List<Fruta> mochila;
     private int capacidadeMochila;
     private boolean poison = false;
-    
+    private int pontosVitoria = 0;
     
     
     /**
@@ -69,6 +69,14 @@ public class Player extends ElemDinamico {
 
     public void setPoison(Boolean p){
         this.poison = p;
+    }
+
+    public int getPontosVitoria(){
+        return pontosVitoria;
+    }
+
+    public void setPontosVitoria(int n){
+        this.pontosVitoria = n;
     }
     
     /**

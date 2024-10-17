@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import models.elementos.Elemento;
 import models.elementos.dinamicos.Laranja;
+import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
 import view.ambiente.FlorestaComponent;
@@ -101,6 +102,15 @@ public void keyPressed(KeyEvent e) {
                 if (player.pegarFruta(laranja)) {
                     florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
                     System.out.println("Laranja coletada!");
+                    florestaComponent.repaint();
+                }
+            }
+            if(elemento instanceof Maracuja) {
+                Maracuja maracuja = (Maracuja) elemento;
+                if (player.pegarFruta(maracuja)) {
+                    player.setPontosVitoria(player.getPontosVitoria() + 1);
+                    florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
+                    System.out.println("Maracujá coletada!");
                     florestaComponent.repaint();
                 }
             }

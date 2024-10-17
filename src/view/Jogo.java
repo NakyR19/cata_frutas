@@ -74,6 +74,7 @@ public class Jogo extends JFrame {
         int numPedras = mapaUtils.lerNumPedrasDoMapa(arquivoMapa);
         int numLaranjeiras = mapaUtils.lerNumLaranjeirasDoMapa(arquivoMapa);
         int numLaranjas = mapaUtils.lerNumLaranjas(arquivoMapa);
+        int numMaracujasTotais = mapaUtils.lerNumMaracujasTotais(arquivoMapa);
         int numMaracujas = mapaUtils.lerNumMaracujas(arquivoMapa);
         int capacidadeMochila = mapaUtils.lerCapacidadeMochila(arquivoMapa);
 
@@ -85,7 +86,7 @@ public class Jogo extends JFrame {
         }
 
         // Cria o jogo com a dimensão lida do arquivo
-        Floresta floresta = new Floresta(dimensao, numPedras, numLaranjeiras, numLaranjas, numMaracujas, capacidadeMochila);
+        Floresta floresta = new Floresta(dimensao, numPedras, numLaranjeiras, numLaranjas, numMaracujas, numMaracujasTotais, capacidadeMochila);
         p1 = floresta.getPlayer("p1");
         p2 = floresta.getPlayer("p2");
         PlayerComponent p1Component = new PlayerComponent(p1);

@@ -25,6 +25,7 @@ public class Floresta {
   private int numLaranjeiras;
   private int numLaranjas;
   private int numMaracujas;
+  private int numMaracujasTotais;
   private int capacidadeMochila;
 
 
@@ -33,7 +34,7 @@ public class Floresta {
    * @param dimensao  a dimensão da floresta
    * @param numPedras o número de pedras na floresta
    */
-  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numMaracujas, int capacidadeMochila) {
+  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numMaracujas, int numMaracujasTotais, int capacidadeMochila) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.numLaranjeiras = numLaranjeiras;
@@ -215,5 +216,9 @@ public Player getPlayer(String id) {
 
   public void setElementos(Elemento[][] e) {
     this.elementos = e;
+  }
+
+  public int getNumMaracujasTotais(){
+    return numMaracujasTotais;
   }
 }
