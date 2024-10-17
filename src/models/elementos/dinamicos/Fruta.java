@@ -33,5 +33,5 @@ public abstract class Fruta extends ElemDinamico {
      *
      * @param p O jogador ao qual o efeito será aplicado.
      */
-    public abstract void aplicarEfeito();
+    public abstract void aplicarEfeito(Player player);
 }

@@ -34,7 +34,7 @@ public class Maracuja extends Fruta {
      * @param p O jogador ao qual o efeito seria aplicado.
      */
     @Override
-    public void aplicarEfeito() {
+    public void aplicarEfeito(Player p) {
         // Confirmar efeito para adicionar, maracujá não pode ser consumido
     }
 

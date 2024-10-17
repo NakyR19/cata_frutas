@@ -34,9 +34,15 @@ public class Laranja extends Fruta {
      * @param p O jogador ao qual o efeito será aplicado.
      */
     @Override
-    public void aplicarEfeito() {
-        // Antídoto: remove o envenenamento do jogador
-        //p.setPoison(false);
+    public void aplicarEfeito(Player player){
+        if(!this.Bichada){
+           player.setPoison(false); 
+           System.out.println(player.getId() + " não está mais envenenado!");
+        } else {
+            player.setPoison(true);
+            System.out.println(player.getId() + " comeu uma fruta bichada e está envenenado!");
+        }
+        
     }
 
     /**

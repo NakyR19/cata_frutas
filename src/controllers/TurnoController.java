@@ -3,7 +3,6 @@ package controllers;
 import models.ambiente.Dado;
 import models.ambiente.Floresta;
 import models.elementos.Elemento;
-import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
 import models.elementos.estaticos.Arvore;

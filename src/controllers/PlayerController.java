@@ -65,6 +65,13 @@ public void keyPressed(KeyEvent e) {
         return; // Se não for o turno do jogador, não faz nada
     }
 
+    if(player.getPoison()){
+        System.out.println(player.getId() + " perdeu o turno pois estava envenenado.");
+        player.setPoison(false);
+        jogo.getTurnoController().alternarTurno();
+        return; //Se o player estiver envenenado perde o turno e o status de envenenado
+    }
+
     if (player.getPontosMovimento() <= 0) {
         return; // Se não houver pontos de movimento, não faz nada
     }
