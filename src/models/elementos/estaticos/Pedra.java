@@ -31,16 +31,47 @@ public class Pedra extends ElemEstatico{
    *
    * @author MariaLuizaCA - Maria Luíza
    */
+
+   
   @Override
   public void interagir(Player player) {
-    /*
-    if (p.getPontosMov() >= 3) {  // 1 ponto para chegar + 1 ponto para pular + 1 ponto para avançar
-        // Implementar a lógica de diminuir os pontos de movimento - p.TirarPontos(3)
-        // Implementar a lógica de movimento do jogador - p.MoverDeLugar()
+
+    if (player.getPontosMovimento() >= 3){
+      player.setPontosMovimento(player.getPontosMovimento() - 3);
+      int newX = player.getX();
+      int newY = player.getY();
+      switch (player.getDirecaoAtual()) {
+        case "direita":
+            newX += 2;
+            player.mover(newX, newY);
+            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+    
+            break;
+        case "esquerda":
+            newX -= 2;
+            player.mover(newX, newY);
+            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+
+            break;
+        case "cima":
+            newY -= 2;
+            player.mover(newX, newY);
+            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+
+            break;
+        case "baixo":
+            newY += 2;
+            player.mover(newX, newY);
+            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+
+            break;
+        default:
+            System.out.print("Erro");
+      }
     } else {
-        System.out.println("Você não tem pontos suficientes para pular a pedra.");
+      System.out.println("Você não tem pontos suficientes para pular a pedra.");
     }
-    */
+    
   }
 
 }

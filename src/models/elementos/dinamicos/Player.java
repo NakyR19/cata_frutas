@@ -13,8 +13,12 @@ public class Player extends ElemDinamico {
     private int pontosMovimento;
     private List<Fruta> mochila;
     private int capacidadeMochila;
+<<<<<<< Updated upstream
     private boolean poison = false;
     private int pontosVitoria = 0;
+=======
+    private String direcaoAtual; 
+>>>>>>> Stashed changes
     
     
     /**
@@ -79,6 +83,13 @@ public class Player extends ElemDinamico {
         this.pontosVitoria = n;
     }
     
+    public String getDirecaoAtual(){
+        return direcaoAtual;
+    }
+
+    public void setDirecaoAtual(String direcaoAtual){
+        this.direcaoAtual = direcaoAtual; 
+    }
     /**
      * Adiciona uma fruta na mochila do jogador.
      * @param fruta A fruta q vai ser adicionada.

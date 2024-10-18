@@ -7,6 +7,7 @@ import models.elementos.Elemento;
 import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
+import models.elementos.estaticos.Pedra;
 import view.Jogo;
 import view.ambiente.FlorestaComponent;
 
@@ -86,15 +87,20 @@ public void keyPressed(KeyEvent e) {
     if (keyCode == upKey) {
         novoY += LESS_ONE_MV;
         isMovementKey = true;
+        player.setDirecaoAtual("cima"); 
     } else if (keyCode == downKey) {
         novoY += PLUS_ONE_MV;
         isMovementKey = true;
+        player.setDirecaoAtual("baixo");
     } else if (keyCode == leftKey) {
         novoX += LESS_ONE_MV;
         isMovementKey = true;
+        player.setDirecaoAtual("esquerda");
     } else if (keyCode == rightKey) {
         novoX += PLUS_ONE_MV;
         isMovementKey = true;
+        player.setDirecaoAtual("direita");
+
     } else if (keyCode == KeyEvent.VK_E){
         Elemento elemento = florestaComponent.getFloresta().getElementos()[player.getX()][player.getY()];
             if (elemento instanceof Laranja) {
@@ -120,6 +126,16 @@ public void keyPressed(KeyEvent e) {
     if (!isMovementKey) {
         return;
     }
+
+    //Verifica se o objeto na frente é uma pedra 
+    Elemento elemento = florestaComponent.getFloresta().getElementos()[novoX][novoY];
+    if (elemento instanceof Pedra){
+        Pedra pedra = (Pedra) elemento; 
+        pedra.interagir(player);
+        florestaComponent.repaint();
+        return;
+    }
+
     // Limpa a posição inicial apenas uma vez
     if (!initialPositionCleared) {
         florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
