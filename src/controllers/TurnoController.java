@@ -15,7 +15,6 @@ public class TurnoController {
     private Dado dado;
     private Floresta floresta;
     private Elemento[][] elementos;
-
     private int limiteMaracujas;
 
     public TurnoController(Player p1, Player p2, Player jogadorInicial, Jogo jogo, Floresta floresta) {
@@ -32,6 +31,14 @@ public class TurnoController {
 
     public Player getTurnoAtual() {
         return turnoAtual;
+    }
+
+    public int getLimiteMaracujas(){
+        return limiteMaracujas;
+    }
+
+    public void setLimiteMaracujas(int n){
+        limiteMaracujas = n;
     }
 
     public Player VerificarVitoria(){//verifica se algum dos players tem pontos necessarios para vencer.
@@ -60,10 +67,14 @@ public class TurnoController {
                 if(elementos[i][j] instanceof Arvore){
                     Arvore arvore = (Arvore) elementos[i][j];
 
-                    if(p1.getX() == i && p1.getY() == j)
+                    if(p1.getX() == i && p1.getY() == j){
+                        arvore.setControl(this);
                         arvore.interagir(p1);
-                    if(p2.getX() == i && p2.getY() == j)
+                    }
+                    if(p2.getX() == i && p2.getY() == j){
+                        arvore.setControl(this);
                         arvore.interagir(p2);
+                    }
                   
                     arvore.cooldownReduction();
                 }

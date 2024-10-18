@@ -1,5 +1,6 @@
 package models.elementos.estaticos;
 
+import controllers.TurnoController;
 import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
@@ -16,6 +17,7 @@ public class Arvore extends ElemEstatico {
      */
     public String TipoArvore;
     public int LimitadorTurno = 0;
+    public TurnoController turnoController;
 
     /**
      * Construtor
@@ -35,14 +37,17 @@ public class Arvore extends ElemEstatico {
         if(LimitadorTurno != 0)
             return;
 
-        //25% de chance de dar um maracuja
-        /*if((int)(Math.random() * 100 + 1) > 25 ){//&& verifica se atingiu o numero de maracujas
+        //25% de chance de dar um maracuja, so vai dar maracuja se nao tiver atingido o maximo de maracujas no jogo
+        if((int)(Math.random() * 100 + 1) > 25 && turnoController.getLimiteMaracujas() > 0){
             Maracuja maracuja = new Maracuja(x, y);
             if(!player.pegarFruta(maracuja))//se a mochila estiver cheia nao vai reiniciar a recarga
                 return;
             LimitadorTurno = 5;
-            System.out.println(player.getId() + " pegou um maracuja da arvore.")
-        }*/
+            player.setPontosVitoria(player.getPontosVitoria() + 1);
+            turnoController.setLimiteMaracujas(turnoController.getLimiteMaracujas() - 1);
+            System.out.println(player.getId() + " pegou um maracuja da arvore.");
+            return;
+        }
         
         //da uma fruta a depender do tipo de árvore e reinicia a contagem de turnos
         switch (TipoArvore) {
@@ -51,7 +56,7 @@ public class Arvore extends ElemEstatico {
             if(!player.pegarFruta(laranja))
                 return;
             LimitadorTurno = 5;
-            System.out.println(player.getId() + " pegou uma fruta de uma laranja.");
+            System.out.println(player.getId() + " pegou uma fruta laranja.");
                 break;
         
             default:
@@ -80,5 +85,13 @@ public class Arvore extends ElemEstatico {
 
     public int getLimitadorTurno(){
         return this.LimitadorTurno;
+    }
+
+    public void setControl(TurnoController control){
+        this.turnoController = control;
+    }
+
+    public TurnoController getControl(){
+        return turnoController;
     }
 }
