@@ -13,12 +13,9 @@ public class Player extends ElemDinamico {
     private int pontosMovimento;
     private List<Fruta> mochila;
     private int capacidadeMochila;
-<<<<<<< Updated upstream
     private boolean poison = false;
     private int pontosVitoria = 0;
-=======
     private String direcaoAtual; 
->>>>>>> Stashed changes
     
     
     /**
