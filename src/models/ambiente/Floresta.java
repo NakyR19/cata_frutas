@@ -40,6 +40,7 @@ public class Floresta {
     this.numLaranjeiras = numLaranjeiras;
     this.numLaranjas = numLaranjas;
     this.numMaracujas = numMaracujas;
+    this.numMaracujasTotais = numMaracujasTotais;
     this.capacidadeMochila = capacidadeMochila;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia();
@@ -220,5 +221,9 @@ public Player getPlayer(String id) {
 
   public int getNumMaracujasTotais(){
     return numMaracujasTotais;
+  }
+
+  public int getNumMaracujas(){
+    return numMaracujas;
   }
 }

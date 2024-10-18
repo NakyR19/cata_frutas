@@ -19,8 +19,8 @@ public class Laranja extends Fruta {
         super(x, y);
         this.TipoFruta = "Laranja";
 
-        // 20% de chance de ser bichada
-        if ((int)(Math.random() * 100 + 1) > 20) {
+        // 10% de chance de ser bichada
+        if ((int)(Math.random() * 100 + 1) > 10) {
             this.Bichada = false;
         } else {
             this.Bichada = true;

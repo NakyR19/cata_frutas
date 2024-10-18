@@ -16,12 +16,15 @@ public class TurnoController {
     private Floresta floresta;
     private Elemento[][] elementos;
 
+    private int limiteMaracujas;
+
     public TurnoController(Player p1, Player p2, Player jogadorInicial, Jogo jogo, Floresta floresta) {
         this.p1 = p1;
         this.p2 = p2;
         this.jogo = jogo;
         this.floresta = floresta;
         this.elementos = floresta.getElementos();
+        this.limiteMaracujas = floresta.getNumMaracujasTotais() - floresta.getNumMaracujas();
         this.dado = new Dado();
         this.turnoAtual = jogadorInicial;
         this.turnoAtual.setPontosMovimento(dado.rolarDoisDados()); // Inicializa com 3 pontos de movimento
@@ -56,7 +59,7 @@ public class TurnoController {
                     
                 if(elementos[i][j] instanceof Arvore){
                     Arvore arvore = (Arvore) elementos[i][j];
-                    
+
                     if(p1.getX() == i && p1.getY() == j)
                         arvore.interagir(p1);
                     if(p2.getX() == i && p2.getY() == j)

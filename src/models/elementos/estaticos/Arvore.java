@@ -1,6 +1,7 @@
 package models.elementos.estaticos;
 
 import models.elementos.dinamicos.Laranja;
+import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 
 /**
@@ -34,14 +35,23 @@ public class Arvore extends ElemEstatico {
         if(LimitadorTurno != 0)
             return;
 
+        //25% de chance de dar um maracuja
+        /*if((int)(Math.random() * 100 + 1) > 25 ){//&& verifica se atingiu o numero de maracujas
+            Maracuja maracuja = new Maracuja(x, y);
+            if(!player.pegarFruta(maracuja))//se a mochila estiver cheia nao vai reiniciar a recarga
+                return;
+            LimitadorTurno = 5;
+            System.out.println(player.getId() + " pegou um maracuja da arvore.")
+        }*/
+        
         //da uma fruta a depender do tipo de árvore e reinicia a contagem de turnos
         switch (TipoArvore) {
             case "laranjeira":
             Laranja laranja = new Laranja(x, y);
-            if(!player.pegarFruta(laranja))//se a mochila estiver cheia nao vai reiniciar a recarga
+            if(!player.pegarFruta(laranja))
                 return;
             LimitadorTurno = 5;
-            System.out.println(player.getId() + " pegou uma fruta de uma " + this.TipoArvore);
+            System.out.println(player.getId() + " pegou uma fruta de uma laranja.");
                 break;
         
             default:

@@ -140,17 +140,17 @@ public class MapaUtils {
     }
 
     public int lerNumMaracujasTotais(File arquivoMapa){
-        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+        try(BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
             String linha;
-            while ((linha = br.readLine()) != null) {
-                if (linha.startsWith("maracuja")){
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("maracuja")){
                     String[] partes = linha.split(" ");
-                    if (partes.length == 3){
+                    if(partes.length == 3){
                         return Integer.parseInt(partes[1]);
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch(IOException e){
             e.printStackTrace();
         }
         return -1;
