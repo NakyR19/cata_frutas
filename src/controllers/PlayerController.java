@@ -27,6 +27,7 @@ public class PlayerController implements KeyListener {
     private static int LESS_ONE_MV = -1;
     private boolean initialPositionCleared = false;
 
+
     // Conjunto de teclas de controle
     private int upKey;
     private int downKey;
@@ -54,7 +55,9 @@ public class PlayerController implements KeyListener {
         this.rightKey = rightKey;
         this.jogo = jogo;
     }
-
+    public FlorestaComponent getFlorestaComponent(){
+        return florestaComponent;
+    }
     @Override
 public void keyPressed(KeyEvent e) {
     
@@ -127,14 +130,8 @@ public void keyPressed(KeyEvent e) {
         return;
     }
 
-    //Verifica se o objeto na frente é uma pedra 
-    Elemento elemento = florestaComponent.getFloresta().getElementos()[novoX][novoY];
-    if (elemento instanceof Pedra){
-        Pedra pedra = (Pedra) elemento; 
-        pedra.interagir(player);
-        florestaComponent.repaint();
-        return;
-    }
+
+    //verificarPedra();
 
     // Limpa a posição inicial apenas uma vez
     if (!initialPositionCleared) {
@@ -165,4 +162,17 @@ public void keyPressed(KeyEvent e) {
     @Override
     public void keyTyped(KeyEvent e) {
     }
+
+    //Verifica se o objeto na frente é uma pedra 
+    public void verificarPedra(){
+        Elemento elemento = florestaComponent.getFloresta().getElementos()[player.getX()][player.getY()];
+        if (elemento instanceof Pedra){
+            Pedra pedra = (Pedra) elemento; 
+            pedra.interagir(player);
+            florestaComponent.repaint();
+            return;
+        }
+        return;
+    }
+
 }

@@ -1,6 +1,9 @@
 package models.elementos.estaticos;
 
+//import controllers.PlayerControllr;
 import models.elementos.dinamicos.Player;
+
+
 
 /**
  * Pedra
@@ -37,37 +40,50 @@ public class Pedra extends ElemEstatico{
   public void interagir(Player player) {
 
     if (player.getPontosMovimento() >= 3){
-      player.setPontosMovimento(player.getPontosMovimento() - 3);
       int newX = player.getX();
       int newY = player.getY();
+      boolean podePular = false;
       switch (player.getDirecaoAtual()) {
         case "direita":
-            newX += 2;
-            player.mover(newX, newY);
-            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-    
-            break;
-        case "esquerda":
-            newX -= 2;
-            player.mover(newX, newY);
-            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-
-            break;
-        case "cima":
-            newY -= 2;
-            player.mover(newX, newY);
-            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-
-            break;
-        case "baixo":
-            newY += 2;
-            player.mover(newX, newY);
-            System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-
-            break;
+          if(newX + 2 < player.getPlayerController().getFlorestaComponent().getFloresta().getDimensao()){
+            podePular = false;
+          } else {
+              newX += 2;
+          }
+          break;
+      case "esquerda":
+          if (newX - 2 < 0) {
+              podePular = false;
+          } else {
+              newX -= 2;
+          }
+          break;
+      case "cima":
+          if (newY - 2 < 0 ) {
+              podePular = false;
+          } else {
+              newY -= 2;
+          }
+          break;
+      case "baixo":
+          if (newY + 2 >= player.getPlayerController().getFlorestaComponent().getFloresta().getDimensao()) {
+              podePular = false;
+          } else {
+              newY += 2;
+          }
         default:
             System.out.print("Erro");
       }
+
+      if (podePular) {
+          player.getPlayerController().verificarPedra();
+          player.mover(newX, newY);
+          player.setPontosMovimento(player.getPontosMovimento() - 3);
+          System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+      } else {
+          System.out.println("Você não pode pular a pedra");
+      }
+      
     } else {
       System.out.println("Você não tem pontos suficientes para pular a pedra.");
     }

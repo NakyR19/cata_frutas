@@ -1,5 +1,6 @@
 package models.elementos.dinamicos;
 import java.util.List;
+import controllers.PlayerController;
 import java.util.ArrayList;
 
 // Apenas implementando logica de movimento e comando do teclado, implementar mochila e outros posteriormente
@@ -16,6 +17,7 @@ public class Player extends ElemDinamico {
     private boolean poison = false;
     private int pontosVitoria = 0;
     private String direcaoAtual; 
+    private PlayerController playerController;
     
     
     /**
@@ -87,6 +89,10 @@ public class Player extends ElemDinamico {
     public void setDirecaoAtual(String direcaoAtual){
         this.direcaoAtual = direcaoAtual; 
     }
+
+    public PlayerController getPlayerController(){
+        return playerController;
+    }
     /**
      * Adiciona uma fruta na mochila do jogador.
      * @param fruta A fruta q vai ser adicionada.
@@ -109,4 +115,5 @@ public class Player extends ElemDinamico {
     public boolean removerFruta(Fruta fruta){
         return this.mochila.remove(fruta);
     }
+   
 }
