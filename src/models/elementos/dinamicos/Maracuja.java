@@ -10,7 +10,6 @@ public class Maracuja extends Fruta {
     /**
      * Construtor para a classe Maracuja.
      * Inicializa a fruta com suas coordenadas e define o tipo como "Maracuja".
-     * Há uma chance de 20% do maracujá ser bichado(pode mudar ainda)
      *
      * @param x A coordenada x do maracujá.
      * @param y A coordenada y do maracujá.
@@ -18,13 +17,6 @@ public class Maracuja extends Fruta {
     public Maracuja(int x, int y) {
         super(x, y);
         this.TipoFruta = "Maracuja";
-
-        // 10% de chance de ser bichado
-        if ((int)(Math.random() * 100 + 1) > 10) {
-            this.Bichada = false;
-        } else {
-            this.Bichada = true;
-        }
     }
 
     /**

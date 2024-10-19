@@ -17,10 +17,16 @@ package models.elementos.dinamicos;
      * @param TipoFruta o tipo da fruta (Coco).
      * @param Bichada indica se a fruta está bichada (não utilizado atualmente, padrão: false).
      */
-    public Coco(int x, int y, String TipoFruta, boolean Bichada) {
+    public Coco(int x, int y) {
        super(x, y);
         TipoFruta = "Coco";
-        Bichada = false;
+        
+        // 10% de chance de ser bichada
+        if ((int)(Math.random() * 100 + 1) > 10) {
+            this.Bichada = false;
+        } else {
+            this.Bichada = true;
+        }
     }
     /**
      * Aplica o efeito de agilidade ao jogador, dobrando o número de pontos de movimento em uma rodada.

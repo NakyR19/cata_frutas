@@ -18,10 +18,16 @@ public class Abacate extends Fruta{
      * @param TipoFruta o tipo da fruta (Abacate).
      * @param Bichada indica se a fruta está bichada (não utilizado atualmente, padrão: false).
      */
-    public Abacate(int x, int y, String TipoFruta, boolean Bichada) {
+    public Abacate(int x, int y) {
         super(x, y);
         TipoFruta = "Abacate";
-        Bichada = false;
+
+        // 10% de chance de ser bichada
+        if ((int)(Math.random() * 100 + 1) > 10) {
+            this.Bichada = false;
+        } else {
+            this.Bichada = true;
+        }
     }
 
     /**

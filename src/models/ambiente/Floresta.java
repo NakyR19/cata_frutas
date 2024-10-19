@@ -2,6 +2,11 @@ package models.ambiente;
 
 import java.util.Random;
 import models.elementos.Elemento;
+import models.elementos.dinamicos.Abacate;
+import models.elementos.dinamicos.Acerola;
+import models.elementos.dinamicos.Amora;
+import models.elementos.dinamicos.Coco;
+import models.elementos.dinamicos.Goiaba;
 import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
@@ -24,6 +29,16 @@ public class Floresta {
   private int numPedras;
   private int numLaranjeiras;
   private int numLaranjas;
+  private int numGoiabeiras;
+  private int numGoiabas;
+  private int numCoqueiros;
+  private int numCocos;
+  private int numAmoreiras;
+  private int numAmoras;
+  private int numAceroleiras;
+  private int numAcerolas;
+  private int numAbacateiros;
+  private int numAbacates;
   private int numMaracujas;
   private int numMaracujasTotais;
   private int capacidadeMochila;
@@ -34,11 +49,22 @@ public class Floresta {
    * @param dimensao  a dimensão da floresta
    * @param numPedras o número de pedras na floresta
    */
-  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numMaracujas, int numMaracujasTotais, int capacidadeMochila) {
+  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos,
+      int numAmoreiras, int numAmoras, int numAceroleiras, int numAcerolas, int numAbacateiros, int numAbacates, int numMaracujas, int numMaracujasTotais, int capacidadeMochila) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.numLaranjeiras = numLaranjeiras;
     this.numLaranjas = numLaranjas;
+    this.numGoiabeiras = numGoiabeiras;
+    this.numGoiabas = numGoiabas;
+    this.numCoqueiros = numCoqueiros;
+    this.numCocos = numCocos;
+    this.numAmoreiras = numAmoreiras;
+    this.numAmoras = numAmoras;
+    this.numAceroleiras = numAceroleiras;
+    this.numAcerolas = numAcerolas;
+    this.numAbacateiros = numAbacateiros;
+    this.numAbacates = numAbacates;
     this.numMaracujas = numMaracujas;
     this.numMaracujasTotais = numMaracujasTotais;
     this.capacidadeMochila = capacidadeMochila;
@@ -47,6 +73,16 @@ public class Floresta {
     gerarPedras();
     gerarLaranjeiras();
     gerarLaranjas();
+    gerarGoiabeiras();
+    gerarGoiabas();
+    gerarCoqueiros();
+    gerarCocos();
+    gerarAmoreiras();
+    gerarAmoras();
+    gerarAceroleiras();
+    gerarAcerolas();
+    gerarAbacateiros();
+    gerarAbacates();
     gerarMaracujas();
     gerarPlayers();
   }
@@ -85,7 +121,7 @@ public class Floresta {
      * @author redbdb - Gustavo Assunção
      * Gera laranjeiras aleatoriamente na floresta.
      */
-  public void gerarLaranjeiras(){//possivelment alterar para arvores no geral no futuro
+  public void gerarLaranjeiras(){
     Random gerador = new Random();
     for(int i = 0; i < numLaranjeiras; ){
       int x = gerador.nextInt(getDimensao());
@@ -108,6 +144,166 @@ public class Floresta {
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
         elementos[x][y] = new Laranja(x, y);
+        i++;
+      }
+    }
+  }
+
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Goiabeiras aleatoriamente na floresta.
+     */
+  public void gerarGoiabeiras(){
+    Random gerador = new Random();
+    for(int i = 0; i < numGoiabeiras; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Arvore(x, y, "goiabeira");
+        i++;
+      }
+    }
+  }
+  
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Goiabas aleatoriamente na floresta.
+     */
+  public void gerarGoiabas(){
+    Random gerador = new Random();
+    for(int i = 0; i < numGoiabas; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Goiaba(x, y);
+        i++;
+      }
+    }
+  }
+    
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Coqueiros aleatoriamente na floresta.
+     */
+  public void gerarCoqueiros(){
+    Random gerador = new Random();
+    for(int i = 0; i < numCoqueiros; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Arvore(x, y, "coqueiro");
+        i++;
+      }
+    }
+  }
+  
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Cocos aleatoriamente na floresta.
+     */
+  public void gerarCocos(){
+    Random gerador = new Random();
+    for(int i = 0; i < numCocos; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Coco(x, y);
+        i++;
+      }
+    }
+  }
+
+  /**
+   * @author redbdb - Gustavo Assunção
+   * Gera Amoreiras aleatoriamente na floresta.
+   */
+  public void gerarAmoreiras(){
+    Random gerador = new Random();
+    for(int i = 0; i < numAmoreiras; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Arvore(x, y, "amoreira");
+        i++;
+      }
+    }
+  }
+  
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Amoras aleatoriamente na floresta.
+     */
+  public void gerarAmoras(){
+    Random gerador = new Random();
+    for(int i = 0; i < numAmoras; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Amora(x, y);
+        i++;
+      }
+    }
+  }
+
+  /**
+   * @author redbdb - Gustavo Assunção
+   * Gera Aceroleiras aleatoriamente na floresta.
+   */
+  public void gerarAceroleiras(){
+    Random gerador = new Random();
+    for(int i = 0; i < numAceroleiras; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Arvore(x, y, "aceroleira");
+        i++;
+      }
+    }
+  }
+  
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Acerolas aleatoriamente na floresta.
+     */
+  public void gerarAcerolas(){
+    Random gerador = new Random();
+    for(int i = 0; i < numAcerolas; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Acerola(x, y);
+        i++;
+      }
+    }
+  }
+
+  /**
+   * @author redbdb - Gustavo Assunção
+   * Gera Abacateiros aleatoriamente na floresta.
+   */
+  public void gerarAbacateiros(){
+    Random gerador = new Random();
+    for(int i = 0; i < numAbacateiros; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Arvore(x, y, "abacateiro");
+        i++;
+      }
+    }
+  }
+  
+  /**
+     * @author redbdb - Gustavo Assunção
+     * Gera Abacates aleatoriamente na floresta.
+     */
+  public void gerarAbacates(){
+    Random gerador = new Random();
+    for(int i = 0; i < numAbacates; ){
+      int x = gerador.nextInt(getDimensao());
+      int y = gerador.nextInt(getDimensao());
+      if(elementos[x][y] instanceof Grama){
+        elementos[x][y] = new Abacate(x, y);
         i++;
       }
     }

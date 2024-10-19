@@ -10,7 +10,7 @@ public class Laranja extends Fruta {
     /**
      * Construtor para a classe Laranja.
      * Inicializa a fruta com suas coordenadas e define o tipo como "Laranja".
-     * Há uma chance de 20% da laranja ser bichada(pode ser alterado depois)
+     * Há uma chance de 10% da laranja ser bichada
      *
      * @param x A coordenada x da laranja.
      * @param y A coordenada y da laranja.
@@ -30,6 +30,7 @@ public class Laranja extends Fruta {
     /**
      * Aplica o efeito da laranja ao jogador.
      * Neste caso, o efeito é um antídoto que remove o envenenamento do jogador.
+     * se estiver bichado o player fica envenenado
      *
      * @param p O jogador ao qual o efeito será aplicado.
      */
@@ -37,7 +38,7 @@ public class Laranja extends Fruta {
     public void aplicarEfeito(Player player){
         if(!this.Bichada){
            player.setPoison(false); 
-           System.out.println(player.getId() + " não está mais envenenado!");
+           System.out.println(player.getId() + " comeu uma laranja e não está mais envenenado!");
         } else {
             player.setPoison(true);
             System.out.println(player.getId() + " comeu uma fruta bichada e está envenenado!");

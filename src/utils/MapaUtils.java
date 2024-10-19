@@ -58,7 +58,7 @@ public class MapaUtils {
     * @param arquivoMapa O arquivo que contém o mapa com as informações das laranjeiras.
     * @return O número de laranjeiras encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
     */
-    public int lerNumLaranjeirasDoMapa(File arquivoMapa) {//possivelmente susbtituido para arvores no geral no futuro
+    public int lerNumLaranjeirasDoMapa(File arquivoMapa) {
         try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
             String linha;
             while((linha = br.readLine()) != null) {
@@ -93,6 +93,236 @@ public class MapaUtils {
                 }
             }
         } catch(IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de goiabeiras do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das goiabeiras.
+    * @return O número de goiabeiras encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumGoiabeirasDoMapa(File arquivoMapa){
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("goiaba")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de goiabas do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das goiabas.
+    * @return O número de goiabas encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumGoiabasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("goiaba")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[2]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de coqueiros do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das coqueiros.
+    * @return O número de coqueiros encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumCoqueirosDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("coco")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de coco do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das coco.
+    * @return O número de coco encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumCocosDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("coco")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[2]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de amoreiras do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das amoreiras.
+    * @return O número de amoreiras encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumAmoreirasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("amora")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de Amoras do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das Amoras.
+    * @return O número de Amoras encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumAmorasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("amora")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[2]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de Aceroleiras do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das aceroleiras.
+    * @return O número de aceroleiras encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumAceroleirasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("acerola")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de acerolas do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das acerolas.
+    * @return O número de acerolas encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumAcerolasDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("acerola")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[2]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de abacateiros do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das abacateiros.
+    * @return O número de abacateiros encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumAbacateirosDoMapa(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("abacate")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+    * Lê o número de abacates do mapa a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações das abacates.
+    * @return O número de abacates encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerNumAbacatesDoMapa(File arquivoMapa) {//possivelmente susbtituido para arvores no geral no futuro
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("abacate")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[2]);
+                    }
+                }
+            }
+        } catch (IOException e){
             e.printStackTrace();
         }
         return -1;
