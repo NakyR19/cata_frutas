@@ -66,7 +66,7 @@ public class TurnoController {
                     
                 if(elementos[i][j] instanceof Arvore){
                     Arvore arvore = (Arvore) elementos[i][j];
-
+                    
                     if(p1.getX() == i && p1.getY() == j){
                         arvore.setControl(this);
                         arvore.interagir(p1);

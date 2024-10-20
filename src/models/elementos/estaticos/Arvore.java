@@ -1,6 +1,11 @@
 package models.elementos.estaticos;
 
 import controllers.TurnoController;
+import models.elementos.dinamicos.Abacate;
+import models.elementos.dinamicos.Acerola;
+import models.elementos.dinamicos.Amora;
+import models.elementos.dinamicos.Coco;
+import models.elementos.dinamicos.Goiaba;
 import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
@@ -58,7 +63,47 @@ public class Arvore extends ElemEstatico {
             LimitadorTurno = 5;
             System.out.println(player.getId() + " pegou uma fruta laranja.");
                 break;
-        
+
+            case "coqueiro":
+            Coco coco = new Coco(x, y);
+            if(!player.pegarFruta(coco))
+                return;
+            LimitadorTurno = 5;
+            System.out.println(player.getId() + " pegou uma fruta coco.");
+                break;
+    
+            case "goiabeira":
+            Goiaba goiaba = new Goiaba(x, y);
+            if(!player.pegarFruta(goiaba))
+                return;
+            LimitadorTurno = 5;
+            System.out.println(player.getId() + " pegou uma fruta goiaba.");
+                break;
+
+            case "amoreira":
+            Amora amora = new Amora(x, y);
+            if(!player.pegarFruta(amora))
+                return;
+            LimitadorTurno = 5;
+            System.out.println(player.getId() + " pegou uma fruta amora.");
+                break;
+
+            case "abacateiro":
+            Abacate abacate = new Abacate(x, y);
+            if(!player.pegarFruta(abacate))
+                return;
+            LimitadorTurno = 5;
+            System.out.println(player.getId() + " pegou uma fruta abacate.");
+                break;
+
+            case "aceroleira":
+            Acerola acerola = new Acerola(x, y);
+            if(!player.pegarFruta(acerola))
+                return;
+            LimitadorTurno = 5;
+            System.out.println(player.getId() + " pegou uma fruta acerola.");
+                break;
+
             default:
                 System.out.println("tipoArvore nao alocado");
                 break;
