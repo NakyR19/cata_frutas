@@ -28,8 +28,25 @@ public class ArvoreComponent extends ElementoComponent{
          */
         public ArvoreComponent(Arvore a) {
             this.arvore = a;
-            ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/arvore48.png"));;//sprite provisorio de coqueiro, possivel mudança
-            imagemArvore = referencia.getImage();
+            if(this.arvore.getTipoArvore() == "coqueiro"){//um sprite diferente para cada tipo de árvore
+                ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/coqueiro.png"));;
+                imagemArvore = referencia.getImage();
+            } else if (this.arvore.getTipoArvore() == "laranjeira"){
+                ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/laranjeira.png"));;
+                imagemArvore = referencia.getImage();
+            } else if (this.arvore.getTipoArvore() == "amoreira"){
+                ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/amoreira.png"));;
+                imagemArvore = referencia.getImage();
+            } else if (this.arvore.getTipoArvore() == "aceroleira"){
+                ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/aceroleira.png"));;
+                imagemArvore = referencia.getImage();
+            } else if (this.arvore.getTipoArvore() == "abacateiro"){
+                ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/abacateiro.png"));;
+                imagemArvore = referencia.getImage();
+            } else if (this.arvore.getTipoArvore() == "goiabeira"){
+                ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/goiabeira.png"));;
+                imagemArvore = referencia.getImage();
+            }
         }
         
         /**
