@@ -4,8 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import models.elementos.Elemento;
-import models.elementos.dinamicos.Laranja;
-import models.elementos.dinamicos.Maracuja;
+import models.elementos.dinamicos.Fruta;
 import models.elementos.dinamicos.Player;
 import models.elementos.estaticos.Pedra;
 import view.Jogo;
@@ -106,21 +105,13 @@ public void keyPressed(KeyEvent e) {
 
     } else if (keyCode == KeyEvent.VK_E){
         Elemento elemento = florestaComponent.getFloresta().getElementos()[player.getX()][player.getY()];
-            if (elemento instanceof Laranja) {
-                Laranja laranja = (Laranja) elemento;
-                if (player.pegarFruta(laranja)) {
+            if (elemento instanceof Fruta) {
+                Fruta fruta = (Fruta) elemento;
+                if (player.pegarFruta(fruta)) {
                     florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
-                    System.out.println("Laranja coletada!");
+                    System.out.println("Fruta coletada!");
                     florestaComponent.repaint();
-                }
-            }
-            if(elemento instanceof Maracuja) {
-                Maracuja maracuja = (Maracuja) elemento;
-                if (player.pegarFruta(maracuja)) {
-                    player.setPontosVitoria(player.getPontosVitoria() + 1);
-                    florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
-                    System.out.println("Maracujá coletada!");
-                    florestaComponent.repaint();
+                    System.out.println(player.getMochila());
                 }
             }
     } else if(keyCode == KeyEvent.VK_F){//botão provisório para acabar a rodada, pode ser removido, trocado ou alterado futuramente

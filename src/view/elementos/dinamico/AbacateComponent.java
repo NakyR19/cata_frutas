@@ -31,7 +31,7 @@ public class AbacateComponent extends ElementoComponent{
 
     public AbacateComponent(Abacate a){
         this.abacate = a;
-        ImageIcon referencia = new ImageIcon("");  //colocar a referência depois
+        ImageIcon referencia = new ImageIcon("/res/images/abacate.png");  //colocar a referência depois
         imagemAbacate = referencia.getImage();
     }
 

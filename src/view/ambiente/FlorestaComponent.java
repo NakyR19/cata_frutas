@@ -2,7 +2,7 @@ package view.ambiente;
 
 import models.ambiente.Floresta;
 import models.elementos.Elemento;
-import models.elementos.dinamicos.Laranja;
+import models.elementos.dinamicos.Fruta;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
@@ -78,7 +78,7 @@ public class FlorestaComponent extends JPanel {
 
         for (int i = 0; i < dimensao; i++) {
         for (int j = 0; j < dimensao; j++) {
-            if (elementos[i][j] instanceof Laranja) {
+            if (elementos[i][j] instanceof Fruta) {
                 ElementoComponent componente = ElementoComponentFactory.criarComponente(elementos[i][j]);
                 if (componente != null) {
                     componente.desenhar(g, i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE);
@@ -86,7 +86,7 @@ public class FlorestaComponent extends JPanel {
             }
         }
     }
-    }
+    }  
     
 
     public Floresta getFloresta() {

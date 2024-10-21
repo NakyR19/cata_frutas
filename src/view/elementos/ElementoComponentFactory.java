@@ -5,8 +5,18 @@ import models.elementos.dinamicos.Player;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
+import models.elementos.dinamicos.Abacate;
+import models.elementos.dinamicos.Acerola;
+import models.elementos.dinamicos.Amora;
+import models.elementos.dinamicos.Coco;
+import models.elementos.dinamicos.Goiaba;
 import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Maracuja;
+import view.elementos.dinamico.AbacateComponent;
+import view.elementos.dinamico.AcerolaComponent;
+import view.elementos.dinamico.AmoraComponent;
+import view.elementos.dinamico.CocoComponent;
+import view.elementos.dinamico.GoiabaComponent;
 import view.elementos.dinamico.LaranjaComponent;
 import view.elementos.dinamico.MaracujaComponent;
 import view.elementos.dinamico.PlayerComponent;
@@ -43,6 +53,21 @@ public class ElementoComponentFactory {
         }
         if (elemento instanceof Maracuja){
             return new MaracujaComponent((Maracuja) elemento);
+        }
+        if (elemento instanceof Abacate){
+            return new AbacateComponent((Abacate) elemento);
+        }
+        if (elemento instanceof Acerola){
+            return new AcerolaComponent((Acerola) elemento);
+        }
+        if (elemento instanceof Amora){
+            return new AmoraComponent((Amora) elemento);
+        }
+        if (elemento instanceof Coco){
+            return new CocoComponent((Coco) elemento);
+        }
+        if (elemento instanceof Goiaba){
+            return new GoiabaComponent((Goiaba) elemento);
         }
         // ADICIONAR OS OUTROS ELEMENTOS
         return null;
