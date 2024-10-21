@@ -62,8 +62,8 @@ public class Floresta {
  * @param numAbacateiros O número de abacateiros na floresta.
  * @param numAbacates O número de abacates na floresta.
  * @param numMaracujas O número de maracujás na floresta.
- * @param numMaracujasTotais O número total de maracujás, incluindo os bichados.
- * @param chanceBichadas A chance de que os maracujás estejam bichados.
+ * @param numMaracujasTotais O número total de maracujás.
+ * @param chanceBichadas A chance de que as frutas estejam bichados.
  * @param capacidadeMochila A capacidade da mochila em termos de itens que pode carregar.
  */
   public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos, int numAmoreiras,
