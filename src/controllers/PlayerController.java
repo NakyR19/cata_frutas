@@ -73,7 +73,7 @@ public void keyPressed(KeyEvent e) {
         System.out.println(player.getId() + " perdeu o turno pois estava envenenado.");
         player.setPoison(false);
         jogo.getTurnoController().alternarTurno();
-        return; //Se o player estiver envenenado perde o turno e o status de envenenado
+        return; //Se o player estiver envenenado perde o turno e o status de envenenado, talvez alterar para turno controller
     }
 
     if (player.getPontosMovimento() <= 0) {
@@ -109,7 +109,7 @@ public void keyPressed(KeyEvent e) {
                 Fruta fruta = (Fruta) elemento;
                 if (player.pegarFruta(fruta)) {
                     florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
-                    System.out.println("Fruta coletada!");
+                    System.out.println(fruta.TipoFruta + " coletada!");
                     florestaComponent.repaint();
                     System.out.println(player.getMochila());
                 }
