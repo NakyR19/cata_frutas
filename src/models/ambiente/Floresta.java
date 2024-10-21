@@ -41,6 +41,7 @@ public class Floresta {
   private int numAbacates;
   private int numMaracujas;
   private int numMaracujasTotais;
+  private int chanceBichadas;
   private int capacidadeMochila;
 
 
@@ -49,8 +50,8 @@ public class Floresta {
    * @param dimensao  a dimensão da floresta
    * @param numPedras o número de pedras na floresta
    */
-  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos,
-      int numAmoreiras, int numAmoras, int numAceroleiras, int numAcerolas, int numAbacateiros, int numAbacates, int numMaracujas, int numMaracujasTotais, int capacidadeMochila) {
+  public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos, int numAmoreiras,
+   int numAmoras, int numAceroleiras, int numAcerolas, int numAbacateiros, int numAbacates, int numMaracujas, int numMaracujasTotais, int chanceBichadas, int capacidadeMochila) {
     this.numPedras = numPedras;
     this.dimensao = dimensao;
     this.numLaranjeiras = numLaranjeiras;
@@ -67,6 +68,7 @@ public class Floresta {
     this.numAbacates = numAbacates;
     this.numMaracujas = numMaracujas;
     this.numMaracujasTotais = numMaracujasTotais;
+    this.chanceBichadas = chanceBichadas;
     this.capacidadeMochila = capacidadeMochila;
     this.elementos = new Elemento[dimensao][dimensao]; // Matriz c os elementos
     gerarFlorestaVazia();
@@ -127,7 +129,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y, "laranjeira");
+        elementos[x][y] = new Arvore(x, y, "laranjeira", chanceBichadas);
         i++;
       }
     }
@@ -143,7 +145,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Laranja(x, y);
+        elementos[x][y] = new Laranja(x, y, chanceBichadas);
         i++;
       }
     }
@@ -159,7 +161,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y, "goiabeira");
+        elementos[x][y] = new Arvore(x, y, "goiabeira", chanceBichadas);
         i++;
       }
     }
@@ -175,7 +177,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Goiaba(x, y);
+        elementos[x][y] = new Goiaba(x, y, chanceBichadas);
         i++;
       }
     }
@@ -191,7 +193,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y, "coqueiro");
+        elementos[x][y] = new Arvore(x, y, "coqueiro", chanceBichadas);
         i++;
       }
     }
@@ -207,7 +209,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Coco(x, y);
+        elementos[x][y] = new Coco(x, y, chanceBichadas);
         i++;
       }
     }
@@ -223,7 +225,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y, "amoreira");
+        elementos[x][y] = new Arvore(x, y, "amoreira", chanceBichadas);
         i++;
       }
     }
@@ -239,7 +241,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Amora(x, y);
+        elementos[x][y] = new Amora(x, y, chanceBichadas);
         i++;
       }
     }
@@ -255,7 +257,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y, "aceroleira");
+        elementos[x][y] = new Arvore(x, y, "aceroleira", chanceBichadas);
         i++;
       }
     }
@@ -271,7 +273,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Acerola(x, y);
+        elementos[x][y] = new Acerola(x, y, chanceBichadas);
         i++;
       }
     }
@@ -287,7 +289,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Arvore(x, y, "abacateiro");
+        elementos[x][y] = new Arvore(x, y, "abacateiro", chanceBichadas);
         i++;
       }
     }
@@ -303,7 +305,7 @@ public class Floresta {
       int x = gerador.nextInt(getDimensao());
       int y = gerador.nextInt(getDimensao());
       if(elementos[x][y] instanceof Grama){
-        elementos[x][y] = new Abacate(x, y);
+        elementos[x][y] = new Abacate(x, y, chanceBichadas);
         i++;
       }
     }
@@ -319,7 +321,7 @@ public class Floresta {
         int x = gerador.nextInt(getDimensao());
         int y = gerador.nextInt(getDimensao());
         if(elementos[x][y] instanceof Grama){
-          elementos[x][y] = new Maracuja(x, y);
+          elementos[x][y] = new Maracuja(x, y, chanceBichadas);
           i++;
         }
       }
@@ -421,5 +423,9 @@ public Player getPlayer(String id) {
 
   public int getNumMaracujas(){
     return numMaracujas;
+  }
+
+  public int getChanceBichadas(){
+    return this.chanceBichadas;
   }
 }

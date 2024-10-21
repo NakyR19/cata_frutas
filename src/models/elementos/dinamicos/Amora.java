@@ -9,18 +9,17 @@ public class Amora extends Fruta{
 
     /**
      * Construtor para a classe Amora.
-     * Inicializa a fruta com suas coordenadas e define o tipo como "Amora".
-     * Há uma chance de 10% da Amora ser bichada
+     * Inicializa a fruta com suas coordenadas, chance de ser bichada e define o tipo como "Amora".
      *
      * @param x A coordenada x da Amora.
      * @param y A coordenada y da Amora.
+     * @param chanceBichada A chance da Amora estar bichada em porcentagem
      */
-    public Amora(int x, int y) {
-        super(x, y);
+    public Amora(int x, int y, int chanceBichada) {
+        super(x, y, chanceBichada);
         this.TipoFruta = "Amora";
 
-        // 10% de chance de ser bichada
-        if ((int)(Math.random() * 100 + 1) > 10) {
+        if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
         } else {
             this.Bichada = true;

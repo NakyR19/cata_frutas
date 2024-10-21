@@ -15,15 +15,13 @@ public class Abacate extends Fruta{
      *
      * @param x a coordenada X do Abacate.
      * @param y a coordenada Y do Abacate.
-     * @param TipoFruta o tipo da fruta (Abacate).
-     * @param Bichada indica se a fruta está bichada (não utilizado atualmente, padrão: false).
+     * @param chanceBichada A chance do Abacate estar bichado em porcentagem
      */
-    public Abacate(int x, int y) {
-        super(x, y);
+    public Abacate(int x, int y, int chanceBichada) {
+        super(x, y, chanceBichada);
         TipoFruta = "Abacate";
 
-        // 10% de chance de ser bichada
-        if ((int)(Math.random() * 100 + 1) > 10) {
+        if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
         } else {
             this.Bichada = true;

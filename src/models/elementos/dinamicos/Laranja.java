@@ -14,13 +14,13 @@ public class Laranja extends Fruta {
      *
      * @param x A coordenada x da laranja.
      * @param y A coordenada y da laranja.
+     * @param chanceBichada A chance da Laranja estar bichada em porcentagem
      */
-    public Laranja(int x, int y) {
-        super(x, y);
+    public Laranja(int x, int y, int chanceBichada) {
+        super(x, y, chanceBichada);
         this.TipoFruta = "Laranja";
 
-        // 10% de chance de ser bichada
-        if ((int)(Math.random() * 100 + 1) > 10) {
+        if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
         } else {
             this.Bichada = true;

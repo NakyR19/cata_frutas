@@ -14,13 +14,13 @@ public class Goiaba extends Fruta{
      *
      * @param x A coordenada x da Goiaba.
      * @param y A coordenada y da Goiaba.
+     * @param chanceBichada A chance da Goiaba estar bichada em porcentagem
      */
-    public Goiaba(int x, int y) {
-        super(x, y);
+    public Goiaba(int x, int y, int chanceBichada) {
+        super(x, y, chanceBichada);
         this.TipoFruta = "Goiaba";
 
-        // 10% de chance de ser bichada
-        if ((int)(Math.random() * 100 + 1) > 10) {
+        if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
         } else {
             this.Bichada = true;

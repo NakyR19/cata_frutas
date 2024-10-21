@@ -23,15 +23,18 @@ public class Arvore extends ElemEstatico {
     public String TipoArvore;
     public int LimitadorTurno = 0;
     public TurnoController turnoController;
+    public int chanceBichada;
 
     /**
      * Construtor
      * @param x coordenada x
      * @param y coordenada y
      */
-    public Arvore(int x, int y, String tipo) {
+    public Arvore(int x, int y, String tipo, int chanceBichada) {
         super(x, y);
         this.TipoArvore = tipo;
+
+        this.chanceBichada = chanceBichada;
     }
 
     // em breve
@@ -44,7 +47,7 @@ public class Arvore extends ElemEstatico {
 
         //25% de chance de dar um maracuja, so vai dar maracuja se nao tiver atingido o maximo de maracujas no jogo
         if((int)(Math.random() * 100 + 1) > 25 && turnoController.getLimiteMaracujas() > 0){
-            Maracuja maracuja = new Maracuja(x, y);
+            Maracuja maracuja = new Maracuja(x, y, chanceBichada);
             if(!player.pegarFruta(maracuja))//se a mochila estiver cheia nao vai reiniciar a recarga
                 return;
             LimitadorTurno = 5;
@@ -57,7 +60,7 @@ public class Arvore extends ElemEstatico {
         //da uma fruta a depender do tipo de árvore e reinicia a contagem de turnos
         switch (TipoArvore) {
             case "laranjeira":
-            Laranja laranja = new Laranja(x, y);
+            Laranja laranja = new Laranja(x, y, chanceBichada);
             if(!player.pegarFruta(laranja))
                 return;
             LimitadorTurno = 5;
@@ -65,7 +68,7 @@ public class Arvore extends ElemEstatico {
                 break;
 
             case "coqueiro":
-            Coco coco = new Coco(x, y);
+            Coco coco = new Coco(x, y, chanceBichada);
             if(!player.pegarFruta(coco))
                 return;
             LimitadorTurno = 5;
@@ -73,7 +76,7 @@ public class Arvore extends ElemEstatico {
                 break;
     
             case "goiabeira":
-            Goiaba goiaba = new Goiaba(x, y);
+            Goiaba goiaba = new Goiaba(x, y, chanceBichada);
             if(!player.pegarFruta(goiaba))
                 return;
             LimitadorTurno = 5;
@@ -81,7 +84,7 @@ public class Arvore extends ElemEstatico {
                 break;
 
             case "amoreira":
-            Amora amora = new Amora(x, y);
+            Amora amora = new Amora(x, y, chanceBichada);
             if(!player.pegarFruta(amora))
                 return;
             LimitadorTurno = 5;
@@ -89,7 +92,7 @@ public class Arvore extends ElemEstatico {
                 break;
 
             case "abacateiro":
-            Abacate abacate = new Abacate(x, y);
+            Abacate abacate = new Abacate(x, y, chanceBichada);
             if(!player.pegarFruta(abacate))
                 return;
             LimitadorTurno = 5;
@@ -97,7 +100,7 @@ public class Arvore extends ElemEstatico {
                 break;
 
             case "aceroleira":
-            Acerola acerola = new Acerola(x, y);
+            Acerola acerola = new Acerola(x, y, chanceBichada);
             if(!player.pegarFruta(acerola))
                 return;
             LimitadorTurno = 5;

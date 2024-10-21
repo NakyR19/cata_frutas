@@ -22,8 +22,9 @@ public abstract class Fruta extends ElemDinamico {
      *
      * @param x A coordenada x da fruta.
      * @param y A coordenada y da fruta.
+     * @param chanceBichada A chance da fruta estar bichada em porcentagem
      */
-    public Fruta(int x, int y) {
+    public Fruta(int x, int y, int chanceBichada) {
         super(x, y);
     }
 

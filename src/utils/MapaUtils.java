@@ -311,7 +311,7 @@ public class MapaUtils {
     * @param arquivoMapa O arquivo que contém o mapa com as informações das abacates.
     * @return O número de abacates encontrado no mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
     */
-    public int lerNumAbacatesDoMapa(File arquivoMapa) {//possivelmente susbtituido para arvores no geral no futuro
+    public int lerNumAbacatesDoMapa(File arquivoMapa) {
         try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
             String linha;
             while((linha = br.readLine()) != null) {
@@ -329,12 +329,35 @@ public class MapaUtils {
     }
 
     /**
+    * Lê a chance das frutas serem bichadas a partir de um arquivo.
+    *
+    * @param arquivoMapa O arquivo que contém o mapa com as informações
+    * @return A chance em porcentagem das frutas estarem bichadas, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
+    */
+    public int lerChanceBichadas(File arquivoMapa) {
+        try (BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
+            String linha;
+            while((linha = br.readLine()) != null) {
+                if(linha.startsWith("bichadas")){
+                    String[] partes = linha.split(" ");
+                    if(partes.length == 3) {
+                        return Integer.parseInt(partes[1]);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
     * Lê o número de Maracujas do mapa a partir de um arquivo.
     *
     * @param arquivoMapa O arquivo que contém o mapa com as informações das Maracujas.
     * @return O número de Maracujas encontrado no chao do mapa, ou -1 se ocorrer um erro ou se o formato estiver incorreto.
     */
-    public int lerNumMaracujas(File arquivoMapa){//fazer algo para o numero de maracujas totais?
+    public int lerNumMaracujas(File arquivoMapa){
         try(BufferedReader br = new BufferedReader(new FileReader(arquivoMapa))){
             String linha;
             while((linha = br.readLine()) != null) {

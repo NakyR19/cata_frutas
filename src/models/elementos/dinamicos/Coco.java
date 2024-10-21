@@ -14,15 +14,13 @@ package models.elementos.dinamicos;
      *
      * @param x a coordenada X do Coco.
      * @param y a coordenada Y do Coco.
-     * @param TipoFruta o tipo da fruta (Coco).
-     * @param Bichada indica se a fruta está bichada (não utilizado atualmente, padrão: false).
+     * @param chanceBichada A chance do coco estar bichado em porcentagem
      */
-    public Coco(int x, int y) {
-       super(x, y);
+    public Coco(int x, int y, int chanceBichada) {
+       super(x, y, chanceBichada);
         TipoFruta = "Coco";
         
-        // 10% de chance de ser bichada
-        if ((int)(Math.random() * 100 + 1) > 10) {
+        if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
         } else {
             this.Bichada = true;
