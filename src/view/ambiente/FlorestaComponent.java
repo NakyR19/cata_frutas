@@ -2,6 +2,10 @@ package view.ambiente;
 
 import models.ambiente.Floresta;
 import models.elementos.Elemento;
+import models.elementos.dinamicos.Laranja;
+import models.elementos.estaticos.Arvore;
+import models.elementos.estaticos.Grama;
+import models.elementos.estaticos.Pedra;
 import view.elementos.ElementoComponent;
 import view.elementos.ElementoComponentFactory;
 import view.elementos.dinamico.PlayerComponent;
@@ -58,20 +62,32 @@ public class FlorestaComponent extends JPanel {
         int dimensao = floresta.getDimensao();
 
         // Itera sobre os elementos e desenha-os
-        for (int i = 0; i < dimensao; i++) {
-            for (int j = 0; j < dimensao; j++) {
-                if (elementos[i][j] != null) {
-                    ElementoComponent componente = ElementoComponentFactory.criarComponente(elementos[i][j]);
-                    if (componente != null) {
-                        // Calcula a posição de desenho com base no tamanho da célula
-                        componente.desenhar(g, i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE);
-                    }
+       // Primeiro, desenhe todos os componentes de fundo (como árvores)
+    for (int i = 0; i < dimensao; i++) {
+        for (int j = 0; j < dimensao; j++) {
+            if (elementos[i][j] instanceof Arvore || elementos [i][j] instanceof Grama || elementos[i][j] instanceof Pedra) {
+                ElementoComponent componente = ElementoComponentFactory.criarComponente(elementos[i][j]);
+                if (componente != null) {
+                    componente.desenhar(g, i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE);
                 }
             }
         }
+    }
         p1Component.desenhar(g, p1Component.getPlayer().getX() * CELL_SIZE, p1Component.getPlayer().getY() * CELL_SIZE, CELL_SIZE);
         p2Component.desenhar(g, p2Component.getPlayer().getX() * CELL_SIZE, p2Component.getPlayer().getY() * CELL_SIZE, CELL_SIZE);
+
+        for (int i = 0; i < dimensao; i++) {
+        for (int j = 0; j < dimensao; j++) {
+            if (elementos[i][j] instanceof Laranja) {
+                ElementoComponent componente = ElementoComponentFactory.criarComponente(elementos[i][j]);
+                if (componente != null) {
+                    componente.desenhar(g, i * CELL_SIZE, j * CELL_SIZE, CELL_SIZE);
+                }
+            }
+        }
     }
+    }
+    
 
     public Floresta getFloresta() {
         return floresta;
