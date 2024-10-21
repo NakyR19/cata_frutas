@@ -46,10 +46,26 @@ public class Floresta {
 
 
   /**
-   * ############ CONSTRUTOR ############
-   * @param dimensao  a dimensão da floresta
-   * @param numPedras o número de pedras na floresta
-   */
+ * ############ CONSTRUTOR ############
+ * @param dimensao  a dimensão da floresta
+ * @param numPedras o número de pedras na floresta
+ * @param numLaranjeiras O número de laranjeiras na floresta.
+ * @param numLaranjas O número de laranjas na floresta.
+ * @param numGoiabeiras O número de goiabeiras na floresta.
+ * @param numGoiabas O número de goiabas na floresta.
+ * @param numCoqueiros O número de coqueiros na floresta.
+ * @param numCocos O número de cocos na floresta.
+ * @param numAmoreiras O número de amoreiras na floresta.
+ * @param numAmoras O número de amoras na floresta.
+ * @param numAceroleiras O número de aceroleiras na floresta.
+ * @param numAcerolas O número de acerolas na floresta.
+ * @param numAbacateiros O número de abacateiros na floresta.
+ * @param numAbacates O número de abacates na floresta.
+ * @param numMaracujas O número de maracujás na floresta.
+ * @param numMaracujasTotais O número total de maracujás, incluindo os bichados.
+ * @param chanceBichadas A chance de que os maracujás estejam bichados.
+ * @param capacidadeMochila A capacidade da mochila em termos de itens que pode carregar.
+ */
   public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos, int numAmoreiras,
    int numAmoras, int numAceroleiras, int numAcerolas, int numAbacateiros, int numAbacates, int numMaracujas, int numMaracujasTotais, int chanceBichadas, int capacidadeMochila) {
     this.numPedras = numPedras;

@@ -29,6 +29,7 @@ public class Arvore extends ElemEstatico {
      * Construtor
      * @param x coordenada x
      * @param y coordenada y
+     * @param chanceBichada a chance das frutas que a arvore da estarem bichadas
      */
     public Arvore(int x, int y, String tipo, int chanceBichada) {
         super(x, y);
