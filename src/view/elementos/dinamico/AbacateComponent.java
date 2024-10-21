@@ -46,7 +46,10 @@ public class AbacateComponent extends ElementoComponent{
 
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize){
-        g.drawImage(imagemAbacate, x, y, cellSize, cellSize, null);
+        int frutaSize = 16;
+        int offsetX = (cellSize - frutaSize) / 2;
+    int offsetY = cellSize - frutaSize;
+        g.drawImage(imagemAbacate, x + offsetX, y +offsetY, 16, 16, null);
     }
 
     /**

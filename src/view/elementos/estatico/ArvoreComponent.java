@@ -60,7 +60,7 @@ public class ArvoreComponent extends ElementoComponent{
         @Override
         public void desenhar(Graphics g, int x, int y, int cellSize) {
             // Desenha a imagem na posição (x, y) com o tamanho de resolução da célula 64 x 64
-            g.drawImage(imagemArvore, x, y, cellSize, cellSize, null);
+            g.drawImage(imagemArvore, x, y, 48, 48, null);
         }
         
         public Arvore getArvore() {
