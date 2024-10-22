@@ -80,15 +80,19 @@ public class TurnoController {
                         arvore.interagir(p2);
                     }
                     if(this.getLimiteMaracujas() > 0 && arvoreDropMaracuja == 0){//se for a arvore que foi escolhido e o limite de maracujas nao foi atingido dropa um maracuja adjacente
-                    while(true){
-                        int x = (int)(Math.random() * 3) - 1 + i;
-                        int y = (int)(Math.random() * 3) - 1 + j;
-                        if(elementos[x][y] instanceof Grama){
-                            elementos[x][y] = new Maracuja(x, y, floresta.getChanceBichadas());
-                            setLimiteMaracujas(getLimiteMaracujas() - 1);
-                            break;
-                        }
-                    }
+                        int limTentativas = 20; //contador para caso sorteie uma arvore sem espaços livres adjacentes
+                        while(limTentativas > 0){
+                            int x = (int)(Math.random() * 3) - 1 + i;
+                            int y = (int)(Math.random() * 3) - 1 + j;
+                            if(x < floresta.getDimensao() && y < floresta.getDimensao() && x > -1 &&  y > -1){
+                                if(elementos[x][y] instanceof Grama){
+                                    elementos[x][y] = new Maracuja(x, y, floresta.getChanceBichadas());
+                                setLimiteMaracujas(getLimiteMaracujas() - 1);
+                                    break;
+                                }
+                            }
+                            limTentativas--; 
+                        } if(limTentativas == 0) arvoreDropMaracuja++;//se não conseguiu alocar maracuja passa pra proxima arvore
                     }
                     arvore.cooldownReduction();
                 }
