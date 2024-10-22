@@ -504,15 +504,13 @@ public class MenuMapas extends JFrame {
                                 try {
                                     bichadas = Integer
                                             .parseInt(JOptionPane.showInputDialog(
-                                                    "Digite o número de porcentagem das frutas bichadas: Obs.: a porcentagem de frutas bichadas deve ser maior ou igual que: "
-                                                            + 0 + " e menor ou igual que: "
-                                                            + 100 + "."));
-                                    if (bichadas >= 0 && bichadas <= 100) {
+                                                    "Digite a chance das frutas serem bichadas: Obs.: a chance de frutas bichadas deve ser maior ou igual que " + 
+                                                    " 0 e menor ou igual que 50."));
+                                    if (bichadas >= 0 && bichadas <= 50) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, a porcentagem de frutas bichadas deve ser um número maior ou igual que "
-                                                        + 0 + " e menor que " + 100 + ".");
+                                                "Por favor, o número de frutas bichadas deve ser um número maior ou igual que 0 e menor que 50.");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
