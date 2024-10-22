@@ -138,7 +138,7 @@ public class MenuMapas extends JFrame {
                         if (totalMapas < 5) {
                             // Solicitar as predefinições do usuário para cada atributo
                             int dimensao;
-                            while (true) {
+                            do {
                                 try {
                                     dimensao = Integer.parseInt(
                                             JOptionPane.showInputDialog("Digite a dimensão do mapa (entre 6 e 12):"));
@@ -151,9 +151,9 @@ public class MenuMapas extends JFrame {
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int pedras = 0;
-                            while (true) {
+                            do {
                                 try {
                                     pedras = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -166,15 +166,17 @@ public class MenuMapas extends JFrame {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de pedras deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de pedras deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
 
                             int totalMaracujas = 0;
-                            while (true) {
+                            do {
                                 try {
                                     totalMaracujas = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -183,19 +185,22 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade total deve ser maior ou igual que: "
                                                             + qntdMinMaracuja(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxMaracuja(dimensao) + "."));
-                                    if (totalMaracujas >= qntdMinMaracuja(dimensao) && totalMaracujas <= qntdMaxMaracuja(dimensao)) {
+                                    if (totalMaracujas >= qntdMinMaracuja(dimensao)
+                                            && totalMaracujas <= qntdMaxMaracuja(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número total de maracujas deve ser um número maior ou igual que "+ qntdMinMaracuja(dimensao)+" e menor ou igual que "+ qntdMaxMaracuja(dimensao)+".");
+                                                "Por favor, o número total de maracujas deve ser um número maior ou igual que "
+                                                        + qntdMinMaracuja(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxMaracuja(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
 
                             int maracuja = 0;
-                            while (true) {
+                            do {
                                 try {
                                     maracuja = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -204,19 +209,22 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade total deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxMaracuja(dimensao) + "."));
-                                    if (maracuja >= qntdMinElementos(dimensao) && maracuja <= qntdMaxMaracuja(dimensao)) {
+                                    if (maracuja >= qntdMinElementos(dimensao)
+                                            && maracuja <= qntdMaxMaracuja(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de maracujas no châo deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxMaracuja(dimensao)+".");
+                                                "Por favor, o número de maracujas no châo deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxMaracuja(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
 
                             int laranjeiras = 0;
-                            while (true) {
+                            do {
                                 try {
                                     laranjeiras = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -225,18 +233,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de laranjeiras deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (laranjeiras >= qntdMinElementos(dimensao) && laranjeiras <= qntdMaxElementos(dimensao)) {
+                                    if (laranjeiras >= qntdMinElementos(dimensao)
+                                            && laranjeiras <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de pedras deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de pedras deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int laranjas = 0;
-                            while (true) {
+                            do {
                                 try {
                                     laranjas = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -245,18 +256,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de laranjas deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (laranjas >= qntdMinElementos(dimensao) && laranjas <= qntdMaxElementos(dimensao)) {
+                                    if (laranjas >= qntdMinElementos(dimensao)
+                                            && laranjas <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de laranjas deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de laranjas deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int abacateiros = 0;
-                            while (true) {
+                            do {
                                 try {
                                     abacateiros = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -265,18 +279,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de abacateiros deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (abacateiros >= qntdMinElementos(dimensao) && abacateiros <= qntdMaxElementos(dimensao)) {
+                                    if (abacateiros >= qntdMinElementos(dimensao)
+                                            && abacateiros <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de abacateiros deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de abacateiros deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int abacates = 0;
-                            while (true) {
+                            do {
                                 try {
                                     abacates = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -285,18 +302,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de abacates deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (abacates >= qntdMinElementos(dimensao) && abacates <= qntdMaxElementos(dimensao)) {
+                                    if (abacates >= qntdMinElementos(dimensao)
+                                            && abacates <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de abacates deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de abacates deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int coqueiros = 0;
-                            while (true) {
+                            do {
                                 try {
                                     coqueiros = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -305,18 +325,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de coqueiros deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (coqueiros >= qntdMinElementos(dimensao) && coqueiros <= qntdMaxElementos(dimensao)) {
+                                    if (coqueiros >= qntdMinElementos(dimensao)
+                                            && coqueiros <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de coqueiros deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de coqueiros deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int cocos = 0;
-                            while (true) {
+                            do {
                                 try {
                                     cocos = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -329,14 +352,16 @@ public class MenuMapas extends JFrame {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de cocos deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de cocos deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int aceroleira = 0;
-                            while (true) {
+                            do {
                                 try {
                                     aceroleira = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -345,18 +370,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de aceroleiras deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (aceroleira >= qntdMinElementos(dimensao) && aceroleira <= qntdMaxElementos(dimensao)) {
+                                    if (aceroleira >= qntdMinElementos(dimensao)
+                                            && aceroleira <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de aceroleiras deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor que ou igual"+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de aceroleiras deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor que ou igual"
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int acerola = 0;
-                            while (true) {
+                            do {
                                 try {
                                     acerola = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -365,18 +393,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de acerolas deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (acerola >= qntdMinElementos(dimensao) && acerola <= qntdMaxElementos(dimensao)) {
+                                    if (acerola >= qntdMinElementos(dimensao)
+                                            && acerola <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de acerolas deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de acerolas deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int amoreiras = 0;
-                            while (true) {
+                            do {
                                 try {
                                     amoreiras = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -385,18 +416,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de amoreiras deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (amoreiras >= qntdMinElementos(dimensao) && amoreiras <= qntdMaxElementos(dimensao)) {
+                                    if (amoreiras >= qntdMinElementos(dimensao)
+                                            && amoreiras <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de amoreiras deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de amoreiras deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int amora = 0;
-                            while (true) {
+                            do {
                                 try {
                                     amora = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -409,14 +443,16 @@ public class MenuMapas extends JFrame {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de amoras deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de amoras deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int goiabeira = 0;
-                            while (true) {
+                            do {
                                 try {
                                     goiabeira = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -425,18 +461,21 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de goiabeiras deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (goiabeira >= qntdMinElementos(dimensao) && goiabeira <= qntdMaxElementos(dimensao)) {
+                                    if (goiabeira >= qntdMinElementos(dimensao)
+                                            && goiabeira <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de goiabeiras deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de goiabeiras deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int goiabas = 0;
-                            while (true) {
+                            do {
                                 try {
                                     goiabas = Integer
                                             .parseInt(JOptionPane.showInputDialog(
@@ -445,70 +484,91 @@ public class MenuMapas extends JFrame {
                                                             + "), a quantidade de goiabas deve ser maior ou igual que: "
                                                             + qntdMinElementos(dimensao) + " e menor ou igual que: "
                                                             + qntdMaxElementos(dimensao) + "."));
-                                    if (goiabas >= qntdMinElementos(dimensao) && goiabas <= qntdMaxElementos(dimensao)) {
+                                    if (goiabas >= qntdMinElementos(dimensao)
+                                            && goiabas <= qntdMaxElementos(dimensao)) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de goiabas deve ser um número maior ou igual que "+ qntdMinElementos(dimensao)+" e menor ou igual que "+ qntdMaxElementos(dimensao)+".");
+                                                "Por favor, o número de goiabas deve ser um número maior ou igual que "
+                                                        + qntdMinElementos(dimensao) + " e menor ou igual que "
+                                                        + qntdMaxElementos(dimensao) + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
 
                             int totalFrutas = abacates + acerola + goiabas + amora + laranjas + maracuja + cocos;
                             int bichadas = 0;
-                            while (true) {
+                            do {
                                 try {
                                     bichadas = Integer
                                             .parseInt(JOptionPane.showInputDialog(
-                                                    "Digite o número de frutas bichadas: Obs.: a quantidade de frutas bichadas deve ser maior ou igual que: "
+                                                    "Digite o número de porcentagem das frutas bichadas: Obs.: a porcentagem de frutas bichadas deve ser maior ou igual que: "
                                                             + 0 + " e menor ou igual que: "
-                                                            + totalFrutas/3 + "."));
-                                    if (bichadas >= 0 && bichadas <= totalFrutas/3) {
+                                                            + 100 + "."));
+                                    if (bichadas >= 0 && bichadas <= 100) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de frutas bichadas deve ser um número maior ou igual que "+ 0 +" e menor que "+ totalFrutas/3 +".");
+                                                "Por favor, a porcentagem de frutas bichadas deve ser um número maior ou igual que "
+                                                        + 0 + " e menor que " + 100 + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
                             int mochila = 0;
-                            while (true) {
+                            do {
                                 try {
                                     mochila = Integer
                                             .parseInt(JOptionPane.showInputDialog(
                                                     "Digite a capacidade da mochila: Obs.: a capacidade deve ser maior ou igual que: "
-                                                            + 8 + " e menor ou igual que: "
+                                                            + 7 + " e menor ou igual que: "
                                                             + totalFrutas + "."));
-                                    if (mochila >= 8 && mochila <= totalFrutas) {
+                                    if (mochila >= 7 && mochila <= totalFrutas) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null,
-                                                "Por favor, o número de frutas mochila deve ser um número maior ou igual que "+ 8 +" e menor que "+ totalFrutas +".");
+                                                "Por favor, o número de frutas mochila deve ser um número maior ou igual que "
+                                                        + 7 + " e menor que " + totalFrutas + ".");
                                     }
                                 } catch (NumberFormatException ex) {
                                     JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
                                 }
-                            }
+                            } while (true);
+
+                            String nomeMapa;
+                            do {
+                                nomeMapa = JOptionPane.showInputDialog(
+                                        "Digite o nome do mapa. Obs.: Entre três e quinze caracteres, sem espaços ou caracteres especiais");
+                                if (nomeMapa == null) {
+                                    JOptionPane.showMessageDialog(null, "Operação cancelada.");
+                                    return; // ou outra lógica de saída apropriada
+                                }
+                                if (nomeMapa.matches("^[a-zA-Z0-9]{3,15}$")) {
+                                    break;
+                                } else {
+                                    JOptionPane.showMessageDialog(null,
+                                            "Por favor, insira um nome de mapa válido (3-15 caracteres alfanuméricos, sem espaços ou caracteres especiais).");
+                                }
+                            } while (true);
 
                             // modificar leitor true
                             if (true) {
                                 try {
                                     // Criar e escrever no arquivo do mapa
-                                    File novoMapa = new File(diretorioMapas, "mapa" + (index + 1) + ".txt");
+                                    File novoMapa = new File(diretorioMapas, nomeMapa + ".txt");
                                     FileWriter writer = new FileWriter(novoMapa);
                                     writer.write("dimensao " + dimensao + "\n");
                                     writer.write("pedras " + pedras + "\n");
                                     writer.write("maracuja " + totalMaracujas + " " + maracuja + "\n");
-                                    writer.write("laranja " + laranjeiras + " " + laranjas +"\n");
-                                    writer.write("abacate " + abacateiros + " " + abacates +"\n");
-                                    writer.write("coco " + coqueiros + " " + cocos +"\n");
+                                    writer.write("laranja " + laranjeiras + " " + laranjas + "\n");
+                                    writer.write("abacate " + abacateiros + " " + abacates + "\n");
+                                    writer.write("coco " + coqueiros + " " + cocos + "\n");
                                     writer.write("acerola " + aceroleira + " " + acerola + "\n");
                                     writer.write("amora " + amoreiras + " " + amora + "\n");
-                                    writer.write("goiaba " + goiabeira + " "+ goiabas +"\n");
+                                    writer.write("goiaba " + goiabeira + " " + goiabas + "\n");
                                     writer.write("bichadas " + bichadas + "\n");
                                     writer.write("mochila " + mochila + "\n");
                                     writer.close();

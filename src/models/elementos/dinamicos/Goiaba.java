@@ -5,7 +5,7 @@ package models.elementos.dinamicos;
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
  * @author redbdb - Gustavo 
  */
-public class Goiaba extends Fruta{
+public class Goiaba extends Fruta {
 
     /**
      * Construtor para a classe Goiaba.
