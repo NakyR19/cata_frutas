@@ -90,9 +90,14 @@ public class Player extends ElemDinamico {
         this.direcaoAtual = direcaoAtual; 
     }
 
+    public void setPlayerController(PlayerController playerController){
+        this.playerController = playerController;
+    }
+
     public PlayerController getPlayerController(){
         return playerController;
     }
+    
     /**
      * Adiciona uma fruta na mochila do jogador.
      * @param fruta A fruta q vai ser adicionada.

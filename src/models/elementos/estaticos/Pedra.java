@@ -1,6 +1,7 @@
 package models.elementos.estaticos;
 
-//import controllers.PlayerControllr;
+import models.ambiente.Floresta;
+//import controllers.PlayerController;
 import models.elementos.dinamicos.Player;
 
 
@@ -12,6 +13,8 @@ import models.elementos.dinamicos.Player;
  * @author NakyR19 - Rafael
  */
 public class Pedra extends ElemEstatico{
+
+    Floresta floresta;
   /**
    * Construtor
    * 
@@ -19,7 +22,6 @@ public class Pedra extends ElemEstatico{
    * @param y coordenada y
    */
   public Pedra(int x, int y) {
-
     super(x, y);
   }
 
@@ -34,49 +36,61 @@ public class Pedra extends ElemEstatico{
    *
    * @author MariaLuizaCA - Maria Luíza
    */
+    public Floresta getFloresta(){
+        return floresta;
+    }
+    public void setFloresta( Floresta floresta){
+        this.floresta = floresta;
+    }
+    public boolean extremoMapa(Floresta floresta){
+        if(x + 1 > getFloresta().getDimensao() || y + 1 > getFloresta().getDimensao()){
+            return true;
+        }else{
+            return false; 
+        }
 
-   
+    }
   @Override
   public void interagir(Player player) {
 
     if (player.getPontosMovimento() >= 3){
       int newX = player.getX();
       int newY = player.getY();
-      boolean podePular = false;
+      boolean podePular = true;
       switch (player.getDirecaoAtual()) {
         case "direita":
-          if(newX + 2 < player.getPlayerController().getFlorestaComponent().getFloresta().getDimensao()){
-            podePular = false;
-          } else {
-              newX += 2;
-          }
-          break;
-      case "esquerda":
-          if (newX - 2 < 0) {
+            if(extremoMapa(floresta)){
               podePular = false;
-          } else {
-              newX -= 2;
-          }
-          break;
-      case "cima":
-          if (newY - 2 < 0 ) {
-              podePular = false;
-          } else {
-              newY -= 2;
-          }
-          break;
-      case "baixo":
-          if (newY + 2 >= player.getPlayerController().getFlorestaComponent().getFloresta().getDimensao()) {
-              podePular = false;
-          } else {
-              newY += 2;
-          }
+            } else {
+                newX += 2;
+            }
+            break;
+        case "esquerda":
+            if (newX - 2 < 0) {
+                podePular = false;
+            } else {
+                newX -= 2;
+            }
+            break;
+        case "cima":
+            if (newY - 2 < 0 ) {
+                podePular = false;
+            } else {
+                newY -= 2;
+            }
+            break;
+        case "baixo":
+            if (extremoMapa(floresta)) {
+                podePular = false;
+            } else {
+                newY += 2;
+            }
         default:
             System.out.print("Erro");
       }
 
       if (podePular) {
-          player.getPlayerController().verificarPedra();
+          player.getPlayerController().verificarPedra(newX, newY);
           player.mover(newX, newY);
           player.setPontosMovimento(player.getPontosMovimento() - 3);
           System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
