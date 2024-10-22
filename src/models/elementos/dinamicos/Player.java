@@ -105,6 +105,8 @@ public class Player extends ElemDinamico {
     public boolean pegarFruta(Fruta fruta) {
         if(mochila.size() < getCapacidadeMochila()) {
             this.mochila.add(fruta);
+            if(fruta instanceof Maracuja)
+                this.pontosVitoria += 1;
             return true;
         } else {
             System.out.println("Mochila cheia"); // adicionar popup futuramente

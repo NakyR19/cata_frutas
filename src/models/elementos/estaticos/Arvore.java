@@ -7,7 +7,6 @@ import models.elementos.dinamicos.Amora;
 import models.elementos.dinamicos.Coco;
 import models.elementos.dinamicos.Goiaba;
 import models.elementos.dinamicos.Laranja;
-import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 
 /**
