@@ -45,18 +45,6 @@ public class Arvore extends ElemEstatico {
         //se ainda nao tiverem passado 5 turnos des de a ultima vez que deu fruta, nao faz nada
         if(LimitadorTurno != 0)
             return;
-
-        //25% de chance de dar um maracuja, so vai dar maracuja se nao tiver atingido o maximo de maracujas no jogo
-        if((int)(Math.random() * 100 + 1) > 25 && turnoController.getLimiteMaracujas() > 0){
-            Maracuja maracuja = new Maracuja(x, y, chanceBichada);
-            if(!player.pegarFruta(maracuja))//se a mochila estiver cheia nao vai reiniciar a recarga
-                return;
-            LimitadorTurno = 5;
-            player.setPontosVitoria(player.getPontosVitoria() + 1);
-            turnoController.setLimiteMaracujas(turnoController.getLimiteMaracujas() - 1);
-            System.out.println(player.getId() + " pegou um maracuja da arvore.");
-            return;
-        }
         
         //da uma fruta a depender do tipo de árvore e reinicia a contagem de turnos
         switch (TipoArvore) {

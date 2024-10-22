@@ -118,6 +118,7 @@ public void keyPressed(KeyEvent e) {
     } else if(keyCode == KeyEvent.VK_F){//botão provisório para acabar a rodada, pode ser removido, trocado ou alterado futuramente
         System.out.println(player.getId() + " acabou com seu turno.");
         jogo.getTurnoController().alternarTurno();
+        florestaComponent.repaint();
     }
 
     // Se a tecla pressionada não for uma tecla de movimento, não faz nada

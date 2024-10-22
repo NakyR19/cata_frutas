@@ -444,4 +444,8 @@ public Player getPlayer(String id) {
   public int getChanceBichadas(){
     return this.chanceBichadas;
   }
+
+  public int getNumArvores(){
+    return numAbacateiros + numAceroleiras + numAmoreiras + numCoqueiros + numGoiabeiras + numLaranjeiras;
+  }
 }

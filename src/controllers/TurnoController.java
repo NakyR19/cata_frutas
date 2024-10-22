@@ -3,9 +3,11 @@ package controllers;
 import models.ambiente.Dado;
 import models.ambiente.Floresta;
 import models.elementos.Elemento;
+import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
 import models.elementos.estaticos.Arvore;
+import models.elementos.estaticos.Grama;
 
 public class TurnoController {
     private Player p1;
@@ -60,13 +62,15 @@ public class TurnoController {
         System.out.println("Turno alternado para: " + turnoAtual.getId());
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
-    
+        int arvoreDropMaracuja = (int)(Math.random() * floresta.getNumArvores() + 1);//variavel usada para ajudar a escolher uma arvore aleatoria
+
         for(int i = 0; i < floresta.getDimensao(); i++){//percorre a floresta, diminui a recarga das arvores e interage se tiver um player em baixo sem recarga
             for(int j = 0; j < floresta.getDimensao(); j++){
                     
                 if(elementos[i][j] instanceof Arvore){
                     Arvore arvore = (Arvore) elementos[i][j];
-                    
+                    arvoreDropMaracuja--;
+    
                     if(p1.getX() == i && p1.getY() == j){
                         arvore.setControl(this);
                         arvore.interagir(p1);
@@ -75,7 +79,17 @@ public class TurnoController {
                         arvore.setControl(this);
                         arvore.interagir(p2);
                     }
-                  
+                    if(this.getLimiteMaracujas() > 0 && arvoreDropMaracuja == 0){//se for a arvore que foi escolhido e o limite de maracujas nao foi atingido dropa um maracuja adjacente
+                    while(true){
+                        int x = (int)(Math.random() * 3) - 1 + i;
+                        int y = (int)(Math.random() * 3) - 1 + j;
+                        if(elementos[x][y] instanceof Grama){
+                            elementos[x][y] = new Maracuja(x, y, floresta.getChanceBichadas());
+                            setLimiteMaracujas(getLimiteMaracujas() - 1);
+                            break;
+                        }
+                    }
+                    }
                     arvore.cooldownReduction();
                 }
             }
@@ -85,4 +99,6 @@ public class TurnoController {
             System.out.println(VerificarVitoria().getId() + " ganhou");
         }
     }
+
+        
 }
