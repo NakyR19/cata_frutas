@@ -18,6 +18,7 @@ public class Player extends ElemDinamico {
     private int pontosVitoria = 0;
     private String direcaoAtual; 
     private PlayerController playerController;
+    private int forca; 
     
     
     /**
@@ -96,6 +97,14 @@ public class Player extends ElemDinamico {
 
     public PlayerController getPlayerController(){
         return playerController;
+    }
+
+    public int getForca(){
+        return forca;
+    }
+
+    public void setForca(int forca){
+        this.forca = forca;
     }
     
     /**

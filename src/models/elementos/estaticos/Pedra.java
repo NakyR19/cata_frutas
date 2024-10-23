@@ -42,11 +42,10 @@ public class Pedra extends ElemEstatico{
     public void setFloresta( Floresta floresta){
         this.floresta = floresta;
     }
-    public boolean extremoMapa(Floresta floresta){
+    public boolean extremoMapa(Floresta floresta, int x, int y){
         if(x + 1 > floresta.getDimensao() || y + 1 > floresta.getDimensao()){
             return true;
-            System.out.println(x);
-            System.out.println(y);
+
         }else{
             return false; 
         }
@@ -62,7 +61,7 @@ public class Pedra extends ElemEstatico{
       int pedrasEncontradas;
       switch (player.getDirecaoAtual()) {
         case "direita":
-            if(extremoMapa(floresta)){
+            if(extremoMapa(floresta, x, y)){
               podePular = false;
             } else {
                 newX += 2;
@@ -107,7 +106,7 @@ public class Pedra extends ElemEstatico{
             }
             break;  
         case "baixo":
-            if (extremoMapa(floresta)) {
+            if (extremoMapa(floresta, x, y)) {
                 podePular = false;
             } else {
                 newY += 2;
