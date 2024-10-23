@@ -160,15 +160,15 @@ public void keyPressed(KeyEvent e) {
     }
 
     //Verifica se o objeto na frente é uma pedra 
-    public void verificarPedra(int x, int y){
+    public int verificarPedra(int x, int y){
         Elemento elemento = florestaComponent.getFloresta().getElementos()[x][y];
         if (elemento instanceof Pedra){
             Pedra pedra = (Pedra) elemento; 
             pedra.interagir(player);
             florestaComponent.repaint();
-            return;
+            return 1;
+        } else {
+            return 0;
         }
-        return;
     }
-
 }
