@@ -34,8 +34,17 @@ package models.elementos.dinamicos;
      *
      */
     @Override
-       public void aplicarEfeito(Player p){
-        // Dobrar o número de pontos de movimento de uma rodada
+       public void aplicarEfeito(Player player){
+            // Dobrar o número de pontos de movimento de uma rodada
+            if( !this.Bichada){
+                System.out.println(player.getId() + " comeu um coco. ");
+            }else{ 
+                player.setPoison(true);
+                System.out.println(player.getId() + " comeu um coco e tá ruinzinho!");
+            }
+            player.setPontosMovimento(player.getPontosMovimento()*2);
+            System.out.println(player.getId() + " está com mais agilidade.");
+            return;
  }
     @Override
     public void mover(int x, int y) {

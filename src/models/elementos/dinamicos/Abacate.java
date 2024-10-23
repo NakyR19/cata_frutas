@@ -35,8 +35,17 @@ public class Abacate extends Fruta{
      * @todo Implementar a lógica para dobrar a força do jogador.
      */
     @Override
-    public void aplicarEfeito(Player p){
+    public void aplicarEfeito(Player player){
         // Dobrar a força do competidor
+        if( !this.Bichada){
+            System.out.println(player.getId() + " comeu um abacate. ");
+        }else{ 
+            player.setPoison(true);
+            System.out.println(player.getId() + " comeu um abacate e tá ruinzinho!");
+        }
+        // player.setForca(player.getForca()*2);
+        System.out.println(player.getId() + " está com o dobro de força.");
+        return;
     }
 
     @Override
