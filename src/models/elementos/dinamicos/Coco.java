@@ -40,10 +40,10 @@ package models.elementos.dinamicos;
                 System.out.println(player.getId() + " comeu um coco. ");
             }else{ 
                 player.setPoison(true);
-                System.out.println(player.getId()+" comeu um coco e tá ruinzinho!");
+                System.out.println(player.getId() + " comeu um coco e tá ruinzinho!");
             }
             player.setPontosMovimento(player.getPontosMovimento()*2);
-            System.out.println(player.getId()+" está com mais agilidade.");
+            System.out.println(player.getId() + " está com mais agilidade.");
             return;
  }
     @Override
