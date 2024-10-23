@@ -6,6 +6,7 @@ import models.elementos.dinamicos.Abacate;
 import models.elementos.dinamicos.Acerola;
 import models.elementos.dinamicos.Amora;
 import models.elementos.dinamicos.Coco;
+import models.elementos.dinamicos.Fruta;
 import models.elementos.dinamicos.Goiaba;
 import models.elementos.dinamicos.Laranja;
 import models.elementos.dinamicos.Maracuja;
@@ -327,6 +328,10 @@ public class Floresta {
     }
   }
 
+  public void setFruta(int x, int y, Fruta fruta) {
+    elementos[x][y] = fruta;
+}
+
   /**
      * @author redbdb - Gustavo Assunção
      * Gera Maracujas aleatoriamente na floresta.
@@ -400,7 +405,8 @@ public Player getPlayer(String id) {
     // Verifica se a posição está ocupada por um elemento Pedra
     return (elementos[x][y] instanceof Pedra);
   }
-
+  
+  
   /**
    * Seta um piso de coordenadas (x,y) como grama
    * @author NakyR19 - Rafael

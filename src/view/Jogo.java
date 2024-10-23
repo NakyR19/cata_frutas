@@ -115,9 +115,9 @@ public class Jogo extends JFrame {
 
         // Inicializa os controladores dos jogadores
         p1Controller = new PlayerController(p1, florestaComponent, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT,
-                KeyEvent.VK_RIGHT, this);
+                KeyEvent.VK_RIGHT, this, p2);
         p2Controller = new PlayerController(p2, florestaComponent, KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A,
-                KeyEvent.VK_D, this);
+                KeyEvent.VK_D, this, p1);
                 // Randomiza quem irá iniciar o jogo
         Random random = new Random();
         Player jogadorInicial = random.nextBoolean() ? p1 : p2;
