@@ -29,6 +29,7 @@ public class PlayerController implements KeyListener {
     private static int LESS_ONE_MV = -1;
     private boolean initialPositionCleared = false;
     private Player adversario;
+    public int contPedras;
 
 
     // Conjunto de teclas de controle
@@ -63,8 +64,9 @@ public class PlayerController implements KeyListener {
     public FlorestaComponent getFlorestaComponent(){
         return florestaComponent;
     }
+
     @Override
-public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
     
     // Verifica se o jogador atual é o jogador do turno
     System.out.println("Turno atual: " + jogo.getTurnoController().getTurnoAtual().getId());
@@ -202,7 +204,6 @@ public void keyPressed(KeyEvent e) {
         }
         
     }
-
 
     public boolean isSamePos(){
         return player.getX() == adversario.getX() && player.getY() == adversario.getY();

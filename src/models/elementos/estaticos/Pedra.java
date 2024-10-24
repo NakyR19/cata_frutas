@@ -64,7 +64,7 @@ public class Pedra extends ElemEstatico{
                 player.mover(newX, newY);
                 player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
                 System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-                player.getPlayerController().florestaComponent.repaint();
+                player.getPlayerController().getFlorestaComponent().repaint();
                     
                 break;
             case "esquerda":
@@ -72,7 +72,7 @@ public class Pedra extends ElemEstatico{
                 player.mover(newX, newY);
                 player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
                 System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-                player.getPlayerController().florestaComponent.repaint();
+                player.getPlayerController().getFlorestaComponent().repaint();
                     
                 break;
             case "cima":
@@ -80,7 +80,7 @@ public class Pedra extends ElemEstatico{
                 player.mover(newX, newY);
                 player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
                 System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-                player.getPlayerController().florestaComponent.repaint();
+                player.getPlayerController().getFlorestaComponent().repaint();
                     
                 break;
             case "baixo":
@@ -88,7 +88,7 @@ public class Pedra extends ElemEstatico{
                 player.mover(newX, newY);
                 player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
                 System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-                player.getPlayerController().florestaComponent.repaint();
+                player.getPlayerController().getFlorestaComponent().repaint();
                     
                 break;
             default:
