@@ -63,8 +63,10 @@ public class MenuInicial extends JFrame {
 
     private void buttonListeners() {
         buttonIniciarJogo.addActionListener(e -> {
+            // setVisible(false);
+            // new Jogo(MenuInicial.this);
             setVisible(false);
-            new Jogo(MenuInicial.this);
+        new CharacterSelectionScreen(MenuInicial.this).setVisible(true);
         });
 
         buttonMenuMapas.addActionListener(e -> {
