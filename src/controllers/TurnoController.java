@@ -58,8 +58,18 @@ public class TurnoController {
         } else {
             turnoAtual = p1;
         }
+
+        
+
         turnoAtual.setPontosMovimento(dado.rolarDoisDados()); // Reseta os pontos de movimento para 3 no início do turno
         System.out.println("Turno alternado para: " + turnoAtual.getId());
+
+        if(turnoAtual.getPoison()){//verifica se o player no turno estava envenenado, se estiver ele perde o status envenenado e o turno.
+            System.out.println(turnoAtual.getId() + " perdeu o turno pois estava envenenado.");
+            turnoAtual.setPoison(false);
+            alternarTurno();
+        }
+
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
         int arvoreDropMaracuja = (int)(Math.random() * floresta.getNumArvores() + 1);//variavel usada para ajudar a escolher uma arvore aleatoria
@@ -102,7 +112,8 @@ public class TurnoController {
         if(VerificarVitoria() != null){//alterar para futuramente encerrar o jogo.
             System.out.println(VerificarVitoria().getId() + " ganhou");
         }
-    }
 
-        
+
+
+    }
 }
