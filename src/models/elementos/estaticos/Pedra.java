@@ -42,7 +42,7 @@ public class Pedra extends ElemEstatico{
     public void setFloresta( Floresta floresta){
         this.floresta = floresta;
     }
-    public boolean extremoMapa(Floresta floresta, int x, int y){
+    /*public boolean extremoMapa(Floresta floresta, int x, int y){
         if(x + 1 > floresta.getDimensao() || y + 1 > floresta.getDimensao()){
             return true;
 
@@ -50,84 +50,56 @@ public class Pedra extends ElemEstatico{
             return false; 
         }
 
-    }
+    }*/
   @Override
   public void interagir(Player player) {
+    int newX = player.getX();
+    int newY = player.getY();
+    if (player.getPlayerController().contPedras > 0){
+        int contPedras = player.getPlayerController().contPedras;
+        if (player.getPontosMovimento() >= 3*contPedras){
+        switch (player.getDirecaoAtual()) {
+            case "direita": 
+                newX = newX + contPedras + 1;
+                player.mover(newX, newY);
+                player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
+                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+                player.getPlayerController().florestaComponent.repaint();
+                    
+                break;
+            case "esquerda":
+                newX = newX - contPedras - 1 ;
+                player.mover(newX, newY);
+                player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
+                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+                player.getPlayerController().florestaComponent.repaint();
+                    
+                break;
+            case "cima":
+                newY = newY - contPedras - 1 ;
+                player.mover(newX, newY);
+                player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
+                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+                player.getPlayerController().florestaComponent.repaint();
+                    
+                break;
+            case "baixo":
+                newY = newY + contPedras + 1 ;
+                player.mover(newX, newY);
+                player.setPontosMovimento(player.getPontosMovimento() - 2*contPedras - 1);
+                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
+                player.getPlayerController().florestaComponent.repaint();
+                    
+                break;
+            default:
+                System.out.print("Erro");
+        }
 
-    if (player.getPontosMovimento() >= 3){
-      int newX = player.getX();
-      int newY = player.getY();
-      boolean podePular = true;
-      int pedrasEncontradas;
-      switch (player.getDirecaoAtual()) {
-        case "direita":
-            if(extremoMapa(floresta, x, y)){
-              podePular = false;
-            } else {
-                newX += 2;
-            }
-            if (podePular) {
-                pedrasEncontradas = player.getPlayerController().verificarPedra(newX+1, newY);
-                player.mover(newX+pedrasEncontradas, newY);
-                player.setPontosMovimento(player.getPontosMovimento() - 3);
-                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-            } else {
-                System.out.println("Você não pode pular a pedra");
-            }
-            break;
-        case "esquerda":
-            if (newX - 2 < 0) {
-                podePular = false;
-            } else {
-                newX -= 2;
-            }
-            if (podePular) {
-                pedrasEncontradas = player.getPlayerController().verificarPedra(newX - 1, newY);
-                player.mover(newX - pedrasEncontradas, newY);
-                player.setPontosMovimento(player.getPontosMovimento() - 3);
-                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-            } else {
-                System.out.println("Você não pode pular a pedra");
-            }
-            break;
-        case "cima":
-            if (newY - 2 < 0 ) {
-                podePular = false;
-            } else {
-                newY -= 2;
-            }
-            if (podePular) {
-                pedrasEncontradas = player.getPlayerController().verificarPedra(newX, newY - 1);
-                player.mover(newX, newY - pedrasEncontradas);
-                player.setPontosMovimento(player.getPontosMovimento() - 3);
-                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-            } else {
-                System.out.println("Você não pode pular a pedra");
-            }
-            break;  
-        case "baixo":
-            if (extremoMapa(floresta, x, y)) {
-                podePular = false;
-            } else {
-                newY += 2;
-            }
-            if (podePular) {
-                pedrasEncontradas = player.getPlayerController().verificarPedra(newX, newY + 1);
-                player.mover(newX, newY + pedrasEncontradas);
-                player.setPontosMovimento(player.getPontosMovimento() - 3);
-                System.out.println("Jogador " + player.getId() + " moveu para (" + newX + ", " + newY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-            } else {
-                System.out.println("Você não pode pular a pedra");
-            }
-            break;
-        default:
-            System.out.print("Erro");
-      }
-
-    } else {
-      System.out.println("Você não tem pontos suficientes para pular a pedra.");
+        } else {
+            System.out.println("Você não tem pontos suficientes para pular a pedra.");
+        }
+        
     }
-    
-  }
+}
 
 }

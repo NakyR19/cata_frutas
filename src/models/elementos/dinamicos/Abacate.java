@@ -43,7 +43,7 @@ public class Abacate extends Fruta{
             player.setPoison(true);
             System.out.println(player.getId() + " comeu um abacate e tá ruinzinho!");
         }
-        // player.setForca(player.getForca()*2);
+        player.setMultiplicadorForca(player.getMultiplicadorForca()*2);
         System.out.println(player.getId() + " está com o dobro de força.");
         return;
     }

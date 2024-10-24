@@ -124,7 +124,13 @@ public void keyPressed(KeyEvent e) {
         System.out.println(player.getId() + " acabou com seu turno.");
         jogo.getTurnoController().alternarTurno();
         florestaComponent.repaint();
-    } 
+    }
+
+    if (verificarPedra(novoX, novoY)>0){
+        Elemento elemento = florestaComponent.getFloresta().getElementos()[novoX][novoY];
+        Pedra pedra = (Pedra) elemento;
+        pedra.interagir(player);
+    }
 
     // Se a tecla pressionada não for uma tecla de movimento, não faz nada
     if (!isMovementKey) {
@@ -141,19 +147,11 @@ public void keyPressed(KeyEvent e) {
     }
 
     // Atualiza a posição do player no objeto Player
-    
     if (!florestaComponent.getFloresta().isCollision(novoX, novoY)) {
         player.mover(novoX, novoY);
         player.setPontosMovimento(player.getPontosMovimento() - 1); // Decresce os pontos de movimento
         System.out.println("Jogador " + player.getId() + " moveu para (" + novoX + ", " + novoY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
         jogo.atualizarTurnoLabel();
-        System.out.println(player.getX() + "" + player.getY() + " " + adversario.getX() +"" + adversario.getY());
-        System.out.println(isSamePos());
-        System.out.println(adversario.getMochila());
-        if(isSamePos()){
-            empurrar();
-            System.out.println(adversario.getMochila());
-        }
     }
 
     // Alterna o turno se os pontos de movimento se esgotarem
@@ -162,6 +160,10 @@ public void keyPressed(KeyEvent e) {
     }
 
     florestaComponent.repaint(); // Atualiza o desenho
+
+    
+
+    
 }
 
     @Override
@@ -172,18 +174,35 @@ public void keyPressed(KeyEvent e) {
     public void keyTyped(KeyEvent e) {
     }
 
-    //Verifica se o objeto na frente é uma pedra 
+       //Verifica se o objeto na frente é uma pedra 
     public int verificarPedra(int x, int y){
         Elemento elemento = florestaComponent.getFloresta().getElementos()[x][y];
-        if (elemento instanceof Pedra){
-            Pedra pedra = (Pedra) elemento; 
-            pedra.interagir(player);
-            florestaComponent.repaint();
-            return 1;
+        if (x < 0 || x >= florestaComponent.getFloresta().getDimensao() || y < 0 || y >= florestaComponent.getFloresta().getDimensao()){
+            return 0;
+        }
+        else if (elemento instanceof Pedra){
+            switch (player.getDirecaoAtual()) {
+                case "direita":
+                    contPedras = 1 + verificarPedra(x + 1, y);
+                    return contPedras;
+                case "esquerda":
+                    contPedras = 1 + verificarPedra(x - 1, y);
+                    return contPedras;
+                case "cima":
+                    contPedras =  1 + verificarPedra(x, y - 1);
+                    return contPedras;
+                case "baixo":
+                    contPedras = 1 + verificarPedra(x, y + 1);
+                    return contPedras;
+                default:
+                    return 0;
+            }
         } else {
             return 0;
         }
+        
     }
+
 
     public boolean isSamePos(){
         return player.getX() == adversario.getX() && player.getY() == adversario.getY();
