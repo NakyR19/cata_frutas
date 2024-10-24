@@ -31,7 +31,7 @@ public class GoiabaComponent extends ElementoComponent{
 
     public GoiabaComponent(Goiaba c){
         this.Goiaba = c;
-        ImageIcon referencia = new ImageIcon("/res/images/goiaba.png");//colocar a referência depois
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/goiaba.png"));//colocar a referência depois
         imagemGoiaba = referencia.getImage();
     }
 
@@ -46,10 +46,10 @@ public class GoiabaComponent extends ElementoComponent{
 
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize){
-        int frutaSize = 16;
+        int frutaSize = 32;
         int offsetX = (cellSize - frutaSize) / 2;
     int offsetY = cellSize - frutaSize;
-        g.drawImage(imagemGoiaba, x + offsetX, y +offsetY, 16, 16, null);
+        g.drawImage(imagemGoiaba, x + offsetX, y +offsetY, 32, 32, null);
     }
 
     /**

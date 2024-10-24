@@ -31,7 +31,7 @@ public class CocoComponent extends ElementoComponent{
 
     public CocoComponent(Coco c){
         this.coco = c;
-        ImageIcon referencia = new ImageIcon("/res/images/coco.png");//colocar a referência depois
+        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/coco.png"));//colocar a referência depois
         imagemCoco = referencia.getImage();
     }
 
