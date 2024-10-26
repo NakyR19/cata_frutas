@@ -44,16 +44,16 @@ public class CharacterSelectionScreen extends JFrame {
 
     };
     private ImageIcon[] characterImages = {
-        new ImageIcon(getClass().getResource("/res/images/sambistaFrente(3).png")),
-        new ImageIcon(getClass().getResource("/res/images/ajudanteDoPapaiNoelFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/ashBrancoFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/cosplayerFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/doraFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/enzoFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/praianaFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/roxinhaFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/skatistaFrente.png")),
-        new ImageIcon(getClass().getResource("/res/images/verdinhoFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/malandro_0.png")),
+        new ImageIcon(getClass().getResource("/res/images/ajudante0.png")),
+        new ImageIcon(getClass().getResource("/res/images/ash0.png")),
+        new ImageIcon(getClass().getResource("/res/images/cosplayer0.png")),
+        new ImageIcon(getClass().getResource("/res/images/mariaChiquinha_0.png")),
+        new ImageIcon(getClass().getResource("/res/images/enzo0.png")),
+        new ImageIcon(getClass().getResource("/res/images/praiana0.png")),
+        new ImageIcon(getClass().getResource("/res/images/ametista0.png")),
+        new ImageIcon(getClass().getResource("/res/images/fadinha0.png")),
+        new ImageIcon(getClass().getResource("/res/images/cullen0.png")),
 };
 
     private int currentCharacterIndex = 0;

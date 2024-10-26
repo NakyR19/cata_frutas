@@ -4,7 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
-
+import javax.swing.Timer;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import models.elementos.Elemento;
 import models.elementos.dinamicos.Fruta;
 import models.elementos.dinamicos.Player;
@@ -95,6 +97,7 @@ public class PlayerController implements KeyListener {
         novoY += PLUS_ONE_MV;
         isMovementKey = true;
         player.setDirecaoAtual("baixo");
+        animateMovement();
     } else if (keyCode == leftKey) {
         novoX += LESS_ONE_MV;
         isMovementKey = true;
@@ -156,7 +159,6 @@ public class PlayerController implements KeyListener {
     }
 
     florestaComponent.repaint(); // Atualiza o desenho
-
     
 
     
@@ -247,5 +249,22 @@ public class PlayerController implements KeyListener {
             System.out.println("Sem espaço no campo");
         }
         }
+    }
+    public void animateMovement() {
+        Timer timer = new Timer(50, new ActionListener() { // 50 ms para cada frame
+            private int frameCount = 0;
+    
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (frameCount < 3) { // 3 frames de animação
+                    player.getPlayerComponent().updateAnimation();
+                    florestaComponent.repaint();
+                    frameCount++;
+                } else {
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        });
+        timer.start();
     }
 }

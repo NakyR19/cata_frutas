@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import controllers.PlayerController;
+import view.elementos.dinamico.PlayerComponent;
+
 import java.util.ArrayList;
 
 // Apenas implementando logica de movimento e comando do teclado, implementar mochila e outros posteriormente
@@ -25,8 +27,9 @@ public class Player extends ElemDinamico {
     private PlayerController playerController;
     private int multiplicadorForca = 1;
     private String nome = "biboca";
+    private PlayerComponent playerComponent;
 
-
+    
     /**
      * Construtor da classe Player.
      * 
@@ -41,7 +44,7 @@ public class Player extends ElemDinamico {
         this.capacidadeMochila = capacidadeMochila;
         // this.pontosMovimento = pontosMovimento;
     }
-
+    
     /**
      * Move o jogador para uma nova posição.
      * 
@@ -52,20 +55,30 @@ public class Player extends ElemDinamico {
     public void mover(int x, int y) {
         this.x = x;
         this.y = y;
+        if (playerController != null) {
+            playerController.animateMovement();
+        }
     }
-
+    
     public String getId() {
         return this.id;
     }
-
+    
     public void setId(String id) {
         this.id = id;
     }
+    
+    public void setPlayerComponent(PlayerComponent playerComponent) {
+        this.playerComponent = playerComponent;
+    }
 
+    public PlayerComponent getPlayerComponent() {
+        return playerComponent;
+    }
     public int getPontosMovimento() {
         return pontosMovimento;
     }
-
+    
     public void setPontosMovimento(int pontosMovimento) {
         this.pontosMovimento = pontosMovimento;
     }
@@ -110,7 +123,6 @@ public class Player extends ElemDinamico {
         this.direcaoAtual = direcaoAtual;
     }
 
-    
     public String getNome() {
         return nome;
     }
@@ -118,7 +130,7 @@ public class Player extends ElemDinamico {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public void setPlayerController(PlayerController playerController) {
         this.playerController = playerController;
     }
