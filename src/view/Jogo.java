@@ -180,7 +180,7 @@ public class Jogo extends JFrame {
     public void atualizarTurnoLabel() {
         Player turnoAtual = turnoController.getTurnoAtual();
         turnoLabel
-                .setText("Turno: " + turnoAtual.getId() + " | Pontos de Movimento: " + turnoAtual.getPontosMovimento());
+                .setText("Turno: " + turnoAtual.getNome() + " | Pontos de Movimento: " + turnoAtual.getPontosMovimento());
     }
 
     private void infoInterface (){

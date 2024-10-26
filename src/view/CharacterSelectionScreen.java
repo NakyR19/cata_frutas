@@ -14,18 +14,47 @@ public class CharacterSelectionScreen extends JFrame {
     // private int pIndex;
 
     // Informações dos personagens
-    private String[] characterNames = { "Malandro", "Pedra", "Coqueiro" };
-    private String[] characterOrigins = { "Rio de Janeiro", "Pedra", "Calor" };
+    private String[] characterNames = { "Malandro", "Ajudante do Papai Noel", "Ash Ketchup", "Cosplayer", "Maria Chiquinha", "Enzo Gabriel", "Praiana", "Ametista", "Fadinha", "Edgreen Cullen"};
+    private String[] characterOrigins = { "Rio de Janeiro - RJ", "Polo Norte", "Kanto", "Xique-Xique - BA", "Mimoso - GO", "São Paulo - SP", "Praia do Forte - BA", "Aracaju - SE", "Imperatriz - MA", "Transilvania"};
     private String[] characterDescriptions = {
             "Um bom malandro, conquistador, tem naipe de artista, pique de jogador.",
-            "Pedra",
-            "Coco cai na cabeça de corno, curiosos começam a curiar o cara com coco no coco"
+            "Muito esquentadinho, não tem paciência pra nada, mas uma ótima pessoa que sempre se deixa levar pelo coração.",
+            "Caçador de pok... Ops! Frutas! \nEsse é seu jeito de viver\r\n" + //
+                                "Ninguém nunca foi igual\r\n" + //
+                                "A sua vida é fazer\r\n" + //
+                                "O bem vencer o mal\r\n" + //
+                                "Pelo mundo viajará\r\n" + //
+                                "Tentando encontrar\r\n" + //
+                                "Uma Fruta Ouro e com o seu poder\r\n" + //
+                                "Tudo transformar\r\n" + //
+                                "Fruta!\r\n" + //
+                                "Tenho que pegá-los (isso eu sei)\r\n" + //
+                                "Pegá-los eu tentarei\r\n" + //
+                                "Fruta!\r\n" + //
+                                "Juntos teremos que, a mochila defender\r\n" + //
+                                "Fruta! ",
+            "Cosplayer de evento de animes, gosta de se vestir como princesas dos jogos, contudo, discute sempre com sua mãe por causa disso.",
+            "Que c'ocê foi fazer no mato, Maria Chiquinha?\r\n" + //
+                                "Que c'ocê foi fazer no mato?",
+            "Faria Limer com orgulho, Enzo Gabriel nunca pisou num sitío, fazenda ou algo parecido, a coisa mais próxima de uma floresta em que já pisou, foi no videogame 'playando meuh' Stardew Valley.",
+            "Vive na praia, não tem muito o que falar dela não, apenas que está sempre bronzeada. (Isso vai render uns problemas de pele no futuro, mas... Quem disse que é problema meu?).",
+            "Adora ler todo o tipo de livro, além de amar Steven Universo, deseja ser escritora quando crescer, é uma verdadeira sonhadora! Pena que as livrarias estão falindo.",
+            "Campeã Mundial de Skate e com duas medalhas olímpicas no currículo. Um verdadeiro prodígio. (Se eu fosse primo dela choraria, não sei se por orgulho, ou por ter alguém na família falando: 'Ain mas sua prima é amada pelo Brasil todo, pq vc não é igual a ela?')",
+            "É um vampiro com uma personalidade sensível e charmosa, mas não muito comunicativo, contudo, ao contrário dos vampiros usuais, que chupam sangue, esse tem uma preferência incomum, ele prefere chupar a clorofila das plantas, motivo esse por qual seu cabelo está verde.",
+
     };
     private ImageIcon[] characterImages = {
-            new ImageIcon(getClass().getResource("/res/images/sambistaFrente(3).png")),
-            new ImageIcon(getClass().getResource("/res/images/pedra(2).png")),
-            new ImageIcon(getClass().getResource("/res/images/coqueiro.png"))
-    };
+        new ImageIcon(getClass().getResource("/res/images/sambistaFrente(3).png")),
+        new ImageIcon(getClass().getResource("/res/images/ajudanteDoPapaiNoelFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/ashBrancoFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/cosplayerFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/doraFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/enzoFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/praianaFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/roxinhaFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/skatistaFrente.png")),
+        new ImageIcon(getClass().getResource("/res/images/verdinhoFrente.png")),
+};
 
     private int currentCharacterIndex = 0;
 
