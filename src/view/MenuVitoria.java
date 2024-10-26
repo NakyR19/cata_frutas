@@ -10,6 +10,7 @@ public class MenuVitoria extends JFrame{
 
     JButton buttonFinalizar;
     JLabel texto;
+    JLabel vencedorIcon;
 
     Player vencedor;
     
@@ -55,6 +56,11 @@ public class MenuVitoria extends JFrame{
         Panel.setLayout(new BoxLayout(Panel, BoxLayout.Y_AXIS));
         Panel.setBackground(Color.decode("#1F0C39")); 
 
+        //sprite do vencedor
+        vencedorIcon = new JLabel();
+        vencedorIcon.setIcon(new ImageIcon(getVencedorIcon().getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+        vencedorIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         //texto parabenizando o vencedor
         texto = new JLabel(vencedor.getNome() + " (" + vencedor.getId() + ") ganhou!");
         texto.setFont(new Font("Arial", Font.BOLD, 16)); 
@@ -70,6 +76,8 @@ public class MenuVitoria extends JFrame{
 
         //add botão e texto com flexbox 
         Panel.add(Box.createVerticalGlue());
+        Panel.add(vencedorIcon);
+        Panel.add(Box.createVerticalGlue());
         Panel.add(texto);
         Panel.add(Box.createVerticalGlue());
         Panel.add(buttonFinalizar);
@@ -83,6 +91,34 @@ public class MenuVitoria extends JFrame{
             new MenuInicial();
             setVisible(false);
         });
+    }
+
+    private ImageIcon getVencedorIcon(){
+        switch(vencedor.getNome()){
+            case "Malandro":
+                return characterImages[0];
+            case "Ajudante do Papai Noel":
+                return characterImages[1];
+            case "Ash Ketchup":
+                return characterImages[2];
+            case "Cosplayer":
+                return characterImages[3];
+            case "Maria Chiquinha":
+                return characterImages[4];
+            case "Enzo Gabriel":
+                return characterImages[5];
+            case "Praiana":
+                return characterImages[6];
+            case "Ametista":
+                return characterImages[7];
+            case "Fadinha":
+                return characterImages[8];
+            case "Edgreen Cullen":
+                return characterImages[9];
+            default:
+                break;
+        }
+        return null;
     }
 
     

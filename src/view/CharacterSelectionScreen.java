@@ -65,6 +65,7 @@ public class CharacterSelectionScreen extends JFrame {
         setSize(450, 400);
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
+        setResizable(false);
 
         // Painel à esquerda
         JPanel leftPanel = new JPanel();
