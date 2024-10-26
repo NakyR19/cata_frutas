@@ -59,6 +59,9 @@ public class MenuInicial extends JFrame {
         buttonPanel.add(buttonMenuMapas);
         buttonPanel.add(Box.createVerticalGlue()); // add flexbox dps dos botões
         add(buttonPanel, BorderLayout.CENTER);
+
+        //corrige o problema que as vezes os botões não apareciam ao iniciar
+        setVisible(true);
     }
 
     private void buttonListeners() {

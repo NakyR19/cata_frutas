@@ -6,6 +6,7 @@ import models.elementos.Elemento;
 import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 import view.Jogo;
+import view.MenuVitoria;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
 
@@ -111,6 +112,8 @@ public class TurnoController {
 
         if(VerificarVitoria() != null){//alterar para futuramente encerrar o jogo.
             System.out.println(VerificarVitoria().getId() + " ganhou");
+            jogo.dispose();
+            new MenuVitoria();
         }
 
 
