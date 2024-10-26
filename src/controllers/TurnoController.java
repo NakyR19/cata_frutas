@@ -60,8 +60,6 @@ public class TurnoController {
             turnoAtual = p1;
         }
 
-        
-
         turnoAtual.setPontosMovimento(dado.rolarDoisDados()); // Reseta os pontos de movimento para 3 no início do turno
         System.out.println("Turno alternado para: " + turnoAtual.getId());
 
@@ -110,10 +108,10 @@ public class TurnoController {
             }
         }
 
-        if(VerificarVitoria() != null){//alterar para futuramente encerrar o jogo.
+        if(VerificarVitoria() != null){
             System.out.println(VerificarVitoria().getId() + " ganhou");
             jogo.dispose();
-            new MenuVitoria();
+            new MenuVitoria(VerificarVitoria());
         }
 
 
