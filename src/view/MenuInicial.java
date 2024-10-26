@@ -3,12 +3,19 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe que representa a tela inicial do jogo Cata-Frutas.
+ */
 public class MenuInicial extends JFrame {
 
     JButton buttonIniciarJogo;
     JButton buttonMenuMapas;
     JLabel logoLabel;
 
+    /**
+     * Construtor da classe MenuInicial.
+     * Inicializa os componentes da interface gráfica.
+     */
     public MenuInicial() {
 
         ImageIcon logoIcon = new ImageIcon(getClass().getResource("/res/images/logo.png"));
@@ -20,6 +27,9 @@ public class MenuInicial extends JFrame {
         configUI();
     }
 
+    /**
+     * Configura a janela principal.
+     */
     private void configFrame() {
         setTitle("Cata-Frutas");
         setSize(500, 500);
@@ -31,8 +41,10 @@ public class MenuInicial extends JFrame {
         getContentPane().setBackground(Color.decode("#1F0C39"));
     }
 
+    /**
+     * Configura os componentes da interface gráfica.
+     */
     private void configUI() {
-        // add logo
         JPanel logoPanel = new JPanel();
         logoPanel.setBackground(Color.decode("#1F0C39")); // Match the background color
         logoPanel.add(logoLabel);
@@ -64,12 +76,15 @@ public class MenuInicial extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Adiciona os listeners aos botões.
+     */
     private void buttonListeners() {
         buttonIniciarJogo.addActionListener(e -> {
             // setVisible(false);
             // new Jogo(MenuInicial.this);
             setVisible(false);
-        new CharacterSelectionScreen(MenuInicial.this).setVisible(true);
+        new CharacterSelectionScreen(MenuInicial.this, 0, "").setVisible(true);
         });
 
         buttonMenuMapas.addActionListener(e -> {

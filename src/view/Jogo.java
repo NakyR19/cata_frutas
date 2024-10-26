@@ -28,6 +28,8 @@ public class Jogo extends JFrame {
 
     private Player p1;
     private Player p2;
+    private String p1Name;
+    private String p2Name;
     private PlayerController p1Controller;
     private PlayerController p2Controller;
     private TurnoController turnoController;
@@ -39,7 +41,10 @@ public class Jogo extends JFrame {
      * 
      * @param menuInicial A janela do menu inicial.
      */
-    public Jogo(JFrame menuInicial) {
+    public Jogo(JFrame menuInicial, String p1Name, String p2Name) {
+        this.p1Name = p1Name;
+        this.p2Name = p2Name;
+
         this.mapaUtils = new MapaUtils();
         File diretorioMapas = new File("diretorio_dos_mapas"); // Diretório onde os mapas estão armazenados
         File[] arquivosDeMapa = diretorioMapas.listFiles((dir, name) -> name.endsWith(".txt"));
@@ -101,6 +106,8 @@ public class Jogo extends JFrame {
             numAceroleiras, numAcerolas, numAbacateiros, numAbacates, numMaracujas, numMaracujasTotais, chanceBichadas, capacidadeMochila);
         p1 = floresta.getPlayer("p1");
         p2 = floresta.getPlayer("p2");
+        p1.setNome(getP1Name());
+        p2.setNome(p2Name);
         PlayerComponent p1Component = new PlayerComponent(p1);
         PlayerComponent p2Component = new PlayerComponent(p2);
         FlorestaComponent florestaComponent = new FlorestaComponent(floresta, p1Component, p2Component);
@@ -161,6 +168,13 @@ public class Jogo extends JFrame {
 
     public TurnoController getTurnoController() {
         return turnoController;
+    }
+
+    public String getP1Name() {
+        return p1Name;
+    }
+    public String getP2Name() {
+        return p2Name;
     }
 
     public void atualizarTurnoLabel() {

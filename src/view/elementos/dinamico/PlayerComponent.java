@@ -16,7 +16,11 @@ public class PlayerComponent extends ElementoComponent {
      */
     private Player player;
     private Image imagemPlayer;
-    
+    private ImageIcon[] characterImages = {
+        new ImageIcon(getClass().getResource("/res/images/sambistaFrente(3).png")),
+        new ImageIcon(getClass().getResource("/res/images/pedra(2).png")),
+        new ImageIcon(getClass().getResource("/res/images/coqueiro.png"))
+};
     /**
      * Construtor
      *
@@ -26,7 +30,7 @@ public class PlayerComponent extends ElementoComponent {
      */
     public PlayerComponent(Player p) {
         this.player = p;
-        ImageIcon referencia = new ImageIcon(getClass().getResource("/res/images/sambistaFrente(3).png"));;
+        ImageIcon referencia = characterImages[getImageByPlayer()];
         imagemPlayer = referencia.getImage();
     }
     
@@ -38,6 +42,18 @@ public class PlayerComponent extends ElementoComponent {
      * @param y a coordenada y a qual irá ser desenhada a imagem
      * @param cellSize o tamanho da célula a qual a imagem será desenhada
      */
+
+    public int getImageByPlayer (){
+        switch (player.getNome()) {
+            case "Malandro":
+                return 0;
+            case "Pedra":
+                return 1;
+            default:
+                break;
+        }
+        return -1;
+    }
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize) {
         g.drawImage(imagemPlayer, x, y, cellSize, cellSize, null);

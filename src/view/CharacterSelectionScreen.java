@@ -11,10 +11,11 @@ public class CharacterSelectionScreen extends JFrame {
     private JLabel nameLabel, originLabel;
     private JTextArea descriptionArea;
     private JButton nextButton, prevButton, confirmButton;
+    // private int pIndex;
 
     // Informações dos personagens
-    private String[] characterNames = {"Malandro", "Pedra", "Coqueiro"};
-    private String[] characterOrigins = {"Rio de Janeiro", "Pedra", "Calor"};
+    private String[] characterNames = { "Malandro", "Pedra", "Coqueiro" };
+    private String[] characterOrigins = { "Rio de Janeiro", "Pedra", "Calor" };
     private String[] characterDescriptions = {
             "Um bom malandro, conquistador, tem naipe de artista, pique de jogador.",
             "Pedra",
@@ -25,13 +26,11 @@ public class CharacterSelectionScreen extends JFrame {
             new ImageIcon(getClass().getResource("/res/images/pedra(2).png")),
             new ImageIcon(getClass().getResource("/res/images/coqueiro.png"))
     };
-    
+
     private int currentCharacterIndex = 0;
-    private JFrame menuInicial;
 
-    public CharacterSelectionScreen(JFrame menuInicial) {
-        this.menuInicial = menuInicial;
-
+    public CharacterSelectionScreen(JFrame menuInicial, int pIndex, String p1Name) {
+        // this.pIndex = pIndex;
         // setTitle("Selecionar Personagem");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(450, 400);
@@ -42,11 +41,12 @@ public class CharacterSelectionScreen extends JFrame {
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BorderLayout());
         leftPanel.setBorder(new EmptyBorder(20, 50, 15, 20)); // Adiciona padding de 10 pixels em todos os lados
-        // JLabel selectLabel = new JLabel("Selecionar Personagem", SwingConstants.CENTER);
-        // selectLabel.setFont(new Font("Arial", Font.BOLD, 18));  // Melhorar fonte
+        // JLabel selectLabel = new JLabel("Selecionar Personagem",
+        // SwingConstants.CENTER);
+        // selectLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Melhorar fonte
         characterImageLabel = new JLabel();
-        characterImageLabel.setIcon(new ImageIcon(characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // Redimensiona a imagem para 200x200 pixels
-
+        characterImageLabel.setIcon(new ImageIcon(
+                characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona a imagem
         // Painel para as setas de navegação
         JPanel arrowPanel = new JPanel();
         prevButton = new JButton("<");
@@ -65,24 +65,24 @@ public class CharacterSelectionScreen extends JFrame {
 
         // Nome
         nameLabel = new JLabel("Nome: " + characterNames[currentCharacterIndex]);
-        nameLabel.setFont(new Font("Arial", Font.BOLD, 16));  // Texto em negrito
-        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);  // Alinhamento à esquerda
-        
+        nameLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Texto em negrito
+        nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
+
         // Naturalidade
         originLabel = new JLabel("Naturalidade: " + characterOrigins[currentCharacterIndex]);
-        originLabel.setFont(new Font("Arial", Font.PLAIN, 14));  // Fonte menor
-        originLabel.setAlignmentX(Component.LEFT_ALIGNMENT);  // Alinhamento à esquerda
+        originLabel.setFont(new Font("Arial", Font.PLAIN, 14)); // Fonte menor
+        originLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
 
         // Descrição com JTextArea (que permite quebra de linha automática)
         descriptionArea = new JTextArea(4, 20);
         descriptionArea.setText(characterDescriptions[currentCharacterIndex]);
-        descriptionArea.setWrapStyleWord(true);  // Quebra no final das palavras
-        descriptionArea.setLineWrap(true);       // Ativa a quebra de linha automática
-        descriptionArea.setOpaque(false);        // Fundo transparente, parece com JLabel
-        descriptionArea.setEditable(false);      // Não editável
-        descriptionArea.setFocusable(false);     // Sem foco
-        descriptionArea.setFont(new Font("Arial", Font.ITALIC, 12));  // Texto em itálico
-        descriptionArea.setAlignmentX(Component.LEFT_ALIGNMENT);  // Alinhamento à esquerda
+        descriptionArea.setWrapStyleWord(true); // Quebra no final das palavras
+        descriptionArea.setLineWrap(true); // Ativa a quebra de linha automática
+        descriptionArea.setOpaque(false); // Fundo transparente, parece com JLabel
+        descriptionArea.setEditable(false); // Não editável
+        descriptionArea.setFocusable(false); // Sem foco
+        descriptionArea.setFont(new Font("Arial", Font.ITALIC, 12)); // Texto em itálico
+        descriptionArea.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
 
         // Botão "Próximo"
         confirmButton = new JButton("Próximo");
@@ -90,11 +90,11 @@ public class CharacterSelectionScreen extends JFrame {
 
         // Adiciona os componentes ao painel direito com espaçamentos
         rightPanel.add(nameLabel);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));  // Espaço vertical entre componentes
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço vertical entre componentes
         rightPanel.add(originLabel);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));  // Espaço vertical
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço vertical
         rightPanel.add(descriptionArea);
-        rightPanel.add(Box.createRigidArea(new Dimension(0, 20)));  // Espaço vertical maior antes do botão
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espaço vertical maior antes do botão
         rightPanel.add(confirmButton);
 
         // Ação de trocar de personagem
@@ -115,8 +115,13 @@ public class CharacterSelectionScreen extends JFrame {
         // Ação de iniciar o jogo
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                new Jogo(menuInicial);
+                if (pIndex == 0) {
+                    setVisible(false);
+                    new CharacterSelectionScreen(menuInicial, 1, characterNames[currentCharacterIndex]).setVisible(true);
+                } else if (pIndex == 1) {
+                    setVisible(false);
+                    new Jogo(menuInicial, p1Name, characterNames[currentCharacterIndex]);
+                }
             }
         });
 
@@ -127,7 +132,8 @@ public class CharacterSelectionScreen extends JFrame {
 
     // Atualiza as informações do personagem
     private void updateCharacterInfo() {
-        characterImageLabel.setIcon(new ImageIcon(characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // Redimensiona a imagem para 200x200 pixels
+        characterImageLabel.setIcon(new ImageIcon(
+                characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona a imagem
         nameLabel.setText("Nome: " + characterNames[currentCharacterIndex]);
         originLabel.setText("Naturalidade: " + characterOrigins[currentCharacterIndex]);
         descriptionArea.setText(characterDescriptions[currentCharacterIndex]);

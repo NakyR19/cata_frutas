@@ -125,6 +125,7 @@ public class PlayerController implements KeyListener {
         Elemento elemento = florestaComponent.getFloresta().getElementos()[novoX][novoY];
         Pedra pedra = (Pedra) elemento;
         pedra.interagir(player);
+        jogo.atualizarTurnoLabel();
     }
 
     // Se a tecla pressionada não for uma tecla de movimento, não faz nada
