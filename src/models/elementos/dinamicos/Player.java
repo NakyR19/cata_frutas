@@ -2,6 +2,7 @@ package models.elementos.dinamicos;
 
 import java.util.List;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 import controllers.PlayerController;
 import view.elementos.dinamico.PlayerComponent;
@@ -28,8 +29,8 @@ public class Player extends ElemDinamico {
     private int multiplicadorForca = 1;
     private String nome = "biboca";
     private PlayerComponent playerComponent;
+    private boolean cooldown = false;
 
-    
     /**
      * Construtor da classe Player.
      * 
@@ -44,7 +45,7 @@ public class Player extends ElemDinamico {
         this.capacidadeMochila = capacidadeMochila;
         // this.pontosMovimento = pontosMovimento;
     }
-    
+
     /**
      * Move o jogador para uma nova posição.
      * 
@@ -59,15 +60,15 @@ public class Player extends ElemDinamico {
             playerController.animateMovement();
         }
     }
-    
+
     public String getId() {
         return this.id;
     }
-    
+
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public void setPlayerComponent(PlayerComponent playerComponent) {
         this.playerComponent = playerComponent;
     }
@@ -75,12 +76,21 @@ public class Player extends ElemDinamico {
     public PlayerComponent getPlayerComponent() {
         return playerComponent;
     }
+
     public int getPontosMovimento() {
         return pontosMovimento;
     }
-    
+
     public void setPontosMovimento(int pontosMovimento) {
         this.pontosMovimento = pontosMovimento;
+    }
+
+    public boolean isCooldown() {
+        return cooldown;
+    }
+
+    public void setCooldown(boolean cooldown) {
+        this.cooldown = cooldown;
     }
 
     public List<Fruta> getMochila() {
@@ -178,5 +188,52 @@ public class Player extends ElemDinamico {
         Random random = new Random();
         int index = random.nextInt(this.mochila.size());
         return this.mochila.remove(index);
+    }
+
+    public int ajudantePapaiNoel(int empurrar) {
+        if (this.getNome().equals("Ajudante do Papai Noel")) {
+            Random random = new Random();
+            int num = random.nextInt(10);
+            if (num < 2) { // 20% de chance (0 ou 1)
+                empurrar = empurrar * 2;
+                String mensagem = "Eita! A habilidade especial do Ajudante de Papai Noel foi ativada! PRESENTES (a si mesmo...), quando essa habilidade é ativada, o empurrão irá levar o dobro de frutas do oponente comparado ao empurrão normal! Chuva de present... Ops! Chuva de frutas no chão!";
+                JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        return empurrar;
+    }
+
+    public void malandro(int qtdMalandros) {
+
+        if (qtdMalandros == 2) {
+            String mensagem = "Opa... Vejamos o que temos aqui! DOIS MALANDROS EM JOGO! A lábia é tão forte que sua habilidade especial se anula!";
+            JOptionPane.showMessageDialog(null, mensagem, "Malandro", JOptionPane.INFORMATION_MESSAGE);
+        } else if (qtdMalandros == 1) {
+            String mensagem = "Opa... Vejamos o que temos aqui! Um Malandro em jogo!\n Todo ínicio de turno ele convence seu adversário a lhe dar 3 pontos de movimento!\n Malandro é malandro, mané é mané, podes crer que é...";
+            JOptionPane.showMessageDialog(null, mensagem, "Malandro", JOptionPane.INFORMATION_MESSAGE);
+        } else if (qtdMalandros == 0) {
+            String mensagem = "Xiii... A quantidade de pontos roubad...\n Digo, que foi convecido a dar, foi tudo que tinha! Ficará esse turno sem jogar!";
+            JOptionPane.showMessageDialog(null, mensagem, "Malandro", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    public int edgreenCullenCountFrutas(){
+        int count = 0;
+        for (Fruta fruta : mochila) {
+            if (fruta instanceof Goiaba || fruta instanceof Abacate) {
+                count++;
+            } 
+        }
+        return count;
+    }
+
+    public void edgreenCullenMensagem(int qntdFrutas){
+        if (qntdFrutas > 7) {
+            String mensagem = "Opa, nosso amigo da natureza ganhará 7 pontos de movimento, por ter mais de 7 frutas verdes na mochila!";
+                JOptionPane.showMessageDialog(null, mensagem, "Edgreen Cullen", JOptionPane.INFORMATION_MESSAGE);
+        } else if (qntdFrutas > 0 && qntdFrutas <= 7) {
+            String mensagem = "Opa, nosso amigo da natureza ganhará "+qntdFrutas +" pontos de movimento, por ter essa exata quantidade de frutas verdes na mochila!";
+                JOptionPane.showMessageDialog(null, mensagem, "Edgreen Cullen", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

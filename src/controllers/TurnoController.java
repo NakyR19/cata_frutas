@@ -29,26 +29,31 @@ public class TurnoController {
         this.limiteMaracujas = floresta.getNumMaracujasTotais() - floresta.getNumMaracujas();
         this.dado = new Dado();
         this.turnoAtual = jogadorInicial;
-        this.turnoAtual.setPontosMovimento(dado.rolarDoisDados()); // Inicializa com 3 pontos de movimento
+
+        if (p1.getNome().equals("Malandro") || p2.getNome().equals("Malandro")) {
+            p1.malandro(1);
+        }
+        this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
+
     }
 
     public Player getTurnoAtual() {
         return turnoAtual;
     }
 
-    public int getLimiteMaracujas(){
+    public int getLimiteMaracujas() {
         return limiteMaracujas;
     }
 
-    public void setLimiteMaracujas(int n){
+    public void setLimiteMaracujas(int n) {
         limiteMaracujas = n;
     }
 
-    public Player VerificarVitoria(){//verifica se algum dos players tem pontos necessarios para vencer.
-        int pontos = (floresta.getNumMaracujasTotais()/2) + 1;
-        if(p1.getPontosVitoria() >= pontos)
+    public Player VerificarVitoria() {// verifica se algum dos players tem pontos necessarios para vencer.
+        int pontos = (floresta.getNumMaracujasTotais() / 2) + 1;
+        if (p1.getPontosVitoria() >= pontos)
             return p1;
-        if(p2.getPontosVitoria() >= pontos)
+        if (p2.getPontosVitoria() >= pontos)
             return p2;
         return null;
     }
@@ -60,10 +65,11 @@ public class TurnoController {
             turnoAtual = p1;
         }
 
-        turnoAtual.setPontosMovimento(dado.rolarDoisDados()); // Reseta os pontos de movimento para 3 no início do turno
+        distribuirPontosMovimento();
         System.out.println("Turno alternado para: " + turnoAtual.getId());
 
-        if(turnoAtual.getPoison()){//verifica se o player no turno estava envenenado, se estiver ele perde o status envenenado e o turno.
+        if (turnoAtual.getPoison()) {// verifica se o player no turno estava envenenado, se estiver ele perde o
+                                     // status envenenado e o turno.
             System.out.println(turnoAtual.getId() + " perdeu o turno pois estava envenenado.");
             turnoAtual.setPoison(false);
             alternarTurno();
@@ -71,50 +77,123 @@ public class TurnoController {
 
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
-        int arvoreDropMaracuja = (int)(Math.random() * floresta.getNumArvores() + 1);//variavel usada para ajudar a escolher uma arvore aleatoria
+        int arvoreDropMaracuja = (int) (Math.random() * floresta.getNumArvores() + 1);// variavel usada para ajudar a
+                                                                                      // escolher uma arvore aleatoria
 
-        for(int i = 0; i < floresta.getDimensao(); i++){//percorre a floresta, diminui a recarga das arvores e interage se tiver um player em baixo sem recarga
-            for(int j = 0; j < floresta.getDimensao(); j++){
-                    
-                if(elementos[i][j] instanceof Arvore){
+        for (int i = 0; i < floresta.getDimensao(); i++) {// percorre a floresta, diminui a recarga das arvores e
+                                                          // interage se tiver um player em baixo sem recarga
+            for (int j = 0; j < floresta.getDimensao(); j++) {
+
+                if (elementos[i][j] instanceof Arvore) {
                     Arvore arvore = (Arvore) elementos[i][j];
                     arvoreDropMaracuja--;
-    
-                    if(p1.getX() == i && p1.getY() == j){
+
+                    if (p1.getX() == i && p1.getY() == j) {
                         arvore.setControl(this);
                         arvore.interagir(p1);
                     }
-                    if(p2.getX() == i && p2.getY() == j){
+                    if (p2.getX() == i && p2.getY() == j) {
                         arvore.setControl(this);
                         arvore.interagir(p2);
                     }
-                    if(this.getLimiteMaracujas() > 0 && arvoreDropMaracuja == 0){//se for a arvore que foi escolhido e o limite de maracujas nao foi atingido dropa um maracuja adjacente
-                        int limTentativas = 20; //contador para caso sorteie uma arvore sem espaços livres adjacentes
-                        while(limTentativas > 0){
-                            int x = (int)(Math.random() * 3) - 1 + i;
-                            int y = (int)(Math.random() * 3) - 1 + j;
-                            if(x < floresta.getDimensao() && y < floresta.getDimensao() && x > -1 &&  y > -1){
-                                if(elementos[x][y] instanceof Grama){
+                    if (this.getLimiteMaracujas() > 0 && arvoreDropMaracuja == 0) {// se for a arvore que foi escolhido
+                                                                                   // e o limite de maracujas nao foi
+                                                                                   // atingido dropa um maracuja
+                                                                                   // adjacente
+                        int limTentativas = 20; // contador para caso sorteie uma arvore sem espaços livres adjacentes
+                        while (limTentativas > 0) {
+                            int x = (int) (Math.random() * 3) - 1 + i;
+                            int y = (int) (Math.random() * 3) - 1 + j;
+                            if (x < floresta.getDimensao() && y < floresta.getDimensao() && x > -1 && y > -1) {
+                                if (elementos[x][y] instanceof Grama) {
                                     elementos[x][y] = new Maracuja(x, y, floresta.getChanceBichadas());
-                                setLimiteMaracujas(getLimiteMaracujas() - 1);
+                                    setLimiteMaracujas(getLimiteMaracujas() - 1);
                                     break;
                                 }
                             }
-                            limTentativas--; 
-                        } if(limTentativas == 0) arvoreDropMaracuja++;//se não conseguiu alocar maracuja passa pra proxima arvore
+                            limTentativas--;
+                        }
+                        if (limTentativas == 0)
+                            arvoreDropMaracuja++;// se não conseguiu alocar maracuja passa pra proxima arvore
                     }
                     arvore.cooldownReduction();
                 }
             }
         }
 
-        if(VerificarVitoria() != null){
+        if (VerificarVitoria() != null) {
             System.out.println(VerificarVitoria().getId() + " ganhou");
             jogo.dispose();
             new MenuVitoria(VerificarVitoria());
         }
 
+    }
 
+    private void distribuirPontosMovimento() {
+        if (p1.getNome().equals("Malandro")) {
+            if (this.turnoAtual.getNome().equals("Malandro")) {
+                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 3);
 
+            } else if (this.turnoAtual.getNome().equals("Edgreen Cullen")) {
+                int sumMax = 0;
+                if (this.turnoAtual.edgreenCullenCountFrutas() > 7) {
+                    sumMax = 7;
+                } else {
+                    sumMax = this.turnoAtual.edgreenCullenCountFrutas();
+                }
+                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + sumMax - 3);
+                if (this.turnoAtual.getPontosMovimento() < 1) {
+                    p1.malandro(0);
+                    alternarTurno();
+                } else {
+                    this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
+                }
+
+            } else {
+                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
+                if (this.turnoAtual.getPontosMovimento() < 1) {
+                    p1.malandro(0);
+                    alternarTurno();
+                }
+            } // fimmmmmm
+        } else if (p2.getNome().equals("Malandro")) {
+            if (this.turnoAtual.getNome().equals("Malandro")) {
+                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 3);
+
+            } else if (this.turnoAtual.getNome().equals("Edgreen Cullen")) {
+                int sumMax = 0;
+                if (this.turnoAtual.edgreenCullenCountFrutas() > 7) {
+                    sumMax = 7;
+                } else {
+                    sumMax = this.turnoAtual.edgreenCullenCountFrutas();
+                }
+                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + sumMax - 3);
+                if (this.turnoAtual.getPontosMovimento() < 1) {
+                    p1.malandro(0);
+                    alternarTurno();
+                } else {
+                    this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
+                }
+
+            } else {
+                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
+                if (this.turnoAtual.getPontosMovimento() < 1) {
+                    p1.malandro(0);
+                    alternarTurno();
+                }
+            } // fimmmmmm
+        } else if (this.turnoAtual.getNome().equals("Edgreen Cullen")) {
+            int sumMax = 0;
+            if (this.turnoAtual.edgreenCullenCountFrutas() > 7) {
+                sumMax = 7;
+            } else {
+                sumMax = this.turnoAtual.edgreenCullenCountFrutas();
+            }
+            this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + sumMax);
+            this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
+
+        } else {
+            this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 3);
+        }
     }
 }

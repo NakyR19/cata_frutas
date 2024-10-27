@@ -149,8 +149,13 @@ public class CharacterSelectionScreen extends JFrame {
                     setVisible(false);
                     new CharacterSelectionScreen(menuInicial, 1, characterNames[currentCharacterIndex]).setVisible(true);
                 } else if (pIndex == 1) {
-                    setVisible(false);
-                    new Jogo(menuInicial, p1Name, characterNames[currentCharacterIndex]);
+
+                    if(p1Name.equals(characterNames[currentCharacterIndex])){
+                        JOptionPane.showMessageDialog(null, "Escolha outro personagem. O personagem do jogador 1 não pode ser igual ao do jogador 2.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        setVisible(false);
+                        new Jogo(menuInicial, p1Name, characterNames[currentCharacterIndex]);
+                    }
                 }
             }
         });

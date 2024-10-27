@@ -14,7 +14,6 @@ import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
 import view.Jogo;
 import view.ambiente.FlorestaComponent;
-
 /**
  * PlayerController é responsável por controlar o jogador "escutando" os eventos
  * do teclado.
@@ -32,6 +31,8 @@ public class PlayerController implements KeyListener {
     private boolean initialPositionCleared = false;
     private Player adversario;
     public int contPedras;
+    private boolean empurrou = false;
+    
 
 
     // Conjunto de teclas de controle
@@ -83,6 +84,10 @@ public class PlayerController implements KeyListener {
         return; // Se não houver pontos de movimento, não faz nada
     }
 
+    if (player.isCooldown()) {
+        return; // Se o cooldown estiver ativo, não faz nada
+    }
+
     int novoX = player.getX();
     int novoY = player.getY();
     int keyCode = e.getKeyCode();
@@ -121,6 +126,7 @@ public class PlayerController implements KeyListener {
     } else if(keyCode == KeyEvent.VK_F){//botão provisório para acabar a rodada, pode ser removido, trocado ou alterado futuramente
         System.out.println(player.getId() + " acabou com seu turno.");
         jogo.getTurnoController().alternarTurno();
+        resetEmpurrou();
         florestaComponent.repaint();
     }
 
@@ -151,15 +157,38 @@ public class PlayerController implements KeyListener {
         player.setPontosMovimento(player.getPontosMovimento() - 1); // Decresce os pontos de movimento
         System.out.println("Jogador " + player.getId() + " moveu para (" + novoX + ", " + novoY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
         jogo.atualizarTurnoLabel();
+        System.out.println(player.getX() + "" + player.getY() + " " + adversario.getX() +"" + adversario.getY());
+        System.out.println(isSamePos());
+        System.out.println(adversario.getMochila());
+        System.out.println("EMPURROU: " + empurrou);
+        if(isSamePos() && empurrou){
+            String mensagem = "Calma aí nobre " + player.getNome() + " tenha calma, só pode empurrar uma vez por turno!";
+            JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(isSamePos() && !empurrou){
+            empurrar();
+            System.out.println(adversario.getMochila());
+            empurrou = true;
+        }
     }
 
     // Alterna o turno se os pontos de movimento se esgotarem
     if (player.getPontosMovimento() <= 0) {
         jogo.getTurnoController().alternarTurno();
+        resetEmpurrou();
     }
 
     florestaComponent.repaint(); // Atualiza o desenho
     
+    // Evitando SPAM p/ andar (cooldown)
+    player.setCooldown(true);
+    new Timer(100, new ActionListener() { 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            player.setCooldown(false);
+            ((Timer) e.getSource()).stop();
+        }
+    }).start();
 
     
 }
@@ -214,11 +243,25 @@ public class PlayerController implements KeyListener {
         int calcForcaAdv = (int) Math.round(Math.log(forcaAdversario + 1) / Math.log(2));
 
         int empurrar = Math.max(0, calcForcaPlayer - calcForcaAdv);
+        
+        empurrar = player.ajudantePapaiNoel(empurrar);
+
         System.out.println(empurrar + "qntd frutas q cairao");
-        String mensagem = "Jogador que empurrou: " + player.getNome() + "\n" +
+        if(adversario.getMochila().size() == 0){
+            String mensagem = "Calma aí " + player.getNome() + " dê uma tregua, " + adversario.getNome()+ " nem frutas têm na mochila!";
+            JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+        } else if(empurrar > adversario.getMochila().size()){
+            String mensagem = "Jogador que empurrou: " + player.getNome() + "\n" +
+                          "Jogador que foi empurrado: " + adversario.getNome() + "\n" +
+                          "OOOPPPAAA, TODAS AS FRUTAS CAÍRAM, NO TOTAL DE:" + adversario.getMochila().size();
+        JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            String mensagem = "Jogador que empurrou: " + player.getNome() + "\n" +
                           "Jogador que foi empurrado: " + adversario.getNome() + "\n" +
                           "Quantidade de frutas que caíram: " + empurrar;
         JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
         for(int i = 0; i < empurrar && adversario.getMochila().size() > 0; i++) {
             Fruta fruta = adversario.removerFrutaAleatoria();
 
@@ -266,5 +309,17 @@ public class PlayerController implements KeyListener {
             }
         });
         timer.start();
+    }
+
+    public boolean isEmpurrou() {
+        return empurrou;
+    }
+
+    public void setEmpurrou(boolean empurrou) {
+        this.empurrou = empurrou;
+    }
+
+    public void resetEmpurrou(){
+        setEmpurrou(false);
     }
 }
