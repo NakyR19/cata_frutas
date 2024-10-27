@@ -66,6 +66,9 @@ public class TurnoController {
         }
 
         distribuirPontosMovimento();
+        if(this.turnoAtual.getNome() == "Maria Chiquinha"){
+            this.turnoAtual.mariaChiquinha();
+        }
         System.out.println("Turno alternado para: " + turnoAtual.getId());
 
         if (turnoAtual.getPoison()) {// verifica se o player no turno estava envenenado, se estiver ele perde o

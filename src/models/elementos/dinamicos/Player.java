@@ -217,23 +217,79 @@ public class Player extends ElemDinamico {
         }
     }
 
-    public int edgreenCullenCountFrutas(){
+    public int edgreenCullenCountFrutas() {
         int count = 0;
         for (Fruta fruta : mochila) {
             if (fruta instanceof Goiaba || fruta instanceof Abacate) {
                 count++;
-            } 
+            }
         }
         return count;
     }
 
-    public void edgreenCullenMensagem(int qntdFrutas){
+    public void edgreenCullenMensagem(int qntdFrutas) {
         if (qntdFrutas > 7) {
             String mensagem = "Opa, nosso amigo da natureza ganhará 7 pontos de movimento, por ter mais de 7 frutas verdes na mochila!";
-                JOptionPane.showMessageDialog(null, mensagem, "Edgreen Cullen", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, mensagem, "Edgreen Cullen", JOptionPane.INFORMATION_MESSAGE);
         } else if (qntdFrutas > 0 && qntdFrutas <= 7) {
-            String mensagem = "Opa, nosso amigo da natureza ganhará "+qntdFrutas +" pontos de movimento, por ter essa exata quantidade de frutas verdes na mochila!";
-                JOptionPane.showMessageDialog(null, mensagem, "Edgreen Cullen", JOptionPane.INFORMATION_MESSAGE);
+            String mensagem = "Opa, nosso amigo da natureza ganhará " + qntdFrutas
+                    + " pontos de movimento, por ter essa exata quantidade de frutas verdes na mochila!";
+            JOptionPane.showMessageDialog(null, mensagem, "Edgreen Cullen", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public Fruta gerarFrutaAleatoria() {
+        Random random = new Random();
+        int tipoFruta = random.nextInt(6);
+
+        switch (tipoFruta) {
+            case 0:
+                return new Coco(this.getX(), this.getY(), 0);
+            case 1:
+                return new Abacate(this.getX(), this.getY(), 0);
+            case 2:
+                return new Laranja(this.getX(), this.getY(), 0);
+            case 3:
+                return new Goiaba(this.getX(), this.getY(), 0);
+            case 4:
+                return new Acerola(this.getX(), this.getY(), 0);
+            case 5:
+                return new Amora(this.getX(), this.getY(), 0);
+            default:
+                return null;
+        }
+    }
+
+    public void mariaChiquinha() {
+        Fruta fruta, fruta1, fruta2;
+        String mensagem;
+        Random random = new Random();
+        int qntdFrutas = random.nextInt(10);
+        if (qntdFrutas < 2) {
+            mensagem = "Maria Chiquinha foi ao mato e voltou sem frutas!";
+
+        } else if (this.mochila.size() + 1 <= capacidadeMochila && qntdFrutas >= 2 && qntdFrutas < 7) {
+            fruta = gerarFrutaAleatoria();
+            this.mochila.add(fruta);
+            mensagem = "Maria Chiquinha foi ao mato e voltou com um(a) " + fruta.TipoFruta;
+        } else if (this.mochila.size() + 2 <= capacidadeMochila && qntdFrutas >= 7 && qntdFrutas < 8) {
+            fruta = gerarFrutaAleatoria();
+            this.mochila.add(fruta);
+            fruta1 = gerarFrutaAleatoria();
+            this.mochila.add(fruta1);
+            mensagem = "Maria Chiquinha foi ao mato e voltou com duas frutas: " + fruta.TipoFruta + " e " + fruta1.TipoFruta;
+        } else if (this.mochila.size() + 3 <= capacidadeMochila && qntdFrutas == 9) {
+            fruta = gerarFrutaAleatoria();
+            this.mochila.add(fruta);
+            fruta1 = gerarFrutaAleatoria();
+            this.mochila.add(fruta1);
+            fruta2 = gerarFrutaAleatoria();
+            this.mochila.add(fruta2);
+            mensagem = "Maria Chiquinha foi ao mato e voltou com três frutas: " + fruta.TipoFruta + ", " + fruta1.TipoFruta + " e " + fruta2.TipoFruta;
+        } else {
+            mensagem = "Maria Chiquinha foi ao mato, contudo estava com a mochila cheia, retornando sem nada!";
+        }
+
+        JOptionPane.showMessageDialog(null, mensagem, "Maria Chiquinha", JOptionPane.INFORMATION_MESSAGE);
     }
 }
