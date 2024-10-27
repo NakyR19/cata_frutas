@@ -10,6 +10,7 @@ public class MenuInicial extends JFrame {
 
     JButton buttonIniciarJogo;
     JButton buttonMenuMapas;
+    JButton buttonTutorial;
     JLabel logoLabel;
 
     /**
@@ -23,6 +24,7 @@ public class MenuInicial extends JFrame {
 
         this.buttonIniciarJogo = new JButton("Jogar");
         this.buttonMenuMapas = new JButton("Mapas");
+        this.buttonTutorial = new JButton("Tutorial");
         configFrame();
         configUI();
     }
@@ -58,9 +60,12 @@ public class MenuInicial extends JFrame {
         // tamanho e alinhamento
         buttonIniciarJogo.setPreferredSize(new Dimension(100, 30));
         buttonMenuMapas.setPreferredSize(new Dimension(100, 30));
+        buttonTutorial.setPreferredSize(new Dimension(100, 30));
+
         buttonIniciarJogo.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonMenuMapas.setAlignmentX(Component.CENTER_ALIGNMENT);
-
+        buttonTutorial.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         // add ActionListener aos botões
         buttonListeners();
 
@@ -69,6 +74,8 @@ public class MenuInicial extends JFrame {
         buttonPanel.add(buttonIniciarJogo);
         buttonPanel.add(Box.createVerticalStrut(10)); // padding entre os botões
         buttonPanel.add(buttonMenuMapas);
+        buttonPanel.add(Box.createVerticalStrut(10)); // padding entre os botões
+        buttonPanel.add(buttonTutorial);
         buttonPanel.add(Box.createVerticalGlue()); // add flexbox dps dos botões
         add(buttonPanel, BorderLayout.CENTER);
 
@@ -81,14 +88,19 @@ public class MenuInicial extends JFrame {
      */
     private void buttonListeners() {
         buttonIniciarJogo.addActionListener(e -> {
-            // setVisible(false);
-            // new Jogo(MenuInicial.this);
+             //setVisible(false);
+             //new Jogo(MenuInicial.this);
             setVisible(false);
         new CharacterSelectionScreen(MenuInicial.this, 0, "").setVisible(true);
         });
 
         buttonMenuMapas.addActionListener(e -> {
             new MenuMapas(MenuInicial.this);
+            setVisible(false);
+        });
+
+        buttonTutorial.addActionListener(e -> {
+            new Tutorial(MenuInicial.this);
             setVisible(false);
         });
     }
