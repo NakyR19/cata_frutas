@@ -14,6 +14,7 @@ import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
 import view.Jogo;
 import view.ambiente.FlorestaComponent;
+
 /**
  * PlayerController é responsável por controlar o jogador "escutando" os eventos
  * do teclado.
@@ -32,8 +33,6 @@ public class PlayerController implements KeyListener {
     private Player adversario;
     public int contPedras;
     private boolean empurrou = false;
-    
-
 
     // Conjunto de teclas de controle
     private int upKey;
@@ -64,134 +63,150 @@ public class PlayerController implements KeyListener {
         this.jogo = jogo;
         this.adversario = adversario;
     }
-    public FlorestaComponent getFlorestaComponent(){
+
+    public FlorestaComponent getFlorestaComponent() {
         return florestaComponent;
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-    
-    // Verifica se o jogador atual é o jogador do turno
-    System.out.println("Turno atual: " + jogo.getTurnoController().getTurnoAtual().getId());
-    System.out.println("Jogador atual: " + player.getId() + " com " + player.getPontosMovimento() + " pontos de movimento");
 
-    if (jogo.getTurnoController().getTurnoAtual() != player) {
-        System.out.println("Não é o turno do jogador " + player.getId());
-        return; // Se não for o turno do jogador, não faz nada
-    }
+        // Verifica se o jogador atual é o jogador do turno
+        System.out.println("Turno atual: " + jogo.getTurnoController().getTurnoAtual().getId());
+        System.out.println(
+                "Jogador atual: " + player.getId() + " com " + player.getPontosMovimento() + " pontos de movimento");
 
-    if (player.getPontosMovimento() <= 0) {
-        return; // Se não houver pontos de movimento, não faz nada
-    }
+        if (jogo.getTurnoController().getTurnoAtual() != player) {
+            System.out.println("Não é o turno do jogador " + player.getId());
+            return; // Se não for o turno do jogador, não faz nada
+        }
 
-    if (player.isCooldown()) {
-        return; // Se o cooldown estiver ativo, não faz nada
-    }
+        if (player.getPontosMovimento() <= 0) {
+            return; // Se não houver pontos de movimento, não faz nada
+        }
 
-    int novoX = player.getX();
-    int novoY = player.getY();
-    int keyCode = e.getKeyCode();
+        if (player.isCooldown()) {
+            return; // Se o cooldown estiver ativo, não faz nada
+        }
 
-    boolean isMovementKey = false;
+        int novoX = player.getX();
+        int novoY = player.getY();
+        int keyCode = e.getKeyCode();
 
-    if (keyCode == upKey) {
-        novoY += LESS_ONE_MV;
-        isMovementKey = true;
-        player.setDirecaoAtual("cima"); 
-    } else if (keyCode == downKey) {
-        novoY += PLUS_ONE_MV;
-        isMovementKey = true;
-        player.setDirecaoAtual("baixo");
-        animateMovement();
-    } else if (keyCode == leftKey) {
-        novoX += LESS_ONE_MV;
-        isMovementKey = true;
-        player.setDirecaoAtual("esquerda");
-    } else if (keyCode == rightKey) {
-        novoX += PLUS_ONE_MV;
-        isMovementKey = true;
-        player.setDirecaoAtual("direita");
+        boolean isMovementKey = false;
 
-    } else if (keyCode == KeyEvent.VK_E){
-        Elemento elemento = florestaComponent.getFloresta().getElementos()[player.getX()][player.getY()];
+        if (keyCode == upKey) {
+            novoY += LESS_ONE_MV;
+            isMovementKey = true;
+            player.setDirecaoAtual("cima");
+        } else if (keyCode == downKey) {
+            novoY += PLUS_ONE_MV;
+            isMovementKey = true;
+            player.setDirecaoAtual("baixo");
+            animateMovement();
+        } else if (keyCode == leftKey) {
+            novoX += LESS_ONE_MV;
+            isMovementKey = true;
+            player.setDirecaoAtual("esquerda");
+        } else if (keyCode == rightKey) {
+            novoX += PLUS_ONE_MV;
+            isMovementKey = true;
+            player.setDirecaoAtual("direita");
+
+        } else if (keyCode == KeyEvent.VK_E) {
+            Elemento elemento = florestaComponent.getFloresta().getElementos()[player.getX()][player.getY()];
             if (elemento instanceof Fruta) {
                 Fruta fruta = (Fruta) elemento;
                 if (player.pegarFruta(fruta)) {
+                    player.setPontosMovimento(player.getPontosMovimento() - 1);
+                    jogo.atualizarTurnoLabel();
+                    if (player.getPontosMovimento() < 1) {
+                        jogo.getTurnoController().alternarTurno();
+                    }
                     florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
                     System.out.println(fruta.TipoFruta + " coletada!");
                     florestaComponent.repaint();
                     System.out.println(player.getMochila());
                 }
             }
-    } else if(keyCode == KeyEvent.VK_F){//botão provisório para acabar a rodada, pode ser removido, trocado ou alterado futuramente
-        System.out.println(player.getId() + " acabou com seu turno.");
-        jogo.getTurnoController().alternarTurno();
-        resetEmpurrou();
-        florestaComponent.repaint();
-    }
-
-    if (verificarPedra(novoX, novoY)>0){
-        Elemento elemento = florestaComponent.getFloresta().getElementos()[novoX][novoY];
-        Pedra pedra = (Pedra) elemento;
-        pedra.interagir(player);
-        jogo.atualizarTurnoLabel();
-    }
-
-    // Se a tecla pressionada não for uma tecla de movimento, não faz nada
-    if (!isMovementKey) {
-        return;
-    }
-
-
-    verificarPedra(novoX, novoY);
-
-    // Limpa a posição inicial apenas uma vez
-    if (!initialPositionCleared) {
-        florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
-        initialPositionCleared = true;
-    }
-
-    // Atualiza a posição do player no objeto Player
-    if (!florestaComponent.getFloresta().isCollision(novoX, novoY)) {
-        player.mover(novoX, novoY);
-        player.setPontosMovimento(player.getPontosMovimento() - 1); // Decresce os pontos de movimento
-        System.out.println("Jogador " + player.getId() + " moveu para (" + novoX + ", " + novoY + ") com " + player.getPontosMovimento() + " pontos de movimento restantes");
-        jogo.atualizarTurnoLabel();
-        System.out.println(player.getX() + "" + player.getY() + " " + adversario.getX() +"" + adversario.getY());
-        System.out.println(isSamePos());
-        System.out.println(adversario.getMochila());
-        System.out.println("EMPURROU: " + empurrou);
-        if(isSamePos() && empurrou){
-            String mensagem = "Calma aí nobre " + player.getNome() + " tenha calma, só pode empurrar uma vez por turno!";
-            JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+        } else if (keyCode == KeyEvent.VK_F) {// botão provisório para acabar a rodada, pode ser removido, trocado ou
+                                              // alterado futuramente
+            System.out.println(player.getId() + " acabou com seu turno.");
+            jogo.getTurnoController().alternarTurno();
+            resetEmpurrou();
+            florestaComponent.repaint();
         }
-        if(isSamePos() && !empurrou){
-            empurrar();
+
+        if (verificarPedra(novoX, novoY) > 0) {
+            Elemento elemento = florestaComponent.getFloresta().getElementos()[novoX][novoY];
+            Pedra pedra = (Pedra) elemento;
+            pedra.interagir(player);
+            jogo.atualizarTurnoLabel();
+        }
+
+        // Se a tecla pressionada não for uma tecla de movimento, não faz nada
+        if (!isMovementKey) {
+            return;
+        }
+
+        verificarPedra(novoX, novoY);
+
+        // Limpa a posição inicial apenas uma vez
+        if (!initialPositionCleared) {
+            florestaComponent.getFloresta().setTileAsGrama(player.getX(), player.getY());
+            initialPositionCleared = true;
+        }
+
+        int posAnteriorX = player.getX();
+        int posAnteriorY = player.getY();
+
+        // Atualiza a posição do player no objeto Player
+        if (!florestaComponent.getFloresta().isCollision(novoX, novoY)) {
+            if (!isSamePos()) {
+                player.mover(novoX, novoY);
+                player.setPontosMovimento(player.getPontosMovimento() - 1); // Decresce os pontos de movimento
+                System.out.println("Jogador " + player.getId() + " moveu para (" + novoX + ", " + novoY + ") com "
+                        + player.getPontosMovimento() + " pontos de movimento restantes");
+                jogo.atualizarTurnoLabel();
+                System.out
+                        .println(player.getX() + "" + player.getY() + " " + adversario.getX() + "" + adversario.getY());
+            }
+            System.out.println(isSamePos());
             System.out.println(adversario.getMochila());
-            empurrou = true;
+            System.out.println("EMPURROU: " + empurrou);
+            if (isSamePos() && empurrou) {
+                String mensagem = "Calma aí nobre " + player.getNome()
+                        + " tenha calma, só pode empurrar uma vez por turno!";
+                JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+                player.mover(posAnteriorX, posAnteriorY);
+            }
+            if (isSamePos() && !empurrou) {
+                empurrar();
+                player.mover(posAnteriorX, posAnteriorY);
+                System.out.println(adversario.getMochila());
+                empurrou = true;
+            }
         }
-    }
 
-    // Alterna o turno se os pontos de movimento se esgotarem
-    if (player.getPontosMovimento() <= 0) {
-        jogo.getTurnoController().alternarTurno();
-        resetEmpurrou();
-    }
-
-    florestaComponent.repaint(); // Atualiza o desenho
-    
-    // Evitando SPAM p/ andar (cooldown)
-    player.setCooldown(true);
-    new Timer(100, new ActionListener() { 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            player.setCooldown(false);
-            ((Timer) e.getSource()).stop();
+        // Alterna o turno se os pontos de movimento se esgotarem
+        if (player.getPontosMovimento() <= 0) {
+            jogo.getTurnoController().alternarTurno();
+            resetEmpurrou();
         }
-    }).start();
 
-    
-}
+        florestaComponent.repaint(); // Atualiza o desenho
+
+        // Evitando SPAM p/ andar (cooldown)
+        player.setCooldown(true);
+        new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                player.setCooldown(false);
+                ((Timer) e.getSource()).stop();
+            }
+        }).start();
+
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -201,13 +216,13 @@ public class PlayerController implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
-       //Verifica se o objeto na frente é uma pedra 
-    public int verificarPedra(int x, int y){
+    // Verifica se o objeto na frente é uma pedra
+    public int verificarPedra(int x, int y) {
         Elemento elemento = florestaComponent.getFloresta().getElementos()[x][y];
-        if (x < 0 || x >= florestaComponent.getFloresta().getDimensao() || y < 0 || y >= florestaComponent.getFloresta().getDimensao()){
+        if (x < 0 || x >= florestaComponent.getFloresta().getDimensao() || y < 0
+                || y >= florestaComponent.getFloresta().getDimensao()) {
             return 0;
-        }
-        else if (elemento instanceof Pedra){
+        } else if (elemento instanceof Pedra) {
             switch (player.getDirecaoAtual()) {
                 case "direita":
                     contPedras = 1 + verificarPedra(x + 1, y);
@@ -216,7 +231,7 @@ public class PlayerController implements KeyListener {
                     contPedras = 1 + verificarPedra(x - 1, y);
                     return contPedras;
                 case "cima":
-                    contPedras =  1 + verificarPedra(x, y - 1);
+                    contPedras = 1 + verificarPedra(x, y - 1);
                     return contPedras;
                 case "baixo":
                     contPedras = 1 + verificarPedra(x, y + 1);
@@ -227,14 +242,14 @@ public class PlayerController implements KeyListener {
         } else {
             return 0;
         }
-        
+
     }
 
-    public boolean isSamePos(){
+    public boolean isSamePos() {
         return player.getX() == adversario.getX() && player.getY() == adversario.getY();
     }
 
-    public void empurrar(){
+    public void empurrar() {
         int forcaJogador = player.getForca();
         System.out.println(forcaJogador);
         int forcaAdversario = adversario.getForca();
@@ -243,33 +258,34 @@ public class PlayerController implements KeyListener {
         int calcForcaAdv = (int) Math.round(Math.log(forcaAdversario + 1) / Math.log(2));
 
         int empurrar = Math.max(0, calcForcaPlayer - calcForcaAdv);
-        
+
         empurrar = player.ajudantePapaiNoel(empurrar);
 
         System.out.println(empurrar + "qntd frutas q cairao");
-        if(adversario.getMochila().size() == 0){
-            String mensagem = "Calma aí " + player.getNome() + " dê uma tregua, " + adversario.getNome()+ " nem frutas têm na mochila!";
+        if (adversario.getMochila().size() == 0) {
+            String mensagem = "Calma aí " + player.getNome() + " dê uma tregua, " + adversario.getNome()
+                    + " nem frutas têm na mochila!";
             JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
-        } else if(empurrar > adversario.getMochila().size()){
+        } else if (empurrar > adversario.getMochila().size()) {
             String mensagem = "Jogador que empurrou: " + player.getNome() + "\n" +
-                          "Jogador que foi empurrado: " + adversario.getNome() + "\n" +
-                          "OOOPPPAAA, TODAS AS FRUTAS CAÍRAM, NO TOTAL DE:" + adversario.getMochila().size();
-        JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+                    "Jogador que foi empurrado: " + adversario.getNome() + "\n" +
+                    "OOOPPPAAA, TODAS AS FRUTAS CAÍRAM, NO TOTAL DE:" + adversario.getMochila().size();
+            JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
         } else {
             String mensagem = "Jogador que empurrou: " + player.getNome() + "\n" +
-                          "Jogador que foi empurrado: " + adversario.getNome() + "\n" +
-                          "Quantidade de frutas que caíram: " + empurrar;
-        JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
+                    "Jogador que foi empurrado: " + adversario.getNome() + "\n" +
+                    "Quantidade de frutas que caíram: " + empurrar;
+            JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-        for(int i = 0; i < empurrar && adversario.getMochila().size() > 0; i++) {
+
+        for (int i = 0; i < empurrar && adversario.getMochila().size() > 0; i++) {
             Fruta fruta = adversario.removerFrutaAleatoria();
 
             int posX = adversario.getX();
             int posY = adversario.getY();
 
             // Verifica as posições adjacentes
-            int[][] direcoes = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // Cima, Baixo, Esquerda, Direita
+            int[][] direcoes = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } }; // Cima, Baixo, Esquerda, Direita
             boolean frutaColocada = false;
 
             for (int[] direcao : direcoes) {
@@ -277,26 +293,27 @@ public class PlayerController implements KeyListener {
                 int novaY = posY + direcao[1];
 
                 if (novaX >= 0 && novaX < florestaComponent.getFloresta().getDimensao() &&
-                novaY >= 0 && novaY < florestaComponent.getFloresta().getDimensao() &&
-                florestaComponent.getFloresta().getElementos()[novaX][novaY] instanceof Grama) {
-                
-                florestaComponent.getFloresta().setFruta(novaX, novaY, fruta);
-                frutaColocada = true;
-                System.out.println("Fruta colocada em X:" + novaX + ",Y:" + novaY);
-                florestaComponent.repaint();
-                break;
-            }
+                        novaY >= 0 && novaY < florestaComponent.getFloresta().getDimensao() &&
+                        florestaComponent.getFloresta().getElementos()[novaX][novaY] instanceof Grama) {
 
-        }
-        if(!frutaColocada){
-            System.out.println("Sem espaço no campo");
-        }
+                    florestaComponent.getFloresta().setFruta(novaX, novaY, fruta);
+                    frutaColocada = true;
+                    System.out.println("Fruta colocada em X:" + novaX + ",Y:" + novaY);
+                    florestaComponent.repaint();
+                    break;
+                }
+
+            }
+            if (!frutaColocada) {
+                System.out.println("Sem espaço no campo");
+            }
         }
     }
+
     public void animateMovement() {
         Timer timer = new Timer(50, new ActionListener() { // 50 ms para cada frame
             private int frameCount = 0;
-    
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (frameCount < 3) { // 3 frames de animação
@@ -319,7 +336,7 @@ public class PlayerController implements KeyListener {
         this.empurrou = empurrou;
     }
 
-    public void resetEmpurrou(){
+    public void resetEmpurrou() {
         setEmpurrou(false);
     }
 }
