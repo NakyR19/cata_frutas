@@ -7,6 +7,7 @@ package models.elementos.dinamicos;
  */
 public class Goiaba extends Fruta {
 
+    private int chanceBichada;
     /**
      * Construtor para a classe Goiaba.
      * Inicializa a fruta com suas coordenadas e define o tipo como "Goiaba".
@@ -19,6 +20,7 @@ public class Goiaba extends Fruta {
     public Goiaba(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
         this.TipoFruta = "Goiaba";
+        this.chanceBichada = chanceBichada;
 
         if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
@@ -41,6 +43,31 @@ public class Goiaba extends Fruta {
          } else {
              player.setPoison(true);
              System.out.println(player.getId() + " comeu uma fruta bichada e está envenenado!");
+         }
+
+         if(player.getNome().equals("Cosplayer")){//da um efeito aleatorio de fruta se for cosplayer
+            switch((int)(Math.random()*3 )){
+                case 0:
+                    System.out.println(this.TipoFruta + " fez cosplay de Coco!");
+                    Coco coco = new Coco(x, y, chanceBichada);
+                    coco.aplicarEfeito(player);
+                    break;
+
+                case 1:
+                    System.out.println(this.TipoFruta + " fez cosplay de Laranja!");
+                    Laranja laranja = new Laranja(x, y, chanceBichada);
+                    laranja.aplicarEfeito(player);
+                    break;
+
+                case 2: 
+                    System.out.println(this.TipoFruta + " fez cosplay de Abacate!");
+                    Abacate abacate = new Abacate(x, y, chanceBichada);
+                    abacate.aplicarEfeito(player);
+                    break;
+
+                default:
+                    break;
+            }
          }
     }
 

@@ -7,6 +7,7 @@ package models.elementos.dinamicos;
  */
 public class Amora extends Fruta{
 
+    private int chanceBichada;
     /**
      * Construtor para a classe Amora.
      * Inicializa a fruta com suas coordenadas, chance de ser bichada e define o tipo como "Amora".
@@ -18,6 +19,7 @@ public class Amora extends Fruta{
     public Amora(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
         this.TipoFruta = "Amora";
+        this.chanceBichada = chanceBichada;
 
         if ((int)(Math.random() * 100 + 1) > chanceBichada) {
             this.Bichada = false;
@@ -40,6 +42,31 @@ public class Amora extends Fruta{
          } else {
              player.setPoison(true);
              System.out.println(player.getId() + " comeu uma fruta bichada e está envenenado!");
+         }
+
+         if(player.getNome().equals("Cosplayer")){//da um efeito aleatorio de fruta se for cosplayer
+            switch((int)(Math.random()*3 )){
+                case 0:
+                    System.out.println(this.TipoFruta + " fez cosplay de Coco!");
+                    Coco coco = new Coco(x, y, chanceBichada);
+                    coco.aplicarEfeito(player);
+                    break;
+
+                case 1:
+                    System.out.println(this.TipoFruta + " fez cosplay de Laranja!");
+                    Laranja laranja = new Laranja(x, y, chanceBichada);
+                    laranja.aplicarEfeito(player);
+                    break;
+
+                case 2: 
+                    System.out.println(this.TipoFruta + " fez cosplay de Abacate!");
+                    Abacate abacate = new Abacate(x, y, chanceBichada);
+                    abacate.aplicarEfeito(player);
+                    break;
+
+                default:
+                    break;
+            }
          }
     }
 

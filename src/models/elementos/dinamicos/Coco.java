@@ -42,7 +42,12 @@ package models.elementos.dinamicos;
                 player.setPoison(true);
                 System.out.println(player.getId() + " comeu um coco e tá ruinzinho!");
             }
-            player.setPontosMovimento(player.getPontosMovimento()*2);
+
+            if(player.getNome().equals("Praiana"))//se for praiana multiplica em 3 os pontos, e não multiplica por 2
+                player.setPontosMovimento(player.getPontosMovimento()*3);
+            else
+                player.setPontosMovimento(player.getPontosMovimento()*2);
+
             System.out.println(player.getId() + " está com mais agilidade.");
             return;
  }
