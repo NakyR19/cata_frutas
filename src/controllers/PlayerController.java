@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import models.elementos.Elemento;
 import models.elementos.dinamicos.Fruta;
+import models.elementos.dinamicos.Maracuja;
 import models.elementos.dinamicos.Player;
 import models.elementos.estaticos.Grama;
 import models.elementos.estaticos.Pedra;
@@ -118,6 +119,11 @@ public class PlayerController implements KeyListener {
             if (elemento instanceof Fruta) {
                 Fruta fruta = (Fruta) elemento;
                 if (player.pegarFruta(fruta)) {
+                    if(player.getNome().equals("Ash Ketchup") && !(fruta instanceof Maracuja)){
+                        player.pegarFruta(fruta);
+                        System.out.println("Ash Ketchup capturou uma fruta selvagem!");
+                    }
+                        
                     player.setPontosMovimento(player.getPontosMovimento() - 1);
                     jogo.atualizarTurnoLabel();
                     if (player.getPontosMovimento() < 1) {
@@ -129,8 +135,7 @@ public class PlayerController implements KeyListener {
                     System.out.println(player.getMochila());
                 }
             }
-        } else if (keyCode == KeyEvent.VK_F) {// botão provisório para acabar a rodada, pode ser removido, trocado ou
-                                              // alterado futuramente
+        } else if (keyCode == KeyEvent.VK_F) {// botão para acabar a rodada
             System.out.println(player.getId() + " acabou com seu turno.");
             jogo.getTurnoController().alternarTurno();
             resetEmpurrou();
@@ -260,6 +265,13 @@ public class PlayerController implements KeyListener {
         int empurrar = Math.max(0, calcForcaPlayer - calcForcaAdv);
 
         empurrar = player.ajudantePapaiNoel(empurrar);
+
+        if(player.getNome().equals("Ametista")){//se for ametista que empurra tem 50% de chance de envenenar
+            if((int)(Math.random() * 100 + 1) > 50){
+                adversario.setPoison(true);
+                System.out.println("Ametista usou um truquezinho para envenenar " + adversario.getNome());
+            }
+        }
 
         System.out.println(empurrar + "qntd frutas q cairao");
         if (adversario.getMochila().size() == 0) {

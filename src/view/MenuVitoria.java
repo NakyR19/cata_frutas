@@ -62,7 +62,7 @@ public class MenuVitoria extends JFrame{
         vencedorIcon.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //texto parabenizando o vencedor
-        texto = new JLabel(vencedor.getNome() + " (" + vencedor.getId() + ") ganhou!");
+        texto = new JLabel(vencedor.getNome() + " ganhou!");
         texto.setFont(new Font("Arial", Font.BOLD, 16)); 
         texto.setAlignmentX(Component.CENTER_ALIGNMENT);
         texto.setForeground(Color.decode("#FFFFFF"));
