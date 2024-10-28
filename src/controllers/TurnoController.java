@@ -50,7 +50,6 @@ public class TurnoController {
             p1.malandro(1);
         }
         this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
-
     }
 
     public Player getTurnoAtual() {
@@ -95,6 +94,16 @@ public class TurnoController {
         }
 
         distribuirPontosMovimento();
+
+        if (turnoAtual.getNome().equals("Fadinha")) {
+            if((int)(Math.random() * 100 + 1) > 50){
+                turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 5);
+                System.out.println("ganhou pontos de movimento");
+            } else {
+                turnoAtual.setMultiplicadorForca(turnoAtual.getMultiplicadorForca() + 5);
+                System.out.println("ganhou força");
+            }
+        }
         if(this.turnoAtual.getNome() == "Maria Chiquinha"){
             this.turnoAtual.mariaChiquinha();
         }
@@ -186,7 +195,14 @@ public class TurnoController {
                     this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
                 }
 
-            } else {
+            } //else if(){
+            // VAI TER QUE USAR ESSE ELSE IF CHECANDO SE O JOGADOR TURNO ATUAL É ENZO, SE FOR VOCÊ FAZ A LÓGICA NOVAMENTE AQUI, LEMBRANDO QUE ELE TODOS ROUNDS TERÁ -6 PONTOS DE MOVIMENTO, VOCÊ SETA OS PTS DE MOVIMENTO ROLANDO O DADOS E DIMINUINDO EM 6, SE FOR <= 0 VOCÊ ALTERNA O TURNO COM alternarTurno();, sugiro também colocar uma mensagem avisando que o turno foi finalizado, você pode criar uma função na classe player e chamar aqui com turnoAtual.(nome da função); 
+            // public void blablabla(){
+                // msg = "Sala";
+                    // JOptionPane.showMessageDialog(null, msg, "Enzo Gabriel", JOptionPane.INFORMATION_MESSAGE);
+            // }
+            //}
+            else {
                 this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
                 if (this.turnoAtual.getPontosMovimento() < 1) {
                     p1.malandro(0);
@@ -212,7 +228,9 @@ public class TurnoController {
                     this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
                 }
 
-            } else {
+            } // CHECA AQUI NOVAMENTE A MESMA COISA QUE ANTES, PODE REPETIR O CÓDIGO SEM PROBLEMAS!!!!!!!!! ATENÇÃO QUERIDA MOÇOILA A QUEM VÓS FALO
+            
+            else {
                 this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
                 if (this.turnoAtual.getPontosMovimento() < 1) {
                     p1.malandro(0);
@@ -230,7 +248,13 @@ public class TurnoController {
             this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
 
         } else {
-            this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 3);
+            this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
+        } if (turnoAtual.getNome().equals("Enzo Gabriel")) {
+            if(turnoAtual.getPontosMovimento() <= 3){
+                turnoAtual.setPontosMovimento(1);
+            } else{
+                turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
+            }
         }
     }
 }
