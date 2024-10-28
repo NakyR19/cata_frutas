@@ -302,7 +302,7 @@ public class PlayerController implements KeyListener {
         if(player.getNome().equals("Ametista")){//se for ametista que empurra tem 50% de chance de envenenar
             if((int)(Math.random() * 100 + 1) > 50){
                 adversario.setPoison(true);
-                String mensagem = "Ametista envenenou " + adversario.getNome();
+                String mensagem = "Ametista usou uma magia e envenenou " + adversario.getNome();
                 JOptionPane.showMessageDialog(null, mensagem, "Resultado do Empurrão", JOptionPane.INFORMATION_MESSAGE);
             }
         }

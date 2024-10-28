@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class CharacterSelectionScreen extends JFrame {
     private JLabel characterImageLabel;
     private JLabel nameLabel, originLabel;
-    private JTextArea descriptionArea;
+    private JTextArea descriptionArea, modiferArea;
     private JButton nextButton, prevButton, confirmButton;
     // private int pIndex;
 
@@ -43,11 +43,28 @@ public class CharacterSelectionScreen extends JFrame {
                                 "Que c'ocê foi fazer no mato?",
             "Faria Limer com orgulho, Enzo Gabriel nunca pisou num sitío, fazenda ou algo parecido, a coisa mais próxima de uma floresta em que já pisou, foi no videogame 'playando meuh' Stardew Valley.",
             "Vive na praia, não tem muito o que falar dela não, apenas que está sempre bronzeada. (Isso vai render uns problemas de pele no futuro, mas... Quem disse que é problema meu?).",
-            "Adora ler todo o tipo de livro, além de amar Steven Universo, deseja ser escritora quando crescer, é uma verdadeira sonhadora! Pena que as livrarias estão falindo.",
+            "Adoro ler todo tipo de livro, além de ser uma fiel seguidora das artes das trevas e uma verdadeira dependente do tarô! Pena que nenhuma carta acerta meu futuro.",
             "Campeã Mundial de Skate e com duas medalhas olímpicas no currículo. Um verdadeiro prodígio. (Se eu fosse primo dela choraria, não sei se por orgulho, ou por ter alguém na família falando: 'Ain mas sua prima é amada pelo Brasil todo, pq vc não é igual a ela?')",
             "É um vampiro com uma personalidade sensível e charmosa, mas não muito comunicativo, contudo, ao contrário dos vampiros usuais, que chupam sangue, esse tem uma preferência incomum, ele prefere chupar a clorofila das plantas, motivo esse por qual seu cabelo está verde.",
 
     };
+
+    private String[] charactersModifiers = { "Ao início de cada turno, convence com sua lábia o adversário lhe dar 3pts de movimento.",
+                                             "Ao empurrar um adversário tem chance de 20% de dobrar a quantidade de frutas que caem no chão.",
+                                             "Ao pegar uma fruta que não seja maracujá, ele ganha outra cópia da fruta.",
+                                             "Ao comer uma fruta sem efeito a fruta faz cosplay e da um efeito aleatório.",
+                                             "Vai ao mato todo fim de turno e tem chance de voltar com uma quantidade de 0 a 3 frutas aleatórias, \r\n" + //
+                                             " sendo 20% de chance de voltar sem nada, 50% de chance de voltar com uma fruta, 20% de chance de voltar com duas frutas \r\n" + //
+                                             " e 10% de chance de voltar com 3 frutas, sendo uma chance de 60% dessa fruta ser sem efeito, \r\n" + //
+                                             "logo 40% de ser de chance de fruta com efeito.",
+                                             "Herdou uma grande mochila, mas seu peso e lerdeza diminuem seus pontos de movimento.",
+                                             "Chegada num coco, ao comer um multiplica seus pontos de movimento em 3.",
+                                             "Ao empurrar tem chance de 50% de uma magia das trevas fazer efeito, envenenando o oponente.",
+                                             "Queridinha\n" + //
+                                             "Amada pelo Brasil, tem uma chance de receber presentes dos seus fãs no turno, seja aumento na força, ou pontos de movimento.",
+                                             "Ganha pontos de movimento extra sobre a quantidade de frutas verdes na sua mochila, limite de 5pts por turno."
+    };
+
     private ImageIcon[] characterImages = {
         new ImageIcon(getClass().getResource("/res/images/malandro_0.png")),
         new ImageIcon(getClass().getResource("/res/images/ajudante0.png")),
@@ -128,6 +145,16 @@ public class CharacterSelectionScreen extends JFrame {
         descriptionArea.setFont(new Font("Arial", Font.ITALIC, 12)); // Texto em itálico
         descriptionArea.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
 
+        modiferArea = new JTextArea(4, 20);
+        modiferArea.setText(charactersModifiers[currentCharacterIndex]);
+        modiferArea.setWrapStyleWord(true); // Quebra no final das palavras
+        modiferArea.setLineWrap(true); // Ativa a quebra de linha automática
+        modiferArea.setOpaque(false); // Fundo transparente, parece com JLabel
+        modiferArea.setEditable(false); // Não editável
+        modiferArea.setFocusable(false); // Sem foco
+        modiferArea.setFont(new Font("Arial", Font.ITALIC, 12)); // Texto em itálico
+        modiferArea.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
+
         // Botão "Próximo"
         confirmButton = new JButton("Próximo");
         confirmButton.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -138,6 +165,8 @@ public class CharacterSelectionScreen extends JFrame {
         rightPanel.add(originLabel);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço vertical
         rightPanel.add(descriptionArea);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        rightPanel.add(modiferArea);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espaço vertical maior antes do botão
         rightPanel.add(confirmButton);
 
@@ -190,5 +219,6 @@ public class CharacterSelectionScreen extends JFrame {
         nameLabel.setText("Nome: " + characterNames[currentCharacterIndex]);
         originLabel.setText("Naturalidade: " + characterOrigins[currentCharacterIndex]);
         descriptionArea.setText(characterDescriptions[currentCharacterIndex]);
+        modiferArea.setText("Habilidade: " + charactersModifiers[currentCharacterIndex]);
     }
 }
