@@ -1,4 +1,5 @@
 package models.elementos.dinamicos;
+import javax.swing.JOptionPane;
 
 /**
  * representa a fruta laranja, fruta antidoto no jogo.
@@ -43,6 +44,7 @@ public class Laranja extends Fruta {
         if(!this.Bichada){
             player.setPoison(false);
             System.out.println(player.getId() + " comeu uma laranja e se sente saudável!");
+            JOptionPane.showMessageDialog(null, "O player está se sentido o Dráuzio Varella!\nSua saúde voltou ao ingerir 10 comprimidos de vitamina C... Digo, ao comer a laranja!", "Laranja", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         System.out.println(player.getId() + " comeu uma laranja mas sentiu que não fez efeito...");  

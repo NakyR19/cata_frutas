@@ -3,7 +3,8 @@ package models.elementos.dinamicos;
 import java.util.List;
 import java.util.Random;
 import javax.swing.JOptionPane;
-
+import java.util.HashMap;
+import java.util.Map;
 import controllers.PlayerController;
 import view.elementos.dinamico.PlayerComponent;
 
@@ -313,6 +314,43 @@ public class Player extends ElemDinamico {
                 return new Amora(this.getX(), this.getY(), 0);
             default:
                 return null;
+        }
+    }
+
+    public void consumirFruta(String tipoFruta) {
+        for (Fruta fruta : mochila) {
+            if (fruta.TipoFruta.equals(tipoFruta)) {
+                fruta.aplicarEfeito(this);
+                mochila.remove(fruta);
+                break;
+            }
+        }
+    }
+
+    public void exibirInventario() {
+        if (mochila.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "A mochila está vazia!", "Inventário", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        StringBuilder inventario = new StringBuilder("use fruta, use fruta, use fruta\n");
+        Map<String, Integer> contagemFrutas = new HashMap<>();
+    
+        for (Fruta fruta : mochila) {
+            if (!(fruta instanceof Maracuja)) {
+                contagemFrutas.put(fruta.TipoFruta, contagemFrutas.getOrDefault(fruta.TipoFruta, 0) + 1);
+            }
+        }
+    
+        for (Map.Entry<String, Integer> entry : contagemFrutas.entrySet()) {
+            inventario.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+    
+        String[] opcoes = contagemFrutas.keySet().toArray(new String[0]);
+        String frutaSelecionada = (String) JOptionPane.showInputDialog(null, inventario.toString(), "Mochila",
+                JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
+    
+        if (frutaSelecionada != null) {
+            consumirFruta(frutaSelecionada);
         }
     }
 

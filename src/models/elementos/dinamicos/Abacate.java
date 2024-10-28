@@ -1,4 +1,5 @@
 package models.elementos.dinamicos;
+import javax.swing.JOptionPane;
 
 /**
  * A classe Abacate representa uma fruta que, quando coletada, dobra a força do competidor.
@@ -49,6 +50,7 @@ public class Abacate extends Fruta{
         }
         player.setMultiplicadorForca(player.getMultiplicadorForca()*2);
         System.out.println(player.getId() + " está com o dobro de força.");
+        JOptionPane.showMessageDialog(null, "O player está se sentido o Popeye!\nSua força misteriosamente dobrou ao comer o abacate!", "Abacate", JOptionPane.INFORMATION_MESSAGE);
         return;
     }
 

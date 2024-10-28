@@ -151,6 +151,9 @@ public class PlayerController implements KeyListener {
             jogo.getTurnoController().alternarTurno();
             resetEmpurrou();
             florestaComponent.repaint();
+        } else if (keyCode == KeyEvent.VK_I) {
+            player.exibirInventario();
+            return;
         }
 
         if (verificarPedra(novoX, novoY) > 0) {
