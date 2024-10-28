@@ -196,24 +196,7 @@ public class TurnoController {
                     this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
                 }
 
-            }else if(turnoAtual.getNome().equals("Enzo Gabriel")){   
-                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados()-6);
-                System.out.println("pontos do enzo: "+turnoAtual.getPontosMovimento());
-                if(turnoAtual.getPontosMovimento() <= 0){
-                    System.out.println("CHAMADA1");
-                    turnoAtual.enzoPerdeuVez();
-                    alternarTurno();
-                }
             }
-            /*  VAI TER QUE USAR ESSE ELSE IF CHECANDO SE O JOGADOR TURNO ATUAL É ENZO, SE FOR VOCÊ FAZ A LÓGICA NOVAMENTE AQUI,
-             LEMBRANDO QUE ELE TODOS ROUNDS TERÁ -6 PONTOS DE MOVIMENTO, VOCÊ SETA OS PTS DE MOVIMENTO ROLANDO O DADOS E 
-             DIMINUINDO EM 6, SE FOR <= 0 VOCÊ ALTERNA O TURNO COM alternarTurno();, sugiro também colocar uma mensagem avisando 
-             que o turno foi finalizado, você pode criar uma função na classe player e chamar aqui com turnoAtual.(nome da função); 
-             public void blablabla(){
-                msg = "Sala";
-                     JOptionPane.showMessageDialog(null, msg, "Enzo Gabriel", JOptionPane.INFORMATION_MESSAGE);
-             }
-            }*/
                     
             
             else {
@@ -243,18 +226,7 @@ public class TurnoController {
                     this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
                 }
 
-            } else if(turnoAtual.getNome().equals("Enzo Gabriel")){   
-                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 6);
-                System.out.println("pontos do enzo: "+turnoAtual.getPontosMovimento());
-                if(turnoAtual.getPontosMovimento() <= 0){
-                    System.out.println("CHAMADA2");
-                    turnoAtual.enzoPerdeuVez();
-                    alternarTurno();
-                }
-            }
-            /*  CHECA AQUI NOVAMENTE A MESMA COISA QUE ANTES, PODE REPETIR O CÓDIGO SEM PROBLEMAS!!!!!!!!! ATENÇÃO
-             QUERIDA MOÇOILA A QUEM VÓS FALO
-            */
+            } 
             else {
                 this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
                 if (this.turnoAtual.getPontosMovimento() < 1) {
@@ -274,18 +246,6 @@ public class TurnoController {
 
         } else {
             this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
-        } if(!(p1.getNome().equals("Malandro") )|| !(p2.getNome().equals("Malandro"))){
-            if (turnoAtual.getNome().equals("Enzo Gabriel")) {
-                this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
-                if(turnoAtual.getPontosMovimento() <= 3){
-                    System.out.println("CHAMADA33");
-
-                    turnoAtual.enzoPerdeuVez();
-                    alternarTurno();
-                } else{
-                    turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
-                    }
-                }
-            }
+            } 
         }
     }

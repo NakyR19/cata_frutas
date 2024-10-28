@@ -353,9 +353,4 @@ public class Player extends ElemDinamico {
 
         JOptionPane.showMessageDialog(null, mensagem, "Maria Chiquinha", JOptionPane.INFORMATION_MESSAGE);
     }
-
-    public void enzoPerdeuVez(){
-        String msg = "Enzo estava com muita preguiça de andar agora e passou o turno";
-        JOptionPane.showMessageDialog(null, msg, "Enzo Gabriel", JOptionPane.INFORMATION_MESSAGE);
-    }
 }
