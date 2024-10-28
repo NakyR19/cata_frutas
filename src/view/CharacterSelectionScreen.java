@@ -46,7 +46,7 @@ public class CharacterSelectionScreen extends JFrame {
             "Por vontade do roteir... Digo, sorte de protagonista, curiosamente recebe o dobro de frutas ao capturá-las do chão. (Exceto maracujás)",
             "Na ação de comer uma fruta sem efeito, a fruta realiza um cosplay de outra existente no jogo e fornece ao jogador um efeito aleatório. (Exceto maracujás)",
             "Ela se dirige à mata todo fim de turno, não se sabe se é para cortar lenha, ou comer jamelão, de qualquer forma tem uma boa chance de voltar com frutas de lá!",
-            "Herdou uma grande mochila, mas seu peso e lerdeza diminuem seus pontos de movimento.",
+            "Herdou uma mochila com o dobro de tamanho comparado ao dos outros, adora se gabar disso.",
             "Como uma pessoa que adora a praia, não perde a chance de consumir um coco, ao comer um multiplica seus pontos de movimento em 3.",
             "Salagadula, mexicabula, bibidi-bobodi-bu, ao empurrar há uma chance de 50% de aplicar eficientemente uma magia das trevas, a qual envenena o oponente.",
             "Uma verdadeira prodígio, amada pelo Brasil, a qual tem uma chance de receber presentes dos seus fãs no turno, seja aumento na força, ou pontos de movimento.",
