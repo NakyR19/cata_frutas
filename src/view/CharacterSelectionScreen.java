@@ -13,79 +13,67 @@ import java.awt.event.ActionListener;
  */
 public class CharacterSelectionScreen extends JFrame {
     private JLabel characterImageLabel;
-    private JLabel nameLabel, originLabel;
+    private JLabel nameLabel, originLabel, modiferLabel;
     private JTextArea descriptionArea, modiferArea;
     private JButton nextButton, prevButton, confirmButton;
     // private int pIndex;
 
     // Informações dos personagens
-    private String[] characterNames = { "Malandro", "Ajudante do Papai Noel", "Ash Ketchup", "Cosplayer", "Maria Chiquinha", "Enzo Gabriel", "Praiana", "Ametista", "Fadinha", "Edgreen Cullen"};
-    private String[] characterOrigins = { "Rio de Janeiro - RJ", "Polo Norte", "Kanto", "Xique-Xique - BA", "Mimoso - GO", "São Paulo - SP", "Praia do Forte - BA", "Aracaju - SE", "Imperatriz - MA", "Transilvania"};
+    private String[] characterNames = { "Malandro", "Ajudante do Papai Noel", "Ash Ketchup", "Cosplayer",
+            "Maria Chiquinha", "Enzo Gabriel", "Praiana", "Ametista", "Fadinha", "Edgreen Cullen" };
+    private String[] characterOrigins = { "Rio de Janeiro - RJ", "Polo Norte", "Kanto", "Xique-Xique - BA",
+            "Mimoso - GO", "São Paulo - SP", "Praia do Forte - BA", "Aracaju - SE", "Imperatriz - MA", "Transilvania" };
+    private String[] characterNameHab = { "Lábia", "Presentes", "Double Catch", "Cópia", "Genaro", "Privilégios",
+            "Água de Coco", "Târo da Morte", "Prodígio", "Clorofila" };
     private String[] characterDescriptions = {
             "Um bom malandro, conquistador, tem naipe de artista, pique de jogador.",
             "Muito esquentadinho, não tem paciência pra nada, mas uma ótima pessoa que sempre se deixa levar pelo coração.",
-            "Caçador de pok... Ops! Frutas! \nEsse é seu jeito de viver\r\n" + //
-                                "Ninguém nunca foi igual\r\n" + //
-                                "A sua vida é fazer\r\n" + //
-                                "O bem vencer o mal\r\n" + //
-                                "Pelo mundo viajará\r\n" + //
-                                "Tentando encontrar\r\n" + //
-                                "Uma Fruta Ouro e com o seu poder\r\n" + //
-                                "Tudo transformar\r\n" + //
-                                "Fruta!\r\n" + //
-                                "Tenho que pegá-los (isso eu sei)\r\n" + //
-                                "Pegá-los eu tentarei\r\n" + //
-                                "Fruta!\r\n" + //
-                                "Juntos teremos que, a mochila defender\r\n" + //
-                                "Fruta! ",
+            "Caçador de pok... Ops! Frutas! \n " + "Frutas, temos que pegar, eu sei!\n Pega-lás eu tentarei!",
             "Cosplayer de evento de animes, gosta de se vestir como princesas dos jogos, contudo, discute sempre com sua mãe por causa disso.",
             "Que c'ocê foi fazer no mato, Maria Chiquinha?\r\n" + //
-                                "Que c'ocê foi fazer no mato?",
+                    "Que c'ocê foi fazer no mato?",
             "Faria Limer com orgulho, Enzo Gabriel nunca pisou num sitío, fazenda ou algo parecido, a coisa mais próxima de uma floresta em que já pisou, foi no videogame 'playando meuh' Stardew Valley.",
             "Vive na praia, não tem muito o que falar dela não, apenas que está sempre bronzeada. (Isso vai render uns problemas de pele no futuro, mas... Quem disse que é problema meu?).",
             "Adoro ler todo tipo de livro, além de ser uma fiel seguidora das artes das trevas e uma verdadeira dependente do tarô! Pena que nenhuma carta acerta meu futuro.",
             "Campeã Mundial de Skate e com duas medalhas olímpicas no currículo. Um verdadeiro prodígio. (Se eu fosse primo dela choraria, não sei se por orgulho, ou por ter alguém na família falando: 'Ain mas sua prima é amada pelo Brasil todo, pq vc não é igual a ela?')",
-            "É um vampiro com uma personalidade sensível e charmosa, mas não muito comunicativo, contudo, ao contrário dos vampiros usuais, que chupam sangue, esse tem uma preferência incomum, ele prefere chupar a clorofila das plantas, motivo esse por qual seu cabelo está verde.",
+            "É um vampiro com uma personalidade sensível e charmosa, mas não muito comunicativo, contudo, ao contrário dos vampiros usuais, ele tem uma preferência incomum, a qual prefere chupar a clorofila das plantas, motivo esse por qual seu cabelo está verde.",
 
     };
 
-    private String[] charactersModifiers = { "Ao início de cada turno, convence com sua lábia o adversário lhe dar 3pts de movimento.",
-                                             "Ao empurrar um adversário tem chance de 20% de dobrar a quantidade de frutas que caem no chão.",
-                                             "Ao pegar uma fruta que não seja maracujá, ele ganha outra cópia da fruta.",
-                                             "Ao comer uma fruta sem efeito a fruta faz cosplay e da um efeito aleatório.",
-                                             "Vai ao mato todo fim de turno e tem chance de voltar com uma quantidade de 0 a 3 frutas aleatórias, \r\n" + //
-                                             " sendo 20% de chance de voltar sem nada, 50% de chance de voltar com uma fruta, 20% de chance de voltar com duas frutas \r\n" + //
-                                             " e 10% de chance de voltar com 3 frutas, sendo uma chance de 60% dessa fruta ser sem efeito, \r\n" + //
-                                             "logo 40% de ser de chance de fruta com efeito.",
-                                             "Herdou uma grande mochila, mas seu peso e lerdeza diminuem seus pontos de movimento.",
-                                             "Chegada num coco, ao comer um multiplica seus pontos de movimento em 3.",
-                                             "Ao empurrar tem chance de 50% de uma magia das trevas fazer efeito, envenenando o oponente.",
-                                             "Queridinha\n" + //
-                                             "Amada pelo Brasil, tem uma chance de receber presentes dos seus fãs no turno, seja aumento na força, ou pontos de movimento.",
-                                             "Ganha pontos de movimento extra sobre a quantidade de frutas verdes na sua mochila, limite de 5pts por turno."
+    private String[] charactersModifiers = {
+            "Como um bom carioca, possui um dom de fala e persuação incrível, de tal forma que no início de cada turno convence com sua lábia o adversário a entregar 3 pontos de movimento.",
+            "Chuva de present... Digo, frutas! Quando empurra um adversário, há uma chance de 20% de dobrar a quantidade de frutas que caem no chão.",
+            "Por vontade do roteir... Digo, sorte de protagonista, curiosamente recebe o dobro de frutas ao capturá-las do chão. (Exceto maracujás)",
+            "Na ação de comer uma fruta sem efeito, a fruta realiza um cosplay de outra existente no jogo e fornece ao jogador um efeito aleatório. (Exceto maracujás)",
+            "Ela se dirige à mata todo fim de turno, não se sabe se é para cortar lenha, ou comer jamelão, de qualquer forma tem uma boa chance de voltar com frutas de lá!",
+            "Herdou uma grande mochila, mas seu peso e lerdeza diminuem seus pontos de movimento.",
+            "Como uma pessoa que adora a praia, não perde a chance de consumir um coco, ao comer um multiplica seus pontos de movimento em 3.",
+            "Salagadula, mexicabula, bibidi-bobodi-bu, ao empurrar há uma chance de 50% de aplicar eficientemente uma magia das trevas, a qual envenena o oponente.",
+            "Uma verdadeira prodígio, amada pelo Brasil, a qual tem uma chance de receber presentes dos seus fãs no turno, seja aumento na força, ou pontos de movimento.",
+            "Ganha pontos de movimento extra sobre a quantidade de frutas verdes na sua mochila, limite de 7 pontos de movimento por turno."
     };
 
     private ImageIcon[] characterImages = {
-        new ImageIcon(getClass().getResource("/res/images/malandro_0.png")),
-        new ImageIcon(getClass().getResource("/res/images/ajudante0.png")),
-        new ImageIcon(getClass().getResource("/res/images/ash0.png")),
-        new ImageIcon(getClass().getResource("/res/images/cosplayer0.png")),
-        new ImageIcon(getClass().getResource("/res/images/mariaChiquinha_0.png")),
-        new ImageIcon(getClass().getResource("/res/images/enzo0.png")),
-        new ImageIcon(getClass().getResource("/res/images/praiana0.png")),
-        new ImageIcon(getClass().getResource("/res/images/ametista0.png")),
-        new ImageIcon(getClass().getResource("/res/images/fadinha0.png")),
-        new ImageIcon(getClass().getResource("/res/images/cullen0.png")),
-};
+            new ImageIcon(getClass().getResource("/res/images/malandro_0.png")),
+            new ImageIcon(getClass().getResource("/res/images/ajudante0.png")),
+            new ImageIcon(getClass().getResource("/res/images/ash0.png")),
+            new ImageIcon(getClass().getResource("/res/images/cosplayer0.png")),
+            new ImageIcon(getClass().getResource("/res/images/mariaChiquinha_0.png")),
+            new ImageIcon(getClass().getResource("/res/images/enzo0.png")),
+            new ImageIcon(getClass().getResource("/res/images/praiana0.png")),
+            new ImageIcon(getClass().getResource("/res/images/ametista0.png")),
+            new ImageIcon(getClass().getResource("/res/images/fadinha0.png")),
+            new ImageIcon(getClass().getResource("/res/images/cullen0.png")),
+    };
 
     private int currentCharacterIndex = 0;
 
     /**
      * contrutor da seleçõa de personagens
      * 
-     * @param menuInicial       menu inicial
-     * @param pIndex            o indice que vai ter o sprite do personagem selecionado
-     * @param p1Name            nome do personagem selecionado
+     * @param menuInicial menu inicial
+     * @param pIndex      o indice que vai ter o sprite do personagem selecionado
+     * @param p1Name      nome do personagem selecionado
      * 
      * @author NakyR19 - Rafael
      */
@@ -107,7 +95,9 @@ public class CharacterSelectionScreen extends JFrame {
         // selectLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Melhorar fonte
         characterImageLabel = new JLabel();
         characterImageLabel.setIcon(new ImageIcon(
-                characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona a imagem
+                characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona
+                                                                                                                     // a
+                                                                                                                     // imagem
         // Painel para as setas de navegação
         JPanel arrowPanel = new JPanel();
         prevButton = new JButton("<");
@@ -145,6 +135,10 @@ public class CharacterSelectionScreen extends JFrame {
         descriptionArea.setFont(new Font("Arial", Font.ITALIC, 12)); // Texto em itálico
         descriptionArea.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
 
+        // Habilidade
+        modiferLabel = new JLabel("Habilidade: " + characterNameHab[currentCharacterIndex]);
+        modiferLabel.setFont(new Font("Arial", Font.PLAIN, 14)); // Fonte menor
+        modiferLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Alinhamento à esquerda
         modiferArea = new JTextArea(4, 20);
         modiferArea.setText(charactersModifiers[currentCharacterIndex]);
         modiferArea.setWrapStyleWord(true); // Quebra no final das palavras
@@ -166,6 +160,8 @@ public class CharacterSelectionScreen extends JFrame {
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço vertical
         rightPanel.add(descriptionArea);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        rightPanel.add(modiferLabel);
+        rightPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Espaço vertical
         rightPanel.add(modiferArea);
         rightPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Espaço vertical maior antes do botão
         rightPanel.add(confirmButton);
@@ -190,11 +186,14 @@ public class CharacterSelectionScreen extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (pIndex == 0) {
                     setVisible(false);
-                    new CharacterSelectionScreen(menuInicial, 1, characterNames[currentCharacterIndex]).setVisible(true);
+                    new CharacterSelectionScreen(menuInicial, 1, characterNames[currentCharacterIndex])
+                            .setVisible(true);
                 } else if (pIndex == 1) {
 
-                    if(p1Name.equals(characterNames[currentCharacterIndex])){
-                        JOptionPane.showMessageDialog(null, "Escolha outro personagem. O personagem do jogador 1 não pode ser igual ao do jogador 2.", "Erro", JOptionPane.ERROR_MESSAGE);
+                    if (p1Name.equals(characterNames[currentCharacterIndex])) {
+                        JOptionPane.showMessageDialog(null,
+                                "Escolha outro personagem. O personagem do jogador 1 não pode ser igual ao do jogador 2.",
+                                "Erro", JOptionPane.ERROR_MESSAGE);
                     } else {
                         setVisible(false);
                         new Jogo(menuInicial, p1Name, characterNames[currentCharacterIndex]);
@@ -209,16 +208,20 @@ public class CharacterSelectionScreen extends JFrame {
     }
 
     /**
-     * atualiza infromações expostas na tela como: sprite, nome, naturalidade e descrição.
+     * atualiza infromações expostas na tela como: sprite, nome, naturalidade e
+     * descrição.
      * 
      * @author NakyR19 - Rafael
      */
     private void updateCharacterInfo() {
         characterImageLabel.setIcon(new ImageIcon(
-                characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona a imagem
+                characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona
+                                                                                                                     // a
+                                                                                                                     // imagem
         nameLabel.setText("Nome: " + characterNames[currentCharacterIndex]);
         originLabel.setText("Naturalidade: " + characterOrigins[currentCharacterIndex]);
         descriptionArea.setText(characterDescriptions[currentCharacterIndex]);
-        modiferArea.setText("Habilidade: " + charactersModifiers[currentCharacterIndex]);
+        modiferLabel.setText("Habilidade: " + characterNameHab[currentCharacterIndex]);
+        modiferArea.setText(charactersModifiers[currentCharacterIndex]);
     }
 }
