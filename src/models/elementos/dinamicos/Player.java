@@ -57,7 +57,7 @@ public class Player extends ElemDinamico {
      * 
      * @author NakyR19 - Rafael
      */
-    @Override
+
     public void mover(int x, int y) {
         this.x = x;
         this.y = y;

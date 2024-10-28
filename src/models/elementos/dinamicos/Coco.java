@@ -66,9 +66,4 @@ public class Coco extends Fruta {
         System.out.println(player.getId() + " está com mais agilidade.");
         return;
     }
-
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Unimplemented method 'mover'");
-    }
 }

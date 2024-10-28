@@ -19,11 +19,4 @@ public abstract class ElemDinamico extends Elemento {
         super(x, y);
     }
 
-    /**
-     * Método abstrato para mover o elemento para uma nova posição.
-     * @param x A nova coordenada x do elemento.
-     * @param y A nova coordenada y do elemento.
-     */
-    public abstract void mover(int x, int y);
-
 }

@@ -41,16 +41,4 @@ public class Maracuja extends Fruta {
         //maracujá não pode ser consumido
     }
 
-    /**
-     * Método para mover o maracujá.
-     * Este método não é implementado e lança uma exceção.
-     *
-     * @param x A nova coordenada x.
-     * @param y A nova coordenada y.
-     * @throws UnsupportedOperationException se o método for chamado.
-     */
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Unimplemented method 'mover'");
-    }
 }

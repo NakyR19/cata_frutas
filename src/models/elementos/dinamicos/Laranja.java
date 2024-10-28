@@ -49,17 +49,4 @@ public class Laranja extends Fruta {
         }
         System.out.println(player.getId() + " comeu uma laranja mas sentiu que não fez efeito...");  
     }
-
-    /**
-     * Método para mover a laranja.
-     * Este método não é implementado e lança uma exceção.
-     *
-     * @param x A nova coordenada x.
-     * @param y A nova coordenada y.
-     * @throws UnsupportedOperationException se o método for chamado.
-     */
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Unimplemented method 'mover'");
-    }
 }

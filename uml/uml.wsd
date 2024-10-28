@@ -1,144 +1,284 @@
 @startuml Cata_Frutas
 
+package controllers {
+    class PlayerController {
+        -Player player
+        -FlorestaComponent florestaComponent
+        -Jogo jogo
+        -static int PLUS_ONE_MV
+        -static int LESS_ONE_MV
+        -boolean initialPositionCleared
+        -Player adversario
+        -int contPedras
+        -boolean empurrou
+        -int upKey
+        -int downKey
+        -int leftKey
+        -int rightKey
+        +PlayerController(Player player, FlorestaComponent florestaComponent, int upKey, int downKey, int leftKey, int rightKey, Jogo jogo, Player adversario)
+        +FlorestaComponent getFlorestaComponent()
+        +void keyPressed(KeyEvent e)
+        +void keyReleased(KeyEvent e)
+        +void keyTyped(KeyEvent e)
+        +int verificarPedra(int x, int y)
+        +boolean isSamePos()
+        +void empurrar()
+        +void animateMovement()
+        +boolean isEmpurrou()
+        +void setEmpurrou(boolean empurrou)
+        +void resetEmpurrou()
+    }
+
+    class TurnoController {
+        -Player p1
+        -Player p2
+        -Player turnoAtual
+        -Jogo jogo
+        -Dado dado
+        -Floresta floresta
+        -Elemento[][] elementos
+        -int limiteMaracujas
+        +TurnoController(Player p1, Player p2, Player jogadorInicial, Jogo jogo, Floresta floresta)
+        +Player getTurnoAtual()
+        +int getLimiteMaracujas()
+        +void setLimiteMaracujas(int n)
+        +Player VerificarVitoria()
+        +void alternarTurno()
+        -void distribuirPontosMovimento()
+    }
+}
+
+package view.elementos.dinamico {
+    class MaracujaComponent {
+        -Maracuja maracuja
+        -Image imagemMaracuja
+        +MaracujaComponent(Maracuja m)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Maracuja getMaracuja()
+        +void setMaracuja(Maracuja m)
+        +Image getImageMaracuja()
+        +void setImagemMaracuja(Image imgM)
+    }
+
+    class LaranjaComponent {
+        -Laranja laranja
+        -Image imagemLaranja
+        +LaranjaComponent(Laranja l)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Laranja getLaranja()
+        +void setLaranja(Laranja l)
+        +Image getImageLaranja()
+        +void setImagemLaranja(Image imgL)
+    }
+
+    class AcerolaComponent {
+        -Acerola acerola
+        -Image imagemAcerola
+        +AcerolaComponent(Acerola l)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Acerola getAcerola()
+        +void setAcerola(Acerola a)
+        +Image getImageAcerola()
+        +void setImagemAcerola(Image imgL)
+    }
+
+    class AbacateComponent {
+        -Abacate abacate
+        -Image imagemAbacate
+        +AbacateComponent(Abacate a)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Abacate getAbacate()
+        +void setAbacate(Abacate abacate)
+        +Image getImageAbacate()
+        +void setImagemAbacate(Image imagemAbacate)
+    }
+
+    class PlayerComponent {
+        -Player player
+        -Image imagemPlayer
+        -int animationIndex
+        +PlayerComponent(Player p)
+        +int getImageByPlayer()
+        +Image getImagemPlayer()
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +void updateAnimation()
+        +Player getPlayer()
+        +void setPlayer(Player player)
+    }
+
+    class GoiabaComponent {
+        -Goiaba Goiaba
+        -Image imagemGoiaba
+        +GoiabaComponent(Goiaba c)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Goiaba getGoiaba()
+        +void setGoiaba(Goiaba Goiaba)
+        +Image getImageGoiaba()
+        +void setImagemGoiaba(Image imagemGoiaba)
+    }
+
+    class AmoraComponent {
+        -Amora Amora
+        -Image imagemAmora
+        +AmoraComponent(Amora l)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Amora getAmora()
+        +void setAmora(Amora l)
+        +Image getImageAmora()
+        +void setImagemAmora(Image imgL)
+    }
+
+    class CocoComponent {
+        -Coco coco
+        -Image imagemCoco
+        +CocoComponent(Coco c)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Coco getCoco()
+        +void setCoco(Coco coco)
+        +Image getImageCoco()
+        +void setImagemCoco(Image imagemCoco)
+    }
+}
+
 package view.ambiente {
     class FlorestaComponent {
+        -Floresta floresta
+        -PlayerComponent p1Component
+        -PlayerComponent p2Component
+        -Image background
+        -static final int CELL_SIZE
         +FlorestaComponent(Floresta floresta, PlayerComponent p1Component, PlayerComponent p2Component)
-        +void gerarPedras()
-        +void gerarPlayers()
-        +boolean isCollision(int x, int y)
-        +void setTileAsGrama(int x, int y)
-        +int getDimensao()
-        +void setDimensao(int d)
-        +Elemento[][] getElementos()
-        +void setElementos(Elemento[][] e)
-        +void aplicarEfeito()
-        +void mover(int x, int y)
+        +void paintComponent(Graphics g)
+        +Floresta getFloresta()
     }
 }
 
-package models.ambiente {
-    class Floresta {
-        -int dimensao
-        -Elemento[][] elementos
-        +void gerarPedras()
-        +void gerarPlayers()
-        +boolean isCollision(int x, int y)
-        +void setTileAsGrama(int x, int y)
-        +int getDimensao()
-        +void setDimensao(int d)
-        +Elemento[][] getElementos()
-        +void setElementos(Elemento[][] e)
+package view.elementos.estatico {
+    class ArvoreComponent {
+        -Arvore arvore
+        -Image imagemArvore
+        +ArvoreComponent(Arvore a)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Arvore getArvore()
+        +void setArvore(Arvore a)
+        +Image getImageArvore()
+        +void setImagemArvore(Image imagemArvore)
     }
 
-    class Dado {
-        +int rolarDoisDados()
-    }
-}
-
-package models.elementos {
-    class Elemento {
-        -int x
-        -int y
-        +int getX()
-        +void setX(int x)
-        +int getY()
-        +void setY(int y)
+    class PedraComponent {
+        -Pedra pedra
+        -Image imagemPedra
+        +PedraComponent(Pedra p)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Pedra getPedra()
+        +void setPedra(Pedra pedra)
+        +Image getImagePedra()
+        +void setImagemPedra(Image imagemPedra)
     }
 
-    Elemento <|-- ElemDinamico
-    Elemento <|-- ElemEstatico
-    ElemDinamico <|-- Fruta
-    ElemDinamico <|-- Player
-    ElemEstatico <|-- Grama
-    ElemEstatico <|-- Pedra
-    ElemEstatico <|-- Arvore
-}
-
-package models.elementos.dinamicos {
-    class ElemDinamico extends Elemento {
-        +void mover(int x, int y)
-    }
-
-    class Fruta extends ElemDinamico {
-        +void aplicarEfeito()
-        +void mover(int x, int y)
-    }
-
-    class Player extends ElemDinamico {
-        -String id
-        -int pontosMovimento
-        -List<Fruta> mochila
-        -int capacidadeMochila
-        +String getId()
-        +void setId(String id)
-        +int getPontosMovimento()
-        +void setPontosMovimento(int pontosMovimento)
-        +List<Fruta> getMochila()
-        +int getCapacidadeMochila()
-        +boolean pegarFruta(Fruta fruta)
-        +boolean removerFruta(Fruta fruta)
-        +void mover(int x, int y)
-    }
-
-    Fruta <|-- Abacate
-    Fruta <|-- Coco
-    Fruta <|-- Laranja
-    Fruta <|-- Maracuja
-
-    class Abacate extends Fruta {
-        +void aplicarEfeito()
-        +void mover(int x, int y)
-    }
-
-    class Acerola extends Fruta {
-    }
-
-    class Amora extends Fruta {
-    }
-
-    class Coco extends Fruta {
-        +void aplicarEfeito()
-        +void mover(int x, int y)
-    }
-
-    class Goiaba extends Fruta {
-    }
-
-    class Laranja extends Fruta {
-        +void aplicarEfeito()
-        +void mover(int x, int y)
-    }
-
-    class Maracuja extends Fruta {
-        +void aplicarEfeito()
-        +void mover(int x, int y)
+    class GramaComponent {
+        -Grama grama
+        -Image imagemGrama
+        +GramaComponent(Grama g)
+        +void desenhar(Graphics g, int x, int y, int cellSize)
+        +Grama getGrama()
+        +void setGrama(Grama grama)
     }
 }
 
-package models.elementos.estaticos {
-    class ElemEstatico extends Elemento {
-        +void interagir()
+package view {
+    class Jogo {
+        -static final int CELL_SIZE
+        -static final int WIDTH_OVER
+        -static final int HEIGHT_OVER
+        -static final int DIMENSAO_MIN
+        -static final int DIMENSAO_MAX
+        -Player p1
+        -Player p2
+        -String p1Name
+        -String p2Name
+        -PlayerController p1Controller
+        -PlayerController p2Controller
+        -TurnoController turnoController
+        -JLabel turnoLabel
+        -MapaUtils mapaUtils
+        +Jogo(JFrame menuInicial, String p1Name, String p2Name)
+        +void atualizarControlador(Player turnoAtual)
+        +TurnoController getTurnoController()
+        +String getP1Name()
+        +String getP2Name()
+        +void atualizarTurnoLabel()
+        +void infoInterface()
     }
 
-    class Arvore extends ElemEstatico {
-        -String tipoArvore
-        +void interagir()
-        +void setTipoArvore(String tipo)
-        +String getTipoArvore()
+    class Tutorial {
+        -JButton buttonVoltar
+        -JLabel imgTutorial
+        +Tutorial(JFrame menuInicial)
+        -void aparencia()
+        -void configB(JFrame menuInicial)
     }
 
-    class Grama extends ElemEstatico {
-        +void interagir()
+    class MenuVitoria {
+        -JButton buttonFinalizar
+        -JLabel texto
+        -JLabel vencedorIcon
+        -Player vencedor
+        -ImageIcon[] characterImages
+        +MenuVitoria(Player vencedor)
+        -void configFrame()
+        -void configUI()
+        -void buttonListeners()
+        -ImageIcon getVencedorIcon()
     }
 
-    class Pedra extends ElemEstatico {
-        +void interagir()
+    class MenuInicial {
+        -JButton buttonIniciarJogo
+        -JButton buttonMenuMapas
+        -JButton buttonTutorial
+        -JLabel logoLabel
+        +MenuInicial()
+        -void configFrame()
+        -void configUI()
+        -void buttonListeners()
+    }
+
+    class MenuMapas {
+        -JButton[] slots
+        -File diretorioMapas
+        +MenuMapas(JFrame menuInicial)
+        -int qntdMinElementos(int dimensao)
+        -int qntdMaxElementos(int dimensao)
+        -int qntdMinMaracuja(int dimensao)
+        -int qntdMaxMaracuja(int dimensao)
+    }
+
+    class CharacterSelectionScreen {
+        -JLabel characterImageLabel
+        -JLabel nameLabel
+        -JLabel originLabel
+        -JLabel modiferLabel
+        -JTextArea descriptionArea
+        -JTextArea modiferArea
+        -JButton nextButton
+        -JButton prevButton
+        -JButton confirmButton
+        -String[] characterNames
+        -String[] characterOrigins
+        -String[] characterNameHab
+        -String[] characterDescriptions
+        -String[] charactersModifiers
+        -ImageIcon[] characterImages
+        -int currentCharacterIndex
+        +CharacterSelectionScreen(JFrame menuInicial, int pIndex, String p1Name)
+        -void updateCharacterInfo()
     }
 }
 
 package view.elementos {
-    class ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
+    abstract class ElementoComponent {
+        +ElementoComponent()
+        +abstract void desenhar(Graphics g, int x, int y, int cellSize)
     }
 
     class ElementoComponentFactory {
@@ -146,85 +286,61 @@ package view.elementos {
     }
 }
 
-package view.elementos.dinamico {
-    class AbacateComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
+package models.ambiente {
+    class Floresta {
+        -int dimensao
+        -Elemento[][] elementos
+        -int numPedras
+        -int numLaranjeiras
+        -int numLaranjas
+        -int numGoiabeiras
+        -int numGoiabas
+        -int numCoqueiros
+        -int numCocos
+        -int numAmoreiras
+        -int numAmoras
+        -int numAceroleiras
+        -int numAcerolas
+        -int numAbacateiros
+        -int numAbacates
+        -int numMaracujas
+        -int numMaracujasTotais
+        -int chanceBichadas
+        -int capacidadeMochila
+        +Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos, int numAmoreiras, int numAmoras, int numAceroleiras, int numAcerolas, int numAbacateiros, int numAbacates, int numMaracujas, int numMaracujasTotais, int chanceBichadas, int capacidadeMochila)
+        +void gerarFlorestaVazia()
+        +void gerarPedras()
+        +void gerarLaranjeiras()
+        +void gerarLaranjas()
+        +void gerarGoiabeiras()
+        +void gerarGoiabas()
+        +void gerarCoqueiros()
+        +void gerarCocos()
+        +void gerarAmoreiras()
+        +void gerarAmoras()
+        +void gerarAceroleiras()
+        +void gerarAcerolas()
+        +void gerarAbacateiros()
+        +void gerarAbacates()
+        +void gerarMaracujas()
+        +void gerarPlayers()
+        +Player getPlayer(String id)
+        +boolean isCollision(int x, int y)
+        +void setTileAsGrama(int x, int y)
+        +int getCapacidadeMochila()
+        +void setCapacidadeMochila(int capacidadeMochila)
+        +int getDimensao()
+        +void setDimensao(int d)
+        +Elemento[][] getElementos()
+        +void setElementos(Elemento[][] e)
+        +int getNumMaracujasTotais()
+        +int getNumMaracujas()
+        +int getChanceBichadas()
+        +int getNumArvores()
     }
 
-    class CocoComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-
-    class PlayerComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-
-    class LaranjaComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-
-    class MaracujaComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-}
-
-ElementoComponent <|-- AbacateComponent
-ElementoComponent <|-- CocoComponent
-ElementoComponent <|-- LaranjaComponent
-ElementoComponent <|-- MaracujaComponent
-ElementoComponent <|-- PlayerComponent
-
-package view.elementos.estatico {
-    class GramaComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-
-    class PedraComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-
-    class ArvoreComponent extends ElementoComponent {
-        +void desenhar(Graphics g, int x, int y, int cellSize)
-    }
-}
-
-package view {
-    class MenuInicial {
-        -JButton buttonIniciarJogo
-        -JButton buttonMenuMapas
-        -JLabel logoLabel
-        +void configFrame()
-        +void configUI()
-        +void buttonListeners()
-    }
-
-    class Jogo {
-        -TurnoController turnoController
-        -Player turnoAtual
-        +void atualizarControlador(Player turnoAtual)
-        +TurnoController getTurnoController()
-        +void atualizarTurnoLabel()
-        +void infoInterface()
-    }
-
-    class MenuMapas {
-        -JButton[] slots
-        -File diretorioMapas
-        +MenuMapas(JFrame menuInicial)
-    }
-}
-
-package controllers {
-    class PlayerController {
-        +void keyPressed(KeyEvent e)
-        +void keyReleased(KeyEvent e)
-        +void keyTyped(KeyEvent e)
-    }
-
-    class TurnoController {
-        -Player turnoAtual
-        +Player getTurnoAtual()
-        +void alternarTurno()
+    class Dado {
+        +int rolarDoisDados()
     }
 }
 
@@ -234,54 +350,279 @@ package utils {
         +int lerNumPedrasDoMapa(File arquivoMapa)
         +int lerNumLaranjeirasDoMapa(File arquivoMapa)
         +int lerNumLaranjas(File arquivoMapa)
+        +int lerNumGoiabeirasDoMapa(File arquivoMapa)
+        +int lerNumGoiabasDoMapa(File arquivoMapa)
+        +int lerNumCoqueirosDoMapa(File arquivoMapa)
+        +int lerNumCocosDoMapa(File arquivoMapa)
+        +int lerNumAmoreirasDoMapa(File arquivoMapa)
+        +int lerNumAmorasDoMapa(File arquivoMapa)
+        +int lerNumAceroleirasDoMapa(File arquivoMapa)
+        +int lerNumAcerolasDoMapa(File arquivoMapa)
+        +int lerNumAbacateirosDoMapa(File arquivoMapa)
+        +int lerNumAbacatesDoMapa(File arquivoMapa)
+        +int lerChanceBichadas(File arquivoMapa)
         +int lerNumMaracujas(File arquivoMapa)
         +int lerCapacidadeMochila(File arquivoMapa)
+        +int lerNumMaracujasTotais(File arquivoMapa)
+    }
+}
+
+package models.elementos {
+    abstract class Elemento {
+        -int x
+        -int y
+        +Elemento(int x, int y)
+        +int getX()
+        +void setX(int x)
+        +int getY()
+        +void setY(int y)
+    }
+}
+
+package models.elementos.estaticos {
+    abstract class ElemEstatico {
+        +ElemEstatico(int x, int y)
+        +abstract void interagir(Player player)
+    }
+
+    class Pedra {
+        -Floresta floresta
+        +Pedra(int x, int y)
+        +void interagir(Player player)
+        +Floresta getFloresta()
+        +void setFloresta(Floresta floresta)
+    }
+
+    class Grama {
+        +Grama(int x, int y)
+        +void interagir(Player player)
+    }
+
+    class Arvore {
+        -String TipoArvore
+        -int LimitadorTurno
+        -TurnoController turnoController
+        -int chanceBichada
+        +Arvore(int x, int y, String tipo, int chanceBichada)
+        +void interagir(Player player)
+        +void cooldownReduction()
+        +void setTipoArvore(String tipo)
+        +String getTipoArvore()
+        +void setLimitadorTurno(int n)
+        +int getLimitadorTurno()
+        +void setControl(TurnoController control)
+        +TurnoController getControl()
+    }
+}
+
+package models.elementos.dinamicos {
+    abstract class ElemDinamico {
+        +ElemDinamico(int x, int y)
+    }
+
+    abstract class Fruta {
+        -String TipoFruta
+        -boolean Bichada
+        +Fruta(int x, int y, int chanceBichada)
+        +abstract void aplicarEfeito(Player player)
+    }
+
+    class Abacate {
+        +Abacate(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Coco {
+        +Coco(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Amora {
+        +Amora(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Acerola {
+        +Acerola(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Maracuja {
+        +Maracuja(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Laranja {
+        +Laranja(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Goiaba {
+        +Goiaba(int x, int y, int chanceBichada)
+        +void aplicarEfeito(Player player)
+    }
+
+    class Player {
+        -String id
+        -int pontosMovimento
+        -List<Fruta> mochila
+        -int capacidadeMochila
+        -boolean poison
+        -int pontosVitoria
+        -String direcaoAtual
+        -PlayerController playerController
+        -int multiplicadorForca
+        -String nome
+        -PlayerComponent playerComponent
+        -boolean cooldown
+        +Player(int x, int y, String id, int capacidadeMochila)
+        +void mover(int x, int y)
+        +String getId()
+        +void setId(String id)
+        +void setPlayerComponent(PlayerComponent playerComponent)
+        +PlayerComponent getPlayerComponent()
+        +int getPontosMovimento()
+        +void setPontosMovimento(int pontosMovimento)
+        +boolean isCooldown()
+        +void setCooldown(boolean cooldown)
+        +List<Fruta> getMochila()
+        +void setMochila(int n)
+        +int getCapacidadeMochila()
+        +boolean getPoison()
+        +void setPoison(Boolean p)
+        +int getPontosVitoria()
+        +void setPontosVitoria(int n)
+        +int getMultiplicadorForca()
+        +void setMultiplicadorForca(int multiplicadorForca)
+        +String getDirecaoAtual()
+        +void setDirecaoAtual(String direcaoAtual)
+        +String getNome()
+        +void setNome(String nome)
+        +void setPlayerController(PlayerController playerController)
+        +PlayerController getPlayerController()
+        +int getForca()
+        +boolean pegarFruta(Fruta fruta)
+        +boolean removerFruta(Fruta fruta)
+        +Fruta removerFrutaAleatoria()
+        +int ajudantePapaiNoel(int empurrar)
+        +void malandro(int qtdMalandros)
+        +int edgreenCullenCountFrutas()
+        +void edgreenCullenMensagem(int qntdFrutas)
+        +Fruta gerarFrutaAleatoria()
+        +void consumirFruta(String tipoFruta)
+        +void exibirInventario()
+        +void mariaChiquinha()
     }
 }
 
 
-Elemento <|-- ElemDinamico
-Elemento <|-- ElemEstatico
-ElemDinamico <|-- Fruta
-ElemDinamico <|-- Player
-ElemEstatico <|-- Arvore
-ElemEstatico <|-- Grama
-ElemEstatico <|-- Pedra
-Fruta <|-- Frutinha
-Fruta <|-- Abacate
-Fruta <|-- Acerola
-Fruta <|-- Amora
-Fruta <|-- Coco
-Fruta <|-- Goiaba
-Fruta <|-- Laranja
-Fruta <|-- Maracuja
-ElementoComponent <|-- AbacateComponent
-ElementoComponent <|-- CocoComponent
-ElementoComponent <|-- PlayerComponent
-ElementoComponent <|-- LaranjaComponent
-ElementoComponent <|-- MaracujaComponent
-ElementoComponent <|-- GramaComponent
-ElementoComponent <|-- PedraComponent
-FlorestaComponent --> Floresta
+Floresta --> Elemento
 Floresta --> Player
 Floresta --> Pedra
+Floresta --> Laranja
+Floresta --> Goiaba
+Floresta --> Coco
+Floresta --> Amora
+Floresta --> Acerola
+Floresta --> Abacate
+Floresta --> Maracuja
+Floresta --> Arvore
 Floresta --> Grama
-Frutinha --> Player
-Frutinha --> Jogo
-Player --> Fruta
-PlayerController --> Player
+
+Dado --> Floresta
+
+MapaUtils --> File
+
+ElemEstatico --> Elemento
+ElemEstatico --> Player
+
+ElemDinamico --> Elemento
+Pedra --> ElemEstatico
+Grama --> ElemEstatico
+Arvore --> ElemEstatico
+
+Fruta --> ElemDinamico
+Abacate --> Fruta
+Coco --> Fruta
+Amora --> Fruta
+Acerola --> Fruta
+Maracuja --> Fruta
+Laranja --> Fruta
+Goiaba --> Fruta
+
+Player --> ElemDinamico
+MaracujaComponent --> Maracuja
+LaranjaComponent --> Laranja
+AcerolaComponent --> Acerola
+AbacateComponent --> Abacate
+PlayerComponent --> Player
+GoiabaComponent --> Goiaba
+AmoraComponent --> Amora
+CocoComponent --> Coco
+
+FlorestaComponent --> Floresta
+FlorestaComponent --> PlayerComponent
+
+ArvoreComponent --> Arvore
+PedraComponent --> Pedra
+GramaComponent --> Grama
+
 PlayerController --> FlorestaComponent
+PlayerController --> Player
 PlayerController --> Jogo
+PlayerController --> KeyEvent
+PlayerController --> Elemento
+PlayerController --> Pedra
+PlayerController --> Fruta
+PlayerController --> Maracuja
+PlayerController --> Grama
+
 TurnoController --> Player
 TurnoController --> Jogo
 TurnoController --> Dado
+TurnoController --> Floresta
+TurnoController --> Elemento
+TurnoController --> Maracuja
+TurnoController --> Arvore
+TurnoController --> Grama
+TurnoController --> MenuVitoria
+
+Jogo --> PlayerController
 Jogo --> TurnoController
-Jogo --> PlayerComponent
+Jogo --> Player
 Jogo --> FlorestaComponent
-Jogo --> Floresta
+Jogo --> MapaUtils
+
+Tutorial --> JFrame
+MenuVitoria --> JFrame
+MenuVitoria --> Player
+MenuInicial --> JFrame
+MenuMapas --> JFrame
+CharacterSelectionScreen --> JFrame
+
 ElementoComponentFactory --> ElementoComponent
 ElementoComponentFactory --> GramaComponent
 ElementoComponentFactory --> PedraComponent
 ElementoComponentFactory --> PlayerComponent
+ElementoComponentFactory --> ArvoreComponent
+ElementoComponentFactory --> LaranjaComponent
+ElementoComponentFactory --> MaracujaComponent
+ElementoComponentFactory --> AbacateComponent
+ElementoComponentFactory --> AcerolaComponent
+ElementoComponentFactory --> AmoraComponent
+ElementoComponentFactory --> CocoComponent
+ElementoComponentFactory --> GoiabaComponent
+
+ElementoComponent <|-- MaracujaComponent
+ElementoComponent <|-- LaranjaComponent
+ElementoComponent <|-- AcerolaComponent
+ElementoComponent <|-- AbacateComponent
+ElementoComponent <|-- PlayerComponent
+ElementoComponent <|-- GoiabaComponent
+ElementoComponent <|-- AmoraComponent
+ElementoComponent <|-- CocoComponent
+ElementoComponent <|-- ArvoreComponent
+ElementoComponent <|-- PedraComponent
+ElementoComponent <|-- GramaComponent
 
 @enduml

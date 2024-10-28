@@ -54,8 +54,4 @@ public class Abacate extends Fruta{
         return;
     }
 
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Unimplemented method 'mover'");
-    }
 }

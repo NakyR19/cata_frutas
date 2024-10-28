@@ -77,18 +77,7 @@ public class Acerola extends Fruta{
          }
     }
 
-    /**
-     * Método para mover a Acerola.
-     * Este método não é implementado e lança uma exceção.
-     *
-     * @param x A nova coordenada x.
-     * @param y A nova coordenada y.
-     * @throws UnsupportedOperationException se o método for chamado.
-     */
-    @Override
-    public void mover(int x, int y) {
-        throw new UnsupportedOperationException("Unimplemented method 'mover'");
-    }
+    
     
 }
 
