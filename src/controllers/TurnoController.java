@@ -9,6 +9,8 @@ import view.Jogo;
 import view.MenuVitoria;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
+import java.util.Random;
+
 /**
  * Classe que gerencia o turno dos jogadores.
  * Troca os turnos e performar certas ações no fim de cada turno.
@@ -28,11 +30,11 @@ public class TurnoController {
     /**
      * Construtor da classe TurnoController
      * 
-     * @param p1                    Jogador 1
-     * @param p2                    Jogador 2
-     * @param jogadorInicial        Jogador que começa o jogo
-     * @param jogo                  O jogo que está sendo jogado
-     * @param floresta              O tabuleiro que está sendo utilizado
+     * @param p1             Jogador 1
+     * @param p2             Jogador 2
+     * @param jogadorInicial Jogador que começa o jogo
+     * @param jogo           O jogo que está sendo jogado
+     * @param floresta       O tabuleiro que está sendo utilizado
      * 
      * @author NakyR19 - Rafael
      */
@@ -67,9 +69,10 @@ public class TurnoController {
     /**
      * Verifica se algum dos jogadores tem maracujas o bastante para vencer
      * 
-     * @return          Retorna o player que venceu caso tenha vencido, caso contrário retorna null.
+     * @return Retorna o player que venceu caso tenha vencido, caso contrário
+     *         retorna null.
      * 
-     * @author          Gustavo Assunção
+     * @author Gustavo Assunção
      */
     public Player VerificarVitoria() {// verifica se algum dos players tem pontos necessarios para vencer.
         int pontos = (floresta.getNumMaracujasTotais() / 2) + 1;
@@ -82,7 +85,8 @@ public class TurnoController {
 
     /**
      * Altera o turno do jogador.
-     * enquanto altera arvoré da frutas para players que estiverem embaixo, diminui a recarga das árvores e dropa maracujás.
+     * enquanto altera arvoré da frutas para players que estiverem embaixo, diminui
+     * a recarga das árvores e dropa maracujás.
      * 
      * @author NakyR19 - Rafael
      */
@@ -96,7 +100,7 @@ public class TurnoController {
         distribuirPontosMovimento();
 
         if (turnoAtual.getNome().equals("Fadinha")) {
-            if((int)(Math.random() * 100 + 1) > 50){
+            if ((int) (Math.random() * 100 + 1) > 50) {
                 turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 5);
                 System.out.println("ganhou pontos de movimento");
             } else {
@@ -104,7 +108,7 @@ public class TurnoController {
                 System.out.println("ganhou força");
             }
         }
-        if(this.turnoAtual.getNome() == "Maria Chiquinha"){
+        if (this.turnoAtual.getNome() == "Maria Chiquinha") {
             this.turnoAtual.mariaChiquinha();
         }
         System.out.println("Turno alternado para: " + turnoAtual.getId());
@@ -118,6 +122,8 @@ public class TurnoController {
 
         jogo.atualizarControlador(turnoAtual);
         jogo.atualizarTurnoLabel(); // Atualiza o JLabel
+        Random random = new Random();
+        int chanceDropMaracuja = random.nextInt(10);
         int arvoreDropMaracuja = (int) (Math.random() * floresta.getNumArvores() + 1);// variavel usada para ajudar a
                                                                                       // escolher uma arvore aleatoria
 
@@ -137,7 +143,7 @@ public class TurnoController {
                         arvore.setControl(this);
                         arvore.interagir(p2);
                     }
-                    if (this.getLimiteMaracujas() > 0 && arvoreDropMaracuja == 0) {// se for a arvore que foi escolhido
+                    if (this.getLimiteMaracujas() > 0 && arvoreDropMaracuja == 0 && chanceDropMaracuja < 2) {// se for a arvore que foi escolhido
                                                                                    // e o limite de maracujas nao foi
                                                                                    // atingido dropa um maracuja
                                                                                    // adjacente
@@ -197,8 +203,7 @@ public class TurnoController {
                 }
 
             }
-                    
-            
+
             else {
                 this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
                 if (this.turnoAtual.getPontosMovimento() < 1) {
@@ -226,8 +231,7 @@ public class TurnoController {
                     this.turnoAtual.edgreenCullenMensagem(this.turnoAtual.edgreenCullenCountFrutas());
                 }
 
-            } 
-            else {
+            } else {
                 this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
                 if (this.turnoAtual.getPontosMovimento() < 1) {
                     p1.malandro(0);
@@ -246,6 +250,6 @@ public class TurnoController {
 
         } else {
             this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
-            } 
         }
     }
+}
