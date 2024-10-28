@@ -101,6 +101,10 @@ public class Player extends ElemDinamico {
         return mochila;
     }
 
+    public void setMochila(int n){
+        this.capacidadeMochila = n;
+    }
+
     public int getCapacidadeMochila() {
         return capacidadeMochila;
     }

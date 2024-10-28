@@ -112,6 +112,11 @@ public class Jogo extends JFrame {
         p2 = floresta.getPlayer("p2");
         p1.setNome(getP1Name());
         p2.setNome(p2Name);
+        if (p1.getNome().equals("Enzo Gabriel")) {
+            p1.setMochila(p1.getCapacidadeMochila()*2);
+        } else if(p2.getNome().equals("Enzo Gabriel")){
+            p2.setMochila(p2.getCapacidadeMochila()*2);
+        }
         PlayerComponent p1Component = new PlayerComponent(p1);
         PlayerComponent p2Component = new PlayerComponent(p2);
         FlorestaComponent florestaComponent = new FlorestaComponent(floresta, p1Component, p2Component);

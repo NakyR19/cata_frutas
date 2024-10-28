@@ -57,11 +57,11 @@ public class CharacterSelectionScreen extends JFrame {
                                              " sendo 20% de chance de voltar sem nada, 50% de chance de voltar com uma fruta, 20% de chance de voltar com duas frutas \r\n" + //
                                              " e 10% de chance de voltar com 3 frutas, sendo uma chance de 60% dessa fruta ser sem efeito, \r\n" + //
                                              "logo 40% de ser de chance de fruta com efeito.",
-                                             "Herdou uma grande mochila, mas seu peso e lerdeza diminuem seus pontos de movimento.",
+                                             "Herdou uma grande mochila com o dobro do tamanho, mas seu peso e lerdeza diminuem seus pontos de movimento em 3.",
                                              "Chegada num coco, ao comer um multiplica seus pontos de movimento em 3.",
                                              "Ao empurrar tem chance de 50% de uma magia das trevas fazer efeito, envenenando o oponente.",
                                              "Queridinha\n" + //
-                                             "Amada pelo Brasil, tem uma chance de receber presentes dos seus fãs no turno, seja aumento na força, ou pontos de movimento.",
+                                             "Amada pelo Brasil, sempre recebe presentes dos seus fãs no turno, seja +5 de força, ou +5 pontos de movimento.",
                                              "Ganha pontos de movimento extra sobre a quantidade de frutas verdes na sua mochila, limite de 5pts por turno."
     };
 

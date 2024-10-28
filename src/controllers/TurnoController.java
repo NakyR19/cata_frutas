@@ -50,7 +50,6 @@ public class TurnoController {
             p1.malandro(1);
         }
         this.turnoAtual.setPontosMovimento(dado.rolarDoisDados());
-
     }
 
     public Player getTurnoAtual() {
@@ -95,6 +94,16 @@ public class TurnoController {
         }
 
         distribuirPontosMovimento();
+
+        if (turnoAtual.getNome().equals("Fadinha")) {
+            if((int)(Math.random() * 100 + 1) > 50){
+                turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 5);
+                System.out.println("ganhou pontos de movimento");
+            } else {
+                turnoAtual.setMultiplicadorForca(turnoAtual.getMultiplicadorForca() + 5);
+                System.out.println("ganhou força");
+            }
+        }
         if(this.turnoAtual.getNome() == "Maria Chiquinha"){
             this.turnoAtual.mariaChiquinha();
         }
@@ -231,6 +240,12 @@ public class TurnoController {
 
         } else {
             this.turnoAtual.setPontosMovimento(dado.rolarDoisDados() + 3);
+        } if (turnoAtual.getNome().equals("Enzo Gabriel")) {
+            if(turnoAtual.getPontosMovimento() <= 3){
+                turnoAtual.setPontosMovimento(1);
+            } else{
+                turnoAtual.setPontosMovimento(dado.rolarDoisDados() - 3);
+            }
         }
     }
 }
