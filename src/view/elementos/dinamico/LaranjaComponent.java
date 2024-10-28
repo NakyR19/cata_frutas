@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * que exibe uma imagem de um objeto do tipo laranja na interface gráfica.
  * Herda da classe ElementoComponent para reutilizar funcionalidades.
  * 
- * @author redbdb - gustavo assunção
+ * @author gustavo assunção
  */
 
 public class LaranjaComponent extends ElementoComponent{
@@ -27,6 +27,8 @@ public class LaranjaComponent extends ElementoComponent{
     /**
      * Construtor da classe que inicializa o componente gráfico.
      * @param c O objeto Laranja associado a este componente.
+     * 
+     * @author gustavo assunção
      */
 
     public LaranjaComponent(Laranja l){
@@ -42,6 +44,8 @@ public class LaranjaComponent extends ElementoComponent{
      * @param x       A coordenada x onde será desenhado 
      * @param y       A coordenada y onde será desenhada 
      * @param cellSize O tamanho da célula onde o objeto será desenhado
+     * 
+     * @author gustavo assunção
      */
 
     @Override

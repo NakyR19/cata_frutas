@@ -5,11 +5,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * janela de tutorial
+ * 
+ * @author Maria Luiza
+ */
 public class Tutorial extends JFrame {
 
     private JButton buttonVoltar;
     private JLabel imgTutorial;
 
+    /**
+     * contrutor do tutorial
+     * 
+     * @param menuInicial menu inicial
+     * @author Maria Luiza
+     */
     public Tutorial(JFrame menuInicial) {
 
         ImageIcon tutorialImage = new ImageIcon(getClass().getResource("/res/images/tutorial.png"));
@@ -21,6 +32,11 @@ public class Tutorial extends JFrame {
         configB(menuInicial);
     }
 
+    /**
+     * configura a aperencia
+     * 
+     * @author Maria Luiza
+     */
     private void aparencia() {
         setTitle("Tutorial");
         setSize(500, 500);
@@ -35,6 +51,13 @@ public class Tutorial extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * configura o botão, volta ao menu inicial ao apertar o botao
+     * 
+     * @param menuInicial menu inicial
+     * 
+     * @author Maria Luiza
+     */
     private void configB(JFrame menuInicial) {
         buttonVoltar.setBackground(Color.decode("#1F0C39"));
         buttonVoltar.setForeground(Color.WHITE);

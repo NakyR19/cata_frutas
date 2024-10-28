@@ -3,7 +3,7 @@ package models.elementos.dinamicos;
 /**
  * representa a fruta Goiaba, fruta sem efeito.
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
- * @author redbdb - Gustavo 
+ * @author Gustavo Assunção
  */
 public class Goiaba extends Fruta {
 
@@ -16,6 +16,8 @@ public class Goiaba extends Fruta {
      * @param x A coordenada x da Goiaba.
      * @param y A coordenada y da Goiaba.
      * @param chanceBichada A chance da Goiaba estar bichada em porcentagem
+     * 
+     * @author Gustavo Assunção
      */
     public Goiaba(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
@@ -33,8 +35,11 @@ public class Goiaba extends Fruta {
      * Aplica o efeito da Goiaba ao jogador.
      * Neste caso, a Goiaba não possui nenhum efeito.
      * se estiver bichada o player fica envenenado.
+     * Caso o jogador que comeu a fruta seja uma Cosplayer, da um efeito aleatório.
      *
      * @param p O jogador ao qual o efeito será aplicado.
+     * 
+     * @author Gustavo Assunção
      */
     @Override
     public void aplicarEfeito(Player player) {

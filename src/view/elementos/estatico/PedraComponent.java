@@ -22,6 +22,8 @@ public class PedraComponent extends ElementoComponent {
      * Construtor da classe PedraComponent.
      *
      * @param p O objeto Pedra que representa a Pedra no jogo.
+     * 
+     * @author NakyR19 - Rafael
      */
     public PedraComponent(Pedra p) {
         this.pedra = p;
@@ -36,6 +38,8 @@ public class PedraComponent extends ElementoComponent {
      * @param x A coordenada x onde a imagem será desenhada.
      * @param y A coordenada y onde a imagem será desenhada.
      * @param cellSize O tamanho da célula em pixels.
+     * 
+     * @author NakyR19 - Rafael
      */
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize) {

@@ -5,6 +5,8 @@ import java.awt.*;
 
 /**
  * Classe que representa a tela inicial do jogo Cata-Frutas.
+ * 
+ * @author NakyR19 - Rafael
  */
 public class MenuInicial extends JFrame {
 
@@ -16,6 +18,8 @@ public class MenuInicial extends JFrame {
     /**
      * Construtor da classe MenuInicial.
      * Inicializa os componentes da interface gráfica.
+     * 
+     * @author NakyR19 - Rafael
      */
     public MenuInicial() {
 
@@ -31,6 +35,8 @@ public class MenuInicial extends JFrame {
 
     /**
      * Configura a janela principal.
+     * 
+     * @author NakyR19 - Rafael
      */
     private void configFrame() {
         setTitle("Cata-Frutas");
@@ -45,6 +51,8 @@ public class MenuInicial extends JFrame {
 
     /**
      * Configura os componentes da interface gráfica.
+     * 
+     * @author NakyR19 - Rafael
      */
     private void configUI() {
         JPanel logoPanel = new JPanel();
@@ -85,6 +93,8 @@ public class MenuInicial extends JFrame {
 
     /**
      * Adiciona os listeners aos botões.
+     * 
+     * @author NakyR19 - Rafael
      */
     private void buttonListeners() {
         buttonIniciarJogo.addActionListener(e -> {

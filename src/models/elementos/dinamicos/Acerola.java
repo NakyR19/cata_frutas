@@ -3,7 +3,8 @@ package models.elementos.dinamicos;
 /**
  * representa a fruta Acerola, fruta sem efeito.
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
- * @author redbdb - Gustavo 
+ * 
+ * @author Gustavo Assunção 
  */
 public class Acerola extends Fruta{
 
@@ -16,6 +17,8 @@ public class Acerola extends Fruta{
      * @param x A coordenada x da Acerola.
      * @param y A coordenada y da Acerola.
      * @param chanceBichada A chance da Acerola estar bichada em porcentagem
+     * 
+     * @author Gustavo Assunção
      */
     public Acerola(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
@@ -33,8 +36,11 @@ public class Acerola extends Fruta{
      * Aplica o efeito da Acerola ao jogador.
      * Neste caso, a Acerola não possui nenhum efeito.
      * se estiver bichada o player fica envenenado.
+     * Caso o jogador que comeu a fruta seja uma Cosplayer, da um efeito aleatório.
      *
      * @param p O jogador ao qual o efeito será aplicado.
+     * 
+     * @author Gustavo Assunção
      */
     @Override
     public void aplicarEfeito(Player player) {

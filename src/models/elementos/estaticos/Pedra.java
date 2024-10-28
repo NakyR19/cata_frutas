@@ -20,6 +20,8 @@ public class Pedra extends ElemEstatico{
    * 
    * @param x coordenada x
    * @param y coordenada y
+   * 
+   * @author NakyR19 - Rafael
    */
   public Pedra(int x, int y) {
     super(x, y);
@@ -51,6 +53,15 @@ public class Pedra extends ElemEstatico{
         }
 
     }*/
+
+    /**
+     * Interação do player com a pedra, pula a pedra e reduzo os pontos de movimento.
+     * Pula pedras em sequencia de linha reta
+     * 
+     * @param player
+     * 
+     * @author Maria Luíza 
+     */
   @Override
   public void interagir(Player player) {
     int newX = player.getX();

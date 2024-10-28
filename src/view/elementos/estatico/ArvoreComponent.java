@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 /**
  * ArvoreComponent representa o componente gráfico da Arvore no jogo.
  * Herda de ElementoComponent e é responsável por desenhar a Arvore.
- * @author redbdb - Gustavo Assunção
+ * @author Gustavo Assunção
  */
 
 public class ArvoreComponent extends ElementoComponent{
@@ -22,9 +22,11 @@ public class ArvoreComponent extends ElementoComponent{
         private Image imagemArvore;
         
         /**
-         * Construtor da classe ArvoreComponent.
+         * Construtor da classe ArvoreComponent, tem sprites diferentes pra cada tipo de árvore.
          *
          * @param p O objeto que reprsenta arvore no jogo.
+         * 
+         * @author Gustavo Assunção
          */
         public ArvoreComponent(Arvore a) {
             this.arvore = a;
@@ -56,6 +58,8 @@ public class ArvoreComponent extends ElementoComponent{
          * @param x A coordenada x onde a imagem será desenhada.
          * @param y A coordenada y onde a imagem será desenhada.
          * @param cellSize O tamanho da célula em pixels.
+         * 
+         * @author Gustavo Assunção
          */
         @Override
         public void desenhar(Graphics g, int x, int y, int cellSize) {

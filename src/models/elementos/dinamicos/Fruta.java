@@ -3,7 +3,7 @@ package models.elementos.dinamicos;
 /**
  * representa um elemento dinâmico no jogo que pode ter efeitos sobre o jogador
  * Esta classe é a classe mãe para todas as frutas que podem ter diferentes tipos e estados (bichada ou não).
- * @author redbdb - Gustavo 
+ * @author Gustavo Assunção
  */
 public abstract class Fruta extends ElemDinamico {
 
@@ -23,6 +23,8 @@ public abstract class Fruta extends ElemDinamico {
      * @param x A coordenada x da fruta.
      * @param y A coordenada y da fruta.
      * @param chanceBichada A chance da fruta estar bichada em porcentagem
+     * 
+     * @author Gustavo Assunção
      */
     public Fruta(int x, int y, int chanceBichada) {
         super(x, y);
@@ -33,6 +35,8 @@ public abstract class Fruta extends ElemDinamico {
      * Este método deve ser implementado pelas subclasses para definir o efeito específico da fruta.
      *
      * @param p O jogador ao qual o efeito será aplicado.
+     * 
+     * @author Gustavo Assunção
      */
     public abstract void aplicarEfeito(Player player);
 }

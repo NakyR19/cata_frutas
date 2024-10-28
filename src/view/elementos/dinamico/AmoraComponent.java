@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * que exibe uma imagem de um objeto do tipo Amora na interface gráfica.
  * Herda da classe ElementoComponent para reutilizar funcionalidades.
  * 
- * @author
+ * @author NakyR19 - Rafael
  */
 
 public class AmoraComponent extends ElementoComponent{
@@ -27,6 +27,8 @@ public class AmoraComponent extends ElementoComponent{
     /**
      * Construtor da classe que inicializa o componente gráfico.
      * @param c O objeto Amora associado a este componente.
+     * 
+     * @author NakyR19 - Rafael
      */
 
     public AmoraComponent(Amora l){
@@ -42,6 +44,8 @@ public class AmoraComponent extends ElementoComponent{
      * @param x       A coordenada x onde será desenhado 
      * @param y       A coordenada y onde será desenhada 
      * @param cellSize O tamanho da célula onde o objeto será desenhado
+     * 
+     * @author NakyR19 - Rafael
      */
 
     @Override

@@ -34,6 +34,8 @@ public class ElementoComponentFactory {
      *
      * @param elemento O elemento para o qual o componente gráfico será criado.
      * @return O componente gráfico correspondente ao elemento, ou null se o elemento não for reconhecido.
+     * 
+     * @author NakyR19 - Rafael
      */
     public static ElementoComponent criarComponente(Elemento elemento) {
         if (elemento instanceof Grama) {

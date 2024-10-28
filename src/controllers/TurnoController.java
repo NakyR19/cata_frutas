@@ -9,7 +9,12 @@ import view.Jogo;
 import view.MenuVitoria;
 import models.elementos.estaticos.Arvore;
 import models.elementos.estaticos.Grama;
-
+/**
+ * Classe que gerencia o turno dos jogadores.
+ * Troca os turnos e performar certas ações no fim de cada turno.
+ * 
+ * @author NakyR19 - Rafael
+ */
 public class TurnoController {
     private Player p1;
     private Player p2;
@@ -20,6 +25,17 @@ public class TurnoController {
     private Elemento[][] elementos;
     private int limiteMaracujas;
 
+    /**
+     * Construtor da classe TurnoController
+     * 
+     * @param p1                    Jogador 1
+     * @param p2                    Jogador 2
+     * @param jogadorInicial        Jogador que começa o jogo
+     * @param jogo                  O jogo que está sendo jogado
+     * @param floresta              O tabuleiro que está sendo utilizado
+     * 
+     * @author NakyR19 - Rafael
+     */
     public TurnoController(Player p1, Player p2, Player jogadorInicial, Jogo jogo, Floresta floresta) {
         this.p1 = p1;
         this.p2 = p2;
@@ -49,6 +65,13 @@ public class TurnoController {
         limiteMaracujas = n;
     }
 
+    /**
+     * Verifica se algum dos jogadores tem maracujas o bastante para vencer
+     * 
+     * @return          Retorna o player que venceu caso tenha vencido, caso contrário retorna null.
+     * 
+     * @author          Gustavo Assunção
+     */
     public Player VerificarVitoria() {// verifica se algum dos players tem pontos necessarios para vencer.
         int pontos = (floresta.getNumMaracujasTotais() / 2) + 1;
         if (p1.getPontosVitoria() >= pontos)
@@ -58,6 +81,12 @@ public class TurnoController {
         return null;
     }
 
+    /**
+     * Altera o turno do jogador.
+     * enquanto altera arvoré da frutas para players que estiverem embaixo, diminui a recarga das árvores e dropa maracujás.
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void alternarTurno() {
         if (turnoAtual == p1) {
             turnoAtual = p2;
@@ -132,6 +161,11 @@ public class TurnoController {
 
     }
 
+    /**
+     * distribui pontos caso um dos jogadores seja um Malandro.
+     * 
+     * @author NakyR19 - Rafael
+     */
     private void distribuirPontosMovimento() {
         if (p1.getNome().equals("Malandro")) {
             if (this.turnoAtual.getNome().equals("Malandro")) {

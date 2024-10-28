@@ -40,6 +40,10 @@ public class Jogo extends JFrame {
      * Construtor da classe Jogo.
      * 
      * @param menuInicial A janela do menu inicial.
+     * @param p1Name nome do personagem do jogador 1
+     * @param p2Name o nome do personagem do jogador 2
+     * 
+     * @author NakyR19 - Rafael
      */
     public Jogo(JFrame menuInicial, String p1Name, String p2Name) {
         this.p1Name = p1Name;
@@ -151,6 +155,13 @@ public class Jogo extends JFrame {
 
     }
 
+    /**
+     * atualiza o controlador para o jogador atual
+     * 
+     * @param turnoAtual o jogador que esta com o turno atual
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void atualizarControlador(Player turnoAtual) {
         if (turnoAtual == p1) {
             System.out.println("Atualizando controlador para p1");
@@ -177,12 +188,22 @@ public class Jogo extends JFrame {
         return p2Name;
     }
 
+    /**
+     * atualiza a turnoLabel
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void atualizarTurnoLabel() {
         Player turnoAtual = turnoController.getTurnoAtual();
         turnoLabel
                 .setText("Turno: " + turnoAtual.getNome() + " | Pontos de Movimento: " + turnoAtual.getPontosMovimento());
     }
 
+    /**
+     * adiciona a interface com informações
+     * 
+     * @author NakyR19 - Rafael
+     */
     private void infoInterface (){
         // Adiciona o JLabel para exibir o turno e os pontos de movimento
         turnoLabel = new JLabel();

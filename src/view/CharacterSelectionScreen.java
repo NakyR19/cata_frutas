@@ -6,6 +6,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * tela de seleção de personagens
+ * 
+ * @author NakyR19 - Rafael
+ */
 public class CharacterSelectionScreen extends JFrame {
     private JLabel characterImageLabel;
     private JLabel nameLabel, originLabel;
@@ -58,6 +63,15 @@ public class CharacterSelectionScreen extends JFrame {
 
     private int currentCharacterIndex = 0;
 
+    /**
+     * contrutor da seleçõa de personagens
+     * 
+     * @param menuInicial       menu inicial
+     * @param pIndex            o indice que vai ter o sprite do personagem selecionado
+     * @param p1Name            nome do personagem selecionado
+     * 
+     * @author NakyR19 - Rafael
+     */
     public CharacterSelectionScreen(JFrame menuInicial, int pIndex, String p1Name) {
         // this.pIndex = pIndex;
         // setTitle("Selecionar Personagem");
@@ -165,7 +179,11 @@ public class CharacterSelectionScreen extends JFrame {
         add(rightPanel, BorderLayout.CENTER);
     }
 
-    // Atualiza as informações do personagem
+    /**
+     * atualiza infromações expostas na tela como: sprite, nome, naturalidade e descrição.
+     * 
+     * @author NakyR19 - Rafael
+     */
     private void updateCharacterInfo() {
         characterImageLabel.setIcon(new ImageIcon(
                 characterImages[currentCharacterIndex].getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH))); // redimensiona a imagem

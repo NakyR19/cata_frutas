@@ -37,6 +37,8 @@ public class Player extends ElemDinamico {
      * @param x  A coordenada x inicial do jogador.
      * @param y  A coordenada y inicial do jogador.
      * @param id O identificador do jogador.
+     * 
+     * @author NakyR19 - Rafael
      */
     public Player(int x, int y, String id, int capacidadeMochila) {
         super(x, y);
@@ -51,6 +53,8 @@ public class Player extends ElemDinamico {
      * 
      * @param x A nova coordenada x do jogador.
      * @param y A nova coordenada y do jogador.
+     * 
+     * @author NakyR19 - Rafael
      */
     @Override
     public void mover(int x, int y) {
@@ -157,6 +161,8 @@ public class Player extends ElemDinamico {
      * Adiciona uma fruta na mochila do jogador.
      * 
      * @param fruta A fruta q vai ser adicionada.
+     * 
+     * @author NakyR19 - Rafael
      */
     public boolean pegarFruta(Fruta fruta) {
         if (mochila.size() < getCapacidadeMochila()) {
@@ -175,11 +181,20 @@ public class Player extends ElemDinamico {
      * 
      * @param fruta fruta q vai ser removida.
      * @return true se a fruta foi removida, false caso contrário.
+     * 
+     * @author NakyR19 - Rafael
      */
     public boolean removerFruta(Fruta fruta) {
         return this.mochila.remove(fruta);
     }
 
+    /**
+     * remove uma fruta aleatoria da mochila do player
+     * 
+     * @return A fruta que foi removida
+     * 
+     * @author NakyR19 - Rafael
+     */
     public Fruta removerFrutaAleatoria() {
         if (this.mochila.isEmpty()) {
             System.out.println("Mochila vazia");
@@ -190,6 +205,15 @@ public class Player extends ElemDinamico {
         return this.mochila.remove(index);
     }
 
+    /**
+     * Função para o modificador de empurrão do ajudante de papai noel
+     * 
+     * @param empurrar      quantas frutas forma derrubadas no empurrão
+     * 
+     * @return a quantidade de frutas derrubadas no empurrão depois da habilidade ser ativada ou não.
+     * 
+     * @author NakyR19 - Rafael
+     */
     public int ajudantePapaiNoel(int empurrar) {
         if (this.getNome().equals("Ajudante do Papai Noel")) {
             Random random = new Random();
@@ -203,6 +227,13 @@ public class Player extends ElemDinamico {
         return empurrar;
     }
 
+    /**
+     * Função para o modificador do Malandro de roubar pontos
+     * 
+     * @param qtdMalandros  quantidade de Malandros em jogo
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void malandro(int qtdMalandros) {
 
         if (qtdMalandros == 2) {
@@ -217,6 +248,13 @@ public class Player extends ElemDinamico {
         }
     }
 
+    /**
+     * contador de frutas verdes do Edgreen Cullen
+     * 
+     * @return quantidade de frutas verdes
+     * 
+     * @author NakyR19 - Rafael
+     */
     public int edgreenCullenCountFrutas() {
         int count = 0;
         for (Fruta fruta : mochila) {
@@ -227,6 +265,13 @@ public class Player extends ElemDinamico {
         return count;
     }
 
+    /**
+     * função para amostrar o JPane avisando a quantidade de pontos que Edgreen ganha
+     * 
+     * @param qntdFrutas    quantas frutas verdes Edgreen tem
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void edgreenCullenMensagem(int qntdFrutas) {
         if (qntdFrutas > 7) {
             String mensagem = "Opa, nosso amigo da natureza ganhará 7 pontos de movimento, por ter mais de 7 frutas verdes na mochila!";
@@ -238,6 +283,13 @@ public class Player extends ElemDinamico {
         }
     }
 
+    /**
+     * Gera frutas aleatorias
+     * 
+     * @return a Fruta que foi gerada
+     * 
+     * @author NakyR19 - Rafael
+     */
     public Fruta gerarFrutaAleatoria() {
         Random random = new Random();
         int tipoFruta = random.nextInt(6);
@@ -260,6 +312,11 @@ public class Player extends ElemDinamico {
         }
     }
 
+    /**
+     * Função para a habilidade especial da maria chiquinha, pode dar frutas no fim do turno.
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void mariaChiquinha() {
         Fruta fruta, fruta1, fruta2;
         String mensagem;

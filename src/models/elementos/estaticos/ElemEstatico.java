@@ -16,6 +16,8 @@ public abstract class ElemEstatico extends Elemento {
    * 
    * @param x coordenada x do elemento.
    * @param y coordenada y do elemento.
+   * 
+   * @author NakyR19 - Rafael
    */
   public ElemEstatico(int x, int y) {
     super(x, y);

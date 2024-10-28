@@ -3,7 +3,7 @@ package models.elementos.dinamicos;
 /**
  * representa a fruta laranja, fruta antidoto no jogo.
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
- * @author redbdb - Gustavo 
+ * @author Gustavo Assunção 
  */
 public class Laranja extends Fruta {
 
@@ -15,6 +15,8 @@ public class Laranja extends Fruta {
      * @param x A coordenada x da laranja.
      * @param y A coordenada y da laranja.
      * @param chanceBichada A chance da Laranja estar bichada em porcentagem
+     * 
+     * @author Gustavo Assunção
      */
     public Laranja(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
@@ -33,6 +35,8 @@ public class Laranja extends Fruta {
      * se estiver bichado não acontece nada
      *
      * @param p O jogador ao qual o efeito será aplicado.
+     * 
+     * @author Gustavo Assunção
      */
     @Override
     public void aplicarEfeito(Player player){

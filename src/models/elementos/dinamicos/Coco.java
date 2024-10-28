@@ -15,6 +15,8 @@ package models.elementos.dinamicos;
      * @param x a coordenada X do Coco.
      * @param y a coordenada Y do Coco.
      * @param chanceBichada A chance do coco estar bichado em porcentagem
+     * 
+     * @author Maria Luíza Andrade
      */
     public Coco(int x, int y, int chanceBichada) {
        super(x, y, chanceBichada);
@@ -32,6 +34,7 @@ package models.elementos.dinamicos;
      * @param p o jogador que receberá o efeito.
      * @todo Implementar a lógica para dobrar os pontos de movimento do jogador.
      *
+     * @author Maria Luíza Andrade
      */
     @Override
        public void aplicarEfeito(Player player){

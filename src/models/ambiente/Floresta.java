@@ -66,6 +66,8 @@ public class Floresta {
  * @param numMaracujasTotais O número total de maracujás.
  * @param chanceBichadas A chance de que as frutas estejam bichados.
  * @param capacidadeMochila A capacidade da mochila em termos de itens que pode carregar.
+ * 
+ * @author NakyR19 - Rafael
  */
   public Floresta(int dimensao, int numPedras, int numLaranjeiras, int numLaranjas, int numGoiabeiras, int numGoiabas, int numCoqueiros, int numCocos, int numAmoreiras,
    int numAmoras, int numAceroleiras, int numAcerolas, int numAbacateiros, int numAbacates, int numMaracujas, int numMaracujasTotais, int chanceBichadas, int capacidadeMochila) {

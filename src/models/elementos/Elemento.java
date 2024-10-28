@@ -16,6 +16,8 @@ public abstract class Elemento {
    * 
    * @param x coordenada x
    * @param y coordenada y
+   * 
+   * @author NakyR19 - Rafael
    */
     public Elemento(int x, int y) {
         this.x = x;

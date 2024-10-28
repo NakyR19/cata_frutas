@@ -12,6 +12,8 @@ public abstract class ElemDinamico extends Elemento {
      * Construtor
      * @param x coordenada x do elemento.
      * @param y coordenada y do elemento.
+     * 
+     * @author NakyR19 - Rafael
      */
     public ElemDinamico(int x, int y) {
         super(x, y);

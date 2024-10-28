@@ -27,6 +27,8 @@ public class AbacateComponent extends ElementoComponent{
     /**
      * Construtor da classe que inicializa o componente gráfico.
      * @param a     O objeto Abacate associado a este componente.
+     * 
+     * @author MariaLuizaCA - Maria Luíza
      */
 
     public AbacateComponent(Abacate a){
@@ -42,6 +44,8 @@ public class AbacateComponent extends ElementoComponent{
      * @param x       A coordenada x onde será desenhado 
      * @param y       A coordenada y onde será desenhada 
      * @param cellSize O tamanho da célula onde o objeto será desenhado
+     * 
+     * @author MariaLuizaCA - Maria Luíza
      */
 
     @Override

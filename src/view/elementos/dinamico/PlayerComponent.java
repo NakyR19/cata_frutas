@@ -180,6 +180,7 @@ public class PlayerComponent extends ElementoComponent {
      *          OBS.: FUTURAMENTE ADICIONAR PARAMETRO PARA RECEBER IMAGEM CONFORME
      *          MOVIMENTAÇÃO DO PLAYER
      *          Atribuição da referência de imagem a imagemPlayer
+     * @author NakyR19 - Rafael
      */
     public PlayerComponent(Player p) {
         this.player = p;
@@ -187,16 +188,6 @@ public class PlayerComponent extends ElementoComponent {
         ImageIcon referencia = characterAnimations[getImageByPlayer()][0];
         imagemPlayer = referencia.getImage();
     }
-
-    /**
-     * Desenha a imagem do jogador na posição especificada com o tamanho de célula
-     * especificado.
-     *
-     * @param g        o objeto Graphics a ser usado para desenhar
-     * @param x        a coordenada x em que irá ser desenhada a imagem
-     * @param y        a coordenada y a qual irá ser desenhada a imagem
-     * @param cellSize o tamanho da célula a qual a imagem será desenhada
-     */
 
     public int getImageByPlayer() {
         switch (player.getNome()) {
@@ -230,6 +221,17 @@ public class PlayerComponent extends ElementoComponent {
         return imagemPlayer;
     }
 
+    /**
+     * Desenha a imagem do jogador na posição especificada com o tamanho de célula
+     * especificado.
+     *
+     * @param g        o objeto Graphics a ser usado para desenhar
+     * @param x        a coordenada x em que irá ser desenhada a imagem
+     * @param y        a coordenada y a qual irá ser desenhada a imagem
+     * @param cellSize o tamanho da célula a qual a imagem será desenhada
+     * 
+     * @author NakyR19 - Rafael
+     */
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize) {
         g.drawImage(imagemPlayer, x, y, cellSize, cellSize, null);

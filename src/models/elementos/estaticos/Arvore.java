@@ -12,6 +12,7 @@ import models.elementos.dinamicos.Player;
 /**
  * Arvore representa uma arvore que ao interagir com ela derrubará frutas.
  * Esta classe herda da classe ElemEstatico.
+ * 
  * @author NakyR19 - Rafael
  */
 public class Arvore extends ElemEstatico {
@@ -29,6 +30,8 @@ public class Arvore extends ElemEstatico {
      * @param x coordenada x
      * @param y coordenada y
      * @param chanceBichada a chance das frutas que a arvore da estarem bichadas
+     * 
+     * @author NakyR19 - Rafael
      */
     public Arvore(int x, int y, String tipo, int chanceBichada) {
         super(x, y);
@@ -37,7 +40,14 @@ public class Arvore extends ElemEstatico {
         this.chanceBichada = chanceBichada;
     }
 
-    // em breve
+    /**
+     * função de interagir da árvore.
+     * Da uma fruta do tipo de árvore e entra em recarga
+     * 
+     * @param player o jogador que interage
+     * 
+     * @author Gustavo Assunção
+     */
     @Override
     public void interagir(Player player){
 
@@ -101,7 +111,11 @@ public class Arvore extends ElemEstatico {
         }
     }
 
-    // diminui em 1 a contagem de turnos
+    /**
+     * diminui a recarga da arvore em 1
+     * 
+     * @author Gustavo Assunção
+     */
     public void cooldownReduction(){
         if(this.LimitadorTurno > 0)
             LimitadorTurno--;

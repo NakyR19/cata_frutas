@@ -6,6 +6,11 @@ import models.elementos.dinamicos.Player;
 
 import java.awt.*;
 
+/**
+ * menu de vitoria ao fim do jogo
+ * 
+ * @author Gustavo Assunção
+ */
 public class MenuVitoria extends JFrame{
 
     JButton buttonFinalizar;
@@ -27,6 +32,13 @@ public class MenuVitoria extends JFrame{
         new ImageIcon(getClass().getResource("/res/images/cullen0.png")),
     };
 
+    /**
+     * contrutor da classe menuVitoria
+     * 
+     * @param vencedor o player vencedor
+     * 
+     * @author Gustavo Assunção
+     */
     public MenuVitoria(Player vencedor){
 
         this.vencedor = vencedor;
@@ -37,6 +49,10 @@ public class MenuVitoria extends JFrame{
     
     }
 
+    /**
+     * configura a janela 
+     * @author Gustavo Assunção
+     */
     private void configFrame(){//configura a janela
         setTitle("Fim de jogo");
         setSize(500, 500);
@@ -47,6 +63,11 @@ public class MenuVitoria extends JFrame{
         getContentPane().setBackground(Color.decode("#1F0C39"));
     }
 
+    /**
+     * configura a interface
+     * 
+     * @author Gustavo Assunção
+     */
     private void configUI(){
         
         //adicionar depois alguma logo ou algo do tipo para finalizar o jogo
@@ -86,6 +107,11 @@ public class MenuVitoria extends JFrame{
 
     }
 
+    /**
+     * funçaõ de fechar o jogo e voltar ao menu inicial ao apertar o botao
+     * 
+     * @author Gustavo Assunção
+     */
     private void buttonListeners(){//fecha o jogo atual e volta para o menu inicial
         buttonFinalizar.addActionListener(e -> {
             new MenuInicial();
@@ -93,6 +119,13 @@ public class MenuVitoria extends JFrame{
         });
     }
 
+    /**
+     * função para auxiliar a pegar o icone do vencedor no array de sprites;
+     * 
+     * @return o icone do jogador vencedor
+     * 
+     * @author Gustavo Assunção
+     */
     private ImageIcon getVencedorIcon(){
         switch(vencedor.getNome()){
             case "Malandro":

@@ -23,6 +23,8 @@ public class GramaComponent extends ElementoComponent {
      * Construtor da classe GramaComponent.
      *
      * @param g O objeto Grama que representa a grama no jogo.
+     * 
+     * @author NakyR19 - Rafael
      */
     public GramaComponent(Grama g) {
         this.grama = g;
@@ -37,6 +39,8 @@ public class GramaComponent extends ElementoComponent {
      * @param x A coordenada x onde a imagem será desenhada.
      * @param y A coordenada y onde a imagem será desenhada.
      * @param cellSize O tamanho da célula em pixels.
+     * 
+     * @author NakyR19 - Rafael
      */
     @Override
     public void desenhar(Graphics g, int x, int y, int cellSize) {

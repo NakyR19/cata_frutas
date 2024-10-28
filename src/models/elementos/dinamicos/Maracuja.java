@@ -3,7 +3,7 @@ package models.elementos.dinamicos;
 /**
  * representa maracuja, a fruta usada como marcador de pontos de vitoria
  * Esta classe herda de Fruta e implementa os métodos abstratos definidos na classe mãe.
- * @author redbdb - Gustavo 
+ * @author Gustavo Assunção
  */
 public class Maracuja extends Fruta {
 
@@ -14,6 +14,8 @@ public class Maracuja extends Fruta {
      * @param x A coordenada x do maracujá.
      * @param y A coordenada y do maracujá.
      * @param chanceBichada A chance do maracujá estar bichado em porcentagem
+     * 
+     * @author Gustavo Assunção
      */
     public Maracuja(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
@@ -31,6 +33,8 @@ public class Maracuja extends Fruta {
      * Neste caso, o maracujá não pode ser consumido, então o efeito não é aplicado.
      *
      * @param p O jogador ao qual o efeito seria aplicado.
+     * 
+     * @author Gustavo Assunção
      */
     @Override
     public void aplicarEfeito(Player p) {

@@ -11,6 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * Menu de mapas para o jogo
+ * 
+ * @author NakyR19 - Rafael
+ */
 public class MenuMapas extends JFrame {
     private final JButton[] slots;
     private final File diretorioMapas;
@@ -103,6 +108,13 @@ public class MenuMapas extends JFrame {
         return -1;
     }
 
+    /**
+     * construtor da classe menu mapas
+     * 
+     * @param menuInicial   o menu inicial
+     * 
+     * @author NakyR19 - Rafael
+     */
     public MenuMapas(JFrame menuInicial) {
         super("Menu de Mapas");
         setLayout(new GridLayout(6, 1)); // 5 slots + 1 linha para o botão de fechar

@@ -14,12 +14,14 @@ public class Grama extends ElemEstatico {
    * 
    * @param x coordenada x
    * @param y coordenada y
+   * 
+   * @author NakyR19 - Rafael
    */
   public Grama(int x, int y) {
     super(x, y);
   }
 
-  // será necessário?
+  
   @Override
   public void interagir(Player player) {
 

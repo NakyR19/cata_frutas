@@ -12,6 +12,8 @@ import javax.swing.JComponent;
 public abstract class ElementoComponent extends JComponent {
   /**
    * Construtor da classe ElementoComponent.
+   * 
+   * @author NakyR19 - Rafael
    */
   public ElementoComponent() {
   }
@@ -23,6 +25,8 @@ public abstract class ElementoComponent extends JComponent {
    * @param x        A coordenada x onde o elemento será desenhado.
    * @param y        A coordenada y onde o elemento será desenhado.
    * @param cellSize O tamanho da célula em pixels.
+   * 
+   * @author NakyR19 - Rafael
    */
   public abstract void desenhar(Graphics g, int x, int y, int cellSize);
 

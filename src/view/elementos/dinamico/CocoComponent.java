@@ -27,6 +27,8 @@ public class CocoComponent extends ElementoComponent{
     /**
      * Construtor da classe que inicializa o componente gráfico.
      * @param c O objeto Coco associado a este componente.
+     * 
+     * @author MariaLuizaCA - Maria Luíza
      */
 
     public CocoComponent(Coco c){
@@ -42,6 +44,8 @@ public class CocoComponent extends ElementoComponent{
      * @param x       A coordenada x onde será desenhado 
      * @param y       A coordenada y onde será desenhada 
      * @param cellSize O tamanho da célula onde o objeto será desenhado
+     * 
+     * @author MariaLuizaCA - Maria Luíza
      */
 
     @Override

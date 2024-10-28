@@ -37,7 +37,9 @@ public class FlorestaComponent extends JPanel {
      * Construtor
      *
      * @param floresta O objeto Floresta que representa a floresta no jogo.
-     * @param playerComponent O componente gráfico do jogador.
+     * @param p1Component O componente gráfico do jogador 1
+     * @param p2Component O componente gráfico do jogador 2
+     * @author NakyR19 - Rafael
      */
     public FlorestaComponent(Floresta floresta, PlayerComponent p1Component, PlayerComponent p2Component) {
         this.floresta = floresta;
@@ -51,6 +53,8 @@ public class FlorestaComponent extends JPanel {
      * Sobrescreve o método paintComponent para desenhar a floresta e seus elementos.
      *
      * @param g O objeto Graphics usado para desenhar os componentes.
+     * 
+     * @author NakyR19 - Rafael
      */
     @Override
     public void paintComponent(Graphics g) {

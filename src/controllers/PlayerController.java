@@ -42,7 +42,7 @@ public class PlayerController implements KeyListener {
     private int rightKey;
 
     /**
-     * Construtor
+     * Construtor da classe PlayerController
      * 
      * @param player            o jogador a ser controlado
      * @param florestaComponent o componente da floresta onde o jogador se move
@@ -51,6 +51,9 @@ public class PlayerController implements KeyListener {
      * @param leftKey           a tecla para mover para a esquerda
      * @param rightKey          a tecla para mover para a direita
      * @param jogo              a instância do jogo para alternar turnos
+     * @param adversario        o jogador adversario ao que esta sendo controlado
+     * 
+     * @author NakyR19 - Rafael
      */
     public PlayerController(Player player, FlorestaComponent florestaComponent, int upKey, int downKey, int leftKey,
             int rightKey, Jogo jogo, Player adversario) {
@@ -69,6 +72,14 @@ public class PlayerController implements KeyListener {
         return florestaComponent;
     }
 
+    /**
+     * Função que faz diferentes ações a depender da tecla que foi pressionada.
+     * Pode mover o jogador, pegar frutas ou acabar o turno atual.
+     * 
+     * @param e         a tecla que foi pressionada
+     * 
+     * @author NakyR19 - Rafael
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -221,7 +232,15 @@ public class PlayerController implements KeyListener {
     public void keyTyped(KeyEvent e) {
     }
 
-    // Verifica se o objeto na frente é uma pedra
+    /**
+     * Função que verifica se existe uma pedra em uma posição e se existem outras em sequência.
+     * 
+     * @param x         Coordenada x que será verificada
+     * @param y         Coordenada y que será verificada
+     * @return          retorna 0 se não houver pedras, se houver retorna a quantidade de pedras.
+     * 
+     * @author Maria Luiza
+     */
     public int verificarPedra(int x, int y) {
         Elemento elemento = florestaComponent.getFloresta().getElementos()[x][y];
         if (x < 0 || x >= florestaComponent.getFloresta().getDimensao() || y < 0
@@ -250,10 +269,24 @@ public class PlayerController implements KeyListener {
 
     }
 
+    /**
+     * Verifica se os jogadores estão na mesma posição
+     * 
+     * @return          true se ambos estiverem na mesm posição, false caso contrário.
+     * 
+     * @author NakyR19 - Rafael
+     */
     public boolean isSamePos() {
         return player.getX() == adversario.getX() && player.getY() == adversario.getY();
     }
 
+    /**
+     * Função para a ação empurrar um jogador, usa as formulas dadas para calcular o drop de frutas.
+     * Só pode empurrar uma vez por turno.
+     * Se a personagem Ametista empurrou, existe chance de envenenar o adversario.
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void empurrar() {
         int forcaJogador = player.getForca();
         System.out.println(forcaJogador);
@@ -323,6 +356,11 @@ public class PlayerController implements KeyListener {
         }
     }
 
+    /**
+     * Função para fazer animações ao andar
+     * 
+     * @author NakyR19 - Rafael
+     */
     public void animateMovement() {
         Timer timer = new Timer(50, new ActionListener() { // 50 ms para cada frame
             private int frameCount = 0;

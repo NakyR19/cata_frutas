@@ -16,6 +16,8 @@ public class Abacate extends Fruta{
      * @param x a coordenada X do Abacate.
      * @param y a coordenada Y do Abacate.
      * @param chanceBichada A chance do Abacate estar bichado em porcentagem
+     * 
+     * @author Maria Luíza Andrade
      */
     public Abacate(int x, int y, int chanceBichada) {
         super(x, y, chanceBichada);
@@ -33,6 +35,8 @@ public class Abacate extends Fruta{
      *
      * @param p o jogador que receberá o efeito.
      * @todo Implementar a lógica para dobrar a força do jogador.
+     * 
+     * @author Maria Luíza Andrade
      */
     @Override
     public void aplicarEfeito(Player player){
